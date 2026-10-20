@@ -6,7 +6,7 @@ from reportlab.lib.colors import HexColor
 
 import theme as T
 from theme import (CORAL, CORAL_SOFT, INK, LINE, LINE_SOFT, MED, MONO, MONO_MED,
-                   MUT, MUT_DIM, PAPER, PAPER_2, PINK, SKY, SKY_SOFT, TEAL,
+                   MUT, MUT_DIM, PAPER, PAPER_2, PINK, R, SKY, SKY_SOFT, TEAL,
                    TEAL_SOFT, VIOLET, VIOLET_SOFT, WHITE, YELLOW, YELLOW_SOFT,
                    alpha, card, chip, hline, label, photo, rect, sw, text, ty)
 
@@ -234,3 +234,194 @@ def map_mock(c, x, y, w, h, markers=None, compact=False, labels=True):
             dot(c, cx, cy, 5.0, col)
             dot(c, cx, cy, 2.0, WHITE)
     c.restoreState()
+
+
+# ================================================================ quest exchange
+def quest_row(c, x, y, w, h, cat, title, meta, price, col=VIOLET, offers=3,
+              small=False):
+    """One card in the quest feed."""
+    card(c, x, y, w, h, fill=WHITE, stroke=LINE_SOFT, r=6, lw=0.7, shadow=False)
+    rect(c, x, y, 3, h, fill=col, r=1.5)
+    fs = 0.78 if small else 1.0
+    text(c, x + 9, y + 12 * fs, title, MED, 6.6 * fs, INK)
+    text(c, x + 9, y + 21 * fs, meta, R, 5.2 * fs, MUT_DIM)
+    text(c, x + w - 8, y + 12 * fs, price, MONO_MED, 6.4 * fs, INK, 0.1, "right")
+    text(c, x + w - 8, y + 21 * fs, f"{offers} offers", MONO, 4.8 * fs, MUT_DIM,
+         0.2, "right")
+
+
+def quest_screen(c, x, y, w, h, kind="feed", compact=False):
+    """Quest-exchange screens, drawn to fit the given rect (top-left origin)."""
+    k = 0.85 if compact else 1.0
+    rect(c, x, y, w, h, fill=WHITE)
+
+    if kind == "feed":
+        text(c, x + 10, y + 17, "Near you", MED, 8.6 * k, INK)
+        chip(c, x + w - 74, y + 6, "TODAY", VIOLET, VIOLET_SOFT, None, 5.0, 13, 6)
+        for i, (t, bg) in enumerate((("Tutoring", VIOLET_SOFT), ("Repairs", TEAL_SOFT),
+                                      ("Care", YELLOW_SOFT))):
+            chip(c, x + 10 + i * 54, y + 25, t.upper(), INK, bg, None, 4.6, 12, 5)
+        rows = [("Tutoring", "Maths, 2 sessions", "Tue + Thu \u00b7 1 h", "\u20ac40", VIOLET, 3),
+                ("Repairs", "Bike, new chain", "Saturday \u00b7 45 min", "\u20ac25", TEAL, 5),
+                ("Care", "Dutch conversation", "2 \u00d7 45 min", "\u20ac30", YELLOW, 2),
+                ("Repairs", "Shelf, 2 holes", "This week", "\u20ac35", CORAL, 4),
+                ("Tutoring", "CV + cover letter", "One evening", "\u20ac20", VIOLET, 6),
+                ("Care", "Dog, two walks", "Fri \u00b7 2 \u00d7 30 min", "\u20ac15", TEAL, 2)]
+        yy = y + 43
+        for cat, title, meta, price, col, n in rows:
+            if yy + 30 > y + h:
+                break
+            quest_row(c, x + 9, yy, w - 18, 28 * k, cat, title, meta, price, col,
+                      offers=n, small=compact)
+            yy += 32 * k
+        if yy + 52 < y + h:
+            text(c, x + 10, yy + 8, "YOUR QUESTS", MONO, 4.6, MUT_DIM, 0.8)
+            quest_row(c, x + 9, yy + 13, w - 18, 26 * k, "Repairs",
+                      "Bench, 2 slats", "waiting for offers", "\u20ac420", VIOLET,
+                      offers=0, small=compact)
+            yy += 46 * k
+        if yy + 14 < y + h:
+            rect(c, x + 9, y + h - 20, w - 18, 14, fill=VIOLET, r=4)
+            text(c, x + w / 2, y + h - 10, "ASK FOR SOMETHING", MED, 5.0, WHITE,
+                 0.6, "center")
+
+    elif kind == "quest":
+        text(c, x + 10, y + 17, "Psychology session", MED, 8.0 * k, INK)
+        chip(c, x + w - 56, y + 6, "\u20ac30", VIOLET, VIOLET_SOFT, None, 5.0, 13, 6)
+        for i, s_ in enumerate(("2 \u00d7 45 min, online or in the park",
+                                "Asked by \u00b7 M., 24, Rotterdam",
+                                "Needs \u00b7 a supervised trainee")):
+            text(c, x + 10, y + 32 + i * 10 * k, s_, R, 5.0 * k, MUT)
+        line_y = y + 66 * k
+        hline(c, x + 10, line_y, x + w - 10, LINE_SOFT, 0.6)
+        text(c, x + 10, line_y + 11, "3 offers", MED, 5.6 * k, INK)
+        for i, (n, p) in enumerate((("A. \u00b7 trainee, 2 yrs", "\u20ac28"),
+                                     ("L. \u00b7 GZ-psycholoog", "\u20ac45"),
+                                     ("S. \u00b7 peer supporter", "\u20ac20"))):
+            yy = line_y + 18 + i * 19 * k
+            if yy + 16 > y + h - 22:
+                break
+            card(c, x + 10, yy, w - 20, 16 * k, fill=PAPER, stroke=LINE_SOFT, r=3,
+                 lw=0.5, shadow=False)
+            dot(c, x + 17, yy + 8 * k, 1.9, VIOLET if i == 0 else MUT_DIM)
+            text(c, x + 24, yy + 10.5 * k, n, R, 4.9 * k, INK)
+            text(c, x + w - 18, yy + 10.5 * k, p, MONO, 4.9 * k, MUT, 0.1, "right")
+        text(c, x + 10, y + h - 40, "A. answers in 2 h on average", MONO, 4.2,
+             MUT_DIM, 0.2)
+        text(c, x + 10, y + h - 30, "Reward is already in escrow \u00b7 confirmation "
+             "releases it", MONO, 4.2, MUT_DIM, 0.2)
+        rect(c, x + 10, y + h - 20, w - 20, 14, fill=VIOLET, r=4)
+        text(c, x + w / 2, y + h - 10, "Choose an offer", MED, 5.0, WHITE, 0.3,
+             "center")
+
+    elif kind == "offers":
+        text(c, x + 10, y + 17, "Offers on your quest", MED, 7.6 * k, INK)
+        text(c, x + 10, y + 28, "\u20ac30 reward \u00b7 held in escrow", MONO, 4.8, MUT_DIM, 0.2)
+        for i, (n, role, price, note) in enumerate((
+                ("A.", "Trainee, 2 yrs", "\u20ac28", "Thu evening or Sat morning"),
+                ("L.", "GZ-psycholoog", "\u20ac45", "I can start this week"),
+                ("S.", "Peer supporter", "\u20ac20", "Sliding scale if needed"))):
+            yy = y + 37 + i * 33 * k
+            if yy + 30 > y + h:
+                break
+            card(c, x + 10, yy, w - 20, 29 * k, fill=WHITE,
+                 stroke=(alpha(VIOLET, 0.55) if i == 0 else LINE_SOFT), r=5, lw=0.7,
+                 shadow=False)
+            avatar(c, x + 22, yy + 15 * k, 6.4, n[:1], VIOLET_SOFT, VIOLET)
+            text(c, x + 33, yy + 12 * k, f"{n} \u00b7 {role}", MED, 5.2 * k, INK)
+            text(c, x + 33, yy + 21 * k, note, R, 4.6 * k, MUT_DIM)
+            text(c, x + w - 18, yy + 15 * k, price, MONO_MED, 6.0 * k, INK, 0.1, "right")
+        text(c, x + 10, y + h - 22, "6 finished quests \u00b7 1 dispute \u00b7 answer "
+             "rate 94%", MONO, 4.4, MUT_DIM, 0.2)
+        text(c, x + 10, y + h - 10, "Pick one \u00b7 escrow locks \u00b7 72 h to confirm",
+             MONO, 4.6, MUT_DIM, 0.2)
+
+    elif kind == "ask":
+        text(c, x + 10, y + 17, "Ask for something", MED, 8.0 * k, INK)
+        rect(c, x + 10, y + 27, w - 20, 22, fill=PAPER, stroke=LINE_SOFT, r=4, lw=0.6)
+        text(c, x + 16, y + 41, "What do you need?", R, 5.2, MUT_DIM)
+        for i, (t, bg) in enumerate((("Tutoring", VIOLET_SOFT), ("Repairs", TEAL_SOFT),
+                                      ("Care", YELLOW_SOFT), ("Other", PAPER_2))):
+            chip(c, x + 10 + i * 48, y + 55, t.upper(), INK, bg, None, 4.4, 12, 5)
+        rows = (("Reward", "\u20ac30"), ("When", "This week"),
+                ("Where", "Online or the park"), ("Proof", "Both sides confirm"),
+                ("Cancel", "free until day 2"))
+        for i, (kk, vv) in enumerate(rows):
+            yy = y + 74 + i * 14 * k
+            text(c, x + 10, yy, kk, MONO, 4.6, MUT_DIM, 0.4)
+            text(c, x + w - 10, yy, vv, R, 5.0, INK, 0, "right")
+            hline(c, x + 10, yy + 5, x + w - 10, LINE_SOFT, 0.5)
+        rect(c, x + 10, y + h - 22, w - 20, 15, fill=VIOLET, r=4)
+        text(c, x + w / 2, y + h - 12, "Post quest \u00b7 no money moves yet", MED, 4.8,
+             WHITE, 0.2, "center")
+
+    elif kind == "pay":
+        photo(c, T.PHOTOS + "/bench-broken.jpg", x, y, w, h * 0.55, r=0, focus=0.5)
+        chip(c, x + 8, y + 7, "BOTH SIDES CONFIRMED", TEAL, WHITE, None, 4.6, 12, 6)
+        text(c, x + 10, y + h * 0.55 + 16, "\u20ac30 released", MED, 8.0 * k, INK)
+        text(c, x + 10, y + h * 0.55 + 27, "A. \u00b7 tutoring \u00b7 2 sessions", R, 5.0, MUT)
+        text(c, x + 10, y + h * 0.55 + 44, "tx 0x4c9\u20262a1", MONO, 4.6, MUT_DIM, 0.2)
+        text(c, x + 10, y + h * 0.55 + 56, "\u2605 \u2605 \u2605 \u2605 \u2606  added to A.'s record",
+             R, 4.8, MUT_DIM)
+
+
+# ------------------------------------------------------------------ device frames
+def tablet(c, x, y, w, h, url=None):
+    """Tablet body; returns the inner screen rect."""
+    rect(c, x + 2, y + 6, w, h, fill=T.SHADOW, r=12)
+    rect(c, x, y, w, h, fill=INK, r=12)
+    rect(c, x + 7, y + 7, w - 14, h - 14, fill=WHITE, r=6)
+    if url:
+        text(c, x + 18, y + 20, url, MONO, 5.0, MUT_DIM, 0.3)
+        hline(c, x + 7, y + 25, x + w - 7, LINE_SOFT, 0.6)
+    return x + 7, y + 7, w - 14, h - 14
+
+
+def kiosk(c, x, y, w, h):
+    """Street information column with a screen; returns the screen rect."""
+    rect(c, x + 3, y + 7, w, h, fill=T.SHADOW, r=16)
+    rect(c, x, y, w, h, fill=INK, r=16)
+    rect(c, x + 8, y + 8, w - 16, h - 16, fill=WHITE, r=10)
+    rect(c, x + 8, y + h - 44, w - 16, 36, fill=VIOLET_SOFT, r=8)
+    text(c, x + w / 2, y + h - 24, "TAP \u00b7 SCAN \u00b7 ASK", MONO, 4.6, VIOLET, 0.5,
+         "center")
+    return x + 8, y + 8, w - 16, h - 52
+
+
+def chalk_number(c, x, y, s, color=WHITE, rot=-4, lw=2.2, alpha_=0.9, shadow=True):
+    """Hand-chalked '21' over photos: rough strokes, no font."""
+    if shadow:
+        with T.rotated(c, x, y, rot):
+            _chalk(c, x + 2.2, y + 2.2, s, T.alpha(INK, 0.30), lw + 1.6)
+    with T.rotated(c, x, y, rot):
+        _chalk(c, x, y, s, T.alpha(color, alpha_), lw)
+
+
+def _chalk(c, x, y, s, color, lw):
+    c.saveState()
+    c.setStrokeColor(color)
+    c.setLineCap(1)
+    c.setLineWidth(lw)
+    # 2
+    p = c.beginPath()
+    p.moveTo(x - s * 0.42, T.ty(y - s * 0.34))
+    p.curveTo(x - s * 0.40, T.ty(y - s * 0.85), x + s * 0.14, T.ty(y - s * 0.86),
+              x + s * 0.13, T.ty(y - s * 0.46))
+    p.curveTo(x + s * 0.12, T.ty(y - s * 0.22), x - s * 0.10, T.ty(y - s * 0.12),
+              x - s * 0.42, T.ty(y + s * 0.16))
+    p.lineTo(x + s * 0.16, T.ty(y + s * 0.16))
+    c.drawPath(p, stroke=1, fill=0)
+    # 1
+    p = c.beginPath()
+    p.moveTo(x + s * 0.34, T.ty(y - s * 0.44))
+    p.lineTo(x + s * 0.60, T.ty(y - s * 0.78))
+    p.lineTo(x + s * 0.60, T.ty(y + s * 0.16))
+    c.drawPath(p, stroke=1, fill=0)
+    c.restoreState()
+
+
+def sticker(c, cx, cy, r, rot=6):
+    """Round '21' sticker that anyone could slap on a broken thing."""
+    T.badge(c, cx, cy, r, "21", VIOLET, WHITE, r * 0.72, MED, rot=rot)
+    with T.rotated(c, cx, cy + r + 7, rot):
+        pass

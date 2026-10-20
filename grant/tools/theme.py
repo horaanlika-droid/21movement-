@@ -494,13 +494,13 @@ def page(c, bg=PAPER, grain=None):
         c.restoreState()
 
 
-def footer(c, idx, section=""):
+def footer(c, idx, section="", total=22):
     hline(c, M, H - 46, W - M, alpha(INK, 0.10))
-    text(c, M, H - 34, "21  \u2014  Ethereum-native civic infrastructure",
+    text(c, M, H - 34, "21  \u2014  the number and the exchange",
          MONO, 8, MUT_DIM, 0.8)
     if section:
         text(c, W / 2, H - 34, section.upper(), MONO, 8, MUT_DIM, 1.2, "center")
-    text(c, W - M, H - 34, f"{idx:02d} / 20", MONO, 8, MUT_DIM, 0.8, "right")
+    text(c, W - M, H - 34, f"{idx:02d} / {total}", MONO, 8, MUT_DIM, 0.8, "right")
 
 
 def head(c, kicker, title, sub=None, width=960, subw=660, y=112, size=38,
