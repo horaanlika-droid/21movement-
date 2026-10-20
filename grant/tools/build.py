@@ -1,3 +1,8 @@
+"""21 — grant deck. Ethereum-native civic infrastructure, ethereum.org look.
+
+20 slides, 1280 x 720 pt, all text in code. Run `python3 build.py --preview`
+from this folder to rebuild the PDF and the PNG previews.
+"""
 import os
 import sys
 
@@ -7,1063 +12,1027 @@ from reportlab.pdfgen import canvas as rl_canvas
 
 import theme as T
 import uikit as U
-from theme import (ALERT, BLUE, BOLD, H, INK, L, LINE, LINE_SOFT, M, MED, MINT,
-                   MONO, MONO_MED, MONO_SEMI, MUT, MUT_DIM, PANEL, PANEL_2,
-                   PANEL_3, R, SAND, SEMI, TXT, VIO, VIO_DEEP, W, alpha,
-                   fade, glow, hline, vline, label, logotype, page, para,
-                   photo, rect, text, diamond)
+from theme import (CORAL, CORAL_SOFT, H, INK, INK_SOFT, L, LINE, LINE_SOFT, M,
+                   MED, MONO, MONO_MED, MUT, MUT_DIM, PAPER, PAPER_2, PINK,
+                   PINK_SOFT, R, SEMI, SERIF, SERIF_IT, SHADOW, SKY, SKY_SOFT,
+                   TEAL, TEAL_SOFT, VIOLET, VIOLET_DEEP, VIOLET_SOFT, W, WHITE, YELLOW,
+                   YELLOW_SOFT, alpha, card, chip, diamond, doodle_arrow, footer,
+                   hline, illustration, label, logotype, marker, page, para,
+                   photo, polaroid, phone_shot, rect, rtext, sparkle, squiggle,
+                   tape, text, vline)
 
 T.register_fonts()
 os.makedirs(T.OUT, exist_ok=True)
 os.makedirs(T.PREVIEW, exist_ok=True)
 
-GRAIN = os.path.join(T.OUT, "grain.png")
-if not os.path.exists(GRAIN):
-    T.make_grain(GRAIN)
-
-A = T.ASSETS
+ART = T.ART
+PHOTOS = T.PHOTOS
 TOTAL = 20
 
 
 def foot(c, idx, section=""):
-    T.footer(c, idx, section, dark=True)
+    footer(c, idx, section)
+
+
+def step_badge(c, cx, cy, n, col, r=17):
+    U.badge(c, cx, cy, r, n, col, WHITE, r * 0.82, MED)
 
 
 # ============================================================ 01  cover
 def s01(c, idx):
-    page(c, True, GRAIN)
-    photo(c, A + "/cover-mural.jpg", 640, 0, W - 640, H, overlay=INK, overlay_alpha=0.30)
-    fade(c, 640, 0, 320, H, INK, 1.0, "left")
-    fade(c, 640, 0, W - 640, 150, INK, 0.9, "top")
-    fade(c, 640, H - 170, W - 640, 170, INK, 0.9, "bottom")
-    glow(c, 200, 700, 440, VIO_DEEP, 0.12)
+    page(c)
+    illustration(c, ART + "/cover-city.png", 762, -70, 478)
 
-    logotype(c, M, 74, 26, TXT, VIO)
-    label(c, M + 108, 82, "Ethereum-native civic infrastructure", MUT, 8.2, 1.5)
-    label(c, W - M, 82, "Grant application \u00b7 2026", alpha(TXT, 0.65), 8.2, 1.5, "right")
+    logotype(c, M, 82, 26, INK, VIOLET)
+    label(c, M + 96, 80, "Ethereum-native civic infrastructure", MUT, 8.0, 1.5)
+    chip(c, W - M - 104, 64, "GRANT 2026", VIOLET, WHITE, alpha(VIOLET, 1),
+         7.2, 22, 9, rot=3, shadow=True)
 
-    label(c, M, 238, "Ethereum ecosystem grant application", VIO, 9, 2.0)
-    para(c, M, 302, 520, "Ethereum-native\ncivic infrastructure", MED, 50, 56, TXT, -0.6)
-    para(c, M, 452, 440,
-         "21 lets anyone report a real-world problem, fund the fix, hire the "
-         "people who do the work, and verify the result \u2014 settled on Ethereum.",
-         L, 13.5, 21, alpha(TXT, 0.70))
+    sparkle(c, 566, 196, 9, YELLOW)
+    sparkle(c, 700, 300, 6, CORAL)
+    label(c, M, 196, "Ethereum ecosystem grant \u00b7 application", VIOLET, 8.6, 1.9)
 
-    y = 588
-    hline(c, M, y - 26, 578, alpha(TXT, 0.16))
+    text(c, M, 268, "The city,", MED, 54, INK, -1.2)
+    text(c, M, 336, "upgraded", SERIF_IT, 66, VIOLET, -0.6)
+    w_up = T.sw("upgraded", SERIF_IT, 66, -0.6)
+    text(c, M + w_up + 2, 336, ".", MED, 54, INK, -1.2)
+    squiggle(c, M + 2, 352, w_up - 4, TEAL, 2.6, 2.2, 7)
+
+    para(c, M, 396, 500,
+         "21 turns a report about a broken bench into paid, verified work: "
+         "residents report, contractors bid, the street decides, and the "
+         "receipt stays public on Ethereum.",
+         R, 12.4, 19, MUT)
+
+    # ask card
+    card(c, M, 486, 566, 100, fill=WHITE, stroke=LINE, r=18, shadow=True, shadow_dy=6)
+    cols = [("Ask", "$21,000", "6 months, one round"),
+            ("To artists", "70%", "21 fees, paid on time"),
+            ("For code", "$0", "we build it ourselves")]
+    for i, (k, v, s) in enumerate(cols):
+        x = M + 24 + i * 180
+        label(c, x, 512, k, MUT_DIM, 7.2, 1.4)
+        text(c, x, 542, v, MED, 21, INK, -0.5)
+        text(c, x, 562, s, R, 7.8, MUT)
+        if i:
+            vline(c, x - 16, 506, 572, LINE_SOFT, 0.9)
+
     x = M
-    for k, v in (("Ask", "$75,000 / 10 mo."), ("Stage", "MVP + 3 city pilots"),
-                 ("License", "Open source \u00b7 MIT")):
-        label(c, x, y, k, MUT_DIM, 8, 1.5)
-        text(c, x, y + 22, v, MED, 12.5, TXT, 0.1)
-        x += 172
-    foot(c, idx)
+    for ch, bg in (("21 MURALS", YELLOW_SOFT), ("9 CITIES", TEAL_SOFT),
+                   ("21 ARTISTS PAID", VIOLET_SOFT)):
+        x += chip(c, x, 612, ch, INK, bg, alpha(INK, 0.12), 7.2, 24, 11,
+                  rot=-1.5 + x % 3) + 9
+    text(c, M, 660, "21.city  \u00b7  hello@21.city", MONO, 8.4, MUT_DIM, 0.4)
+    text(c, 646, 660, f"{idx:02d} / {TOTAL}", MONO, 8.4, MUT_DIM, 0.8, "right")
 
 
 # ============================================================ 02  problem
 def s02(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "01 \u2014 The problem",
-           "Cities can see the problem.\nThey cannot coordinate the fix.",
-           width=880)
+    page(c)
+    T.head(c, "01 \u2014 The problem",
+           "Cities can see the problem.\nThey can't find the \u20ac420.",
+           "Every day a report turns into a reference number, and a small repair "
+           "waits for a season that never comes.", width=760, subw=520, y=108,
+           size=36, leading=41)
 
-    x = M
-    y = 306
     items = [
-        ("Reporting ends in a ticket.",
-         "A photo to a hotline produces a reference number, not a budget. "
-         "Residents never learn who decided, who was paid, or what actually "
-         "happened."),
-        ("Small works fall through.",
-         "A \u20ac420 bench, a \u20ac950 bike rack, a \u20ac300 mural: too small for "
-         "procurement, too visible to ignore. They wait for a season that never "
-         "comes."),
-        ("Public-goods funding stops at the screen.",
-         "Crypto has capital, matching pools and governance tooling for digital "
-         "work. There is no delivery layer for physical work."),
+        ("Reports end in a ticket.",
+         "A photo to a hotline returns a case number, not a budget. Nobody learns "
+         "who decided, who was paid, or what happened next.", VIOLET),
+        ("Small fixes fall through.",
+         "\u20ac420 for a bench, \u20ac950 for a bike rack: too small for procurement, "
+         "too visible to ignore. They wait for a season that never comes.", TEAL),
+        ("Contractors stay invisible.",
+         "The people who could fix it never see the job. The city never sees their "
+         "price. The resident sees nothing at all.", CORAL),
     ]
-    for i, (h_, b) in enumerate(items):
-        n = f"0{i + 1}"
-        text(c, x, y + 15, n, MONO_MED, 9, VIO, 1.4)
-        text(c, x + 30, y + 15, h_, MED, 13.5, TXT)
-        para(c, x + 30, y + 36, 400, b, R, 10.4, 15.5, MUT)
-        y += 88
+    y = 268
+    for i, (h_, b, col) in enumerate(items):
+        step_badge(c, M + 16, y + 2, f"0{i + 1}", col, 16)
+        text(c, M + 46, y + 7, h_, MED, 13.4, INK)
+        para(c, M + 46, y + 28, 430, b, R, 9.9, 15, MUT)
+        y += 104
 
-    # evidence panel
-    px, py, pw, ph = 700, 200, 504, 300
-    photo(c, A + "/bench-before.jpg", px, py, pw, ph, r=10,
-          overlay=INK, overlay_alpha=0.10)
-    fade(c, px, py + ph - 150, pw, 150, INK, 0.92, "bottom")
-    U.chip(c, px + 16, py + 16, "DEMO RECORD", alpha(TXT, 0.9), alpha(INK, 0.55),
-         alpha(TXT, 0.25), 7.4, 17, 7)
-    text(c, px + 16, py + ph - 52, "Ticket A-1142 \u00b7 Oosterpark", MED, 13, TXT)
-    text(c, px + 16, py + ph - 32,
-         "Reported 14 March \u00b7 still unrepaired 3 months later", R, 9.6, alpha(TXT, 0.62))
-    text(c, px + 16, py + ph - 14,
-         "no published budget \u00b7 no contractor \u00b7 no outcome record", MONO, 8, alpha(TXT, 0.60), 0.5)
+    # resident's photo, stuck on the page
+    polaroid(c, PHOTOS + "/bench-broken.jpg", 812, 205, 318, 402, pad=9,
+             cap="TICKET A-1142 \u00b7 OOSTERPARK \u00b7 DAY 91", rot=2.2)
+    tape(c, 900, 200, 66, 19, -5, alpha(YELLOW, 0.7))
+    chip(c, 762, 596, "PHOTO: A RESIDENT'S PHONE", WHITE, INK, None, 6.8, 20, 9, rot=-2)
 
-    # why now
-    y = 592
-    hline(c, M, y - 22, W - M, LINE_SOFT)
-    label(c, M, y, "Why this is buildable now", VIO, 8.4, 1.6)
-    shifts = [("L2 fees", "a \u20ac4 settlement is\neconomically sane"),
-              ("Personhood", "proof-of-personhood\nis usable"),
-              ("Attestations", "EAS makes verified\nclaims portable"),
-              ("Funding", "QF + retro funding\nis mature")]
-    x = 392
-    for k, v in shifts:
-        U.dot(c, x + 1, y - 3, 1.9, VIO)
-        text(c, x + 12, y, k, MED, 9.8, TXT)
-        para(c, x + 12, y + 17, 158, v.replace("\n", " "), R, 8.6, 11.5, MUT)
-        x += 220
+    # footnote
+    hline(c, M, 612, 700, alpha(INK, 0.12))
+    label(c, M, 636, "What is missing", MUT_DIM, 7.4, 1.5)
+    text(c, M + 148, 636, "A budget. A bid. A name. A receipt.", MED, 11.4, INK, 0.1)
     foot(c, idx, "The problem")
 
 
-# ============================================================ 03  what 21 is
+# ============================================================ 03  the upgrade
 def s03(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "02 \u2014 The protocol",
-           "A public protocol for getting real things done.",
-           "21 turns a geotagged report into a funded, contracted and verified "
-           "piece of work. The money moves through an on-chain escrow; the "
-           "decision, the evidence and the payout stay public.")
+    page(c)
+    T.head(c, "02 \u2014 The upgrade",
+           "Not another app. An upgrade\nfor the street corner.",
+           "Cities already have crews, budgets and rules. 21 replaces the missing "
+           "layer between a report and a paid invoice \u2014 and makes the result visible.",
+           width=720, subw=520, y=106, size=36, leading=41)
+
+    rows = [
+        ("From tickets to tasks", VIOLET,
+         "A report becomes a task with a budget, a deadline and a public URL."),
+        ("From procurement to bids", TEAL,
+         "Contractors publish itemised quotes. Residents choose under rules fixed "
+         "before the money arrives."),
+        ("From repairs to authorship", CORAL,
+         "Every fix is documented, and every wall is painted by a paid artist, "
+         "with the owner's written consent."),
+    ]
+    y = 268
+    for i, (h_, col, b) in enumerate(rows):
+        rect(c, M, y - 6, 7, 42, fill=col, r=3.5)
+        text(c, M + 22, y + 8, h_, MED, 13.2, INK)
+        para(c, M + 22, y + 28, 470, b, R, 9.8, 14.6, MUT)
+        y += 92
+
+    illustration(c, ART + "/upgrade-block.png", 626, 182, 646)
+    chip(c, 1116, 182, "v21", VIOLET, WHITE, None, 8.6, 27, 10, rot=7, shadow=True)
+
+    card(c, M, 566, W - 2 * M, 74, fill=WHITE, stroke=LINE, r=16, shadow=True)
+    label(c, M + 22, 592, "The upgrade is additive", VIOLET, 7.4, 1.5)
+    text(c, M + 22, 618,
+         "Cities keep their crews, budgets and procurement rules. 21 adds the "
+         "missing part: a public task record, competitive bids and a receipt "
+         "anyone can audit.", R, 9.6, MUT)
+    foot(c, idx, "The upgrade")
+
+
+# ============================================================ 04  protocol
+def s04(c, idx):
+    page(c)
+    T.head(c, "03 \u2014 The protocol",
+           "Seven steps from a photo\nto a paid invoice.",
+           "One continuous workflow. Every step leaves a public artefact: a task, "
+           "a bid, a vote, a photo, a payment.", width=760, subw=560, y=106,
+           size=36, leading=41)
 
     steps = [
-        ("01", "Report", "Photo, location,\ncategory, urgency"),
-        ("02", "Propose", "Contractors publish\nbudget + milestones"),
-        ("03", "Fund", "Community + matching\npool fill escrow"),
-        ("04", "Decide", "Eligible participants\nselect a proposal"),
-        ("05", "Build", "Work happens in\nthe physical world"),
-        ("06", "Verify", "Evidence + quorum\nof attestations"),
-        ("07", "Settle", "Tranche released\nto the contractor"),
+        ("01", "Report", "Photo, GPS, category. Under 60 seconds on a phone.", VIOLET),
+        ("02", "Propose", "Contractors publish itemised budgets and milestones.", TEAL),
+        ("03", "Fund", "Neighbours, the city and a matching pool fill escrow.", YELLOW),
+        ("04", "Decide", "Eligible residents pick a bid; rules were pinned first.", SKY),
+        ("05", "Build", "Work happens in the street, in daylight, by named people.", CORAL),
+        ("06", "Verify", "Signed capture, geofence, attestations, 72 h to object.", PINK),
+        ("07", "Settle", "Escrow releases the tranche to the contractor.", VIOLET),
     ]
-    x0, y0 = M, 292
-    colw = (W - 2 * M) / 7
-    # connecting rail
-    hline(c, x0 + colw / 2, y0 + 30, W - M - colw / 2, LINE, 1)
-    for i, (n, t, d) in enumerate(steps):
+    x0, rail_y = M + 10, 318
+    colw = (W - 2 * M - 20) / 7
+    band_w = W - 2 * M - 20
+    rect(c, x0 + 20, rail_y - 1.5, band_w - 40, 3, fill=LINE, r=2)
+    for i, (n, t, d, col) in enumerate(steps):
         cx = x0 + colw * i + colw / 2
-        U.dot(c, cx, y0 + 30, 16, alpha(VIO, 0.10))
-        U.dot(c, cx, y0 + 30, 11, PANEL, VIO, 0.8)
-        text(c, cx, y0 + 33, n, MONO_MED, 8.4, VIO, 0.6, "center")
-        text(c, cx, y0 + 70, t, MED, 13, TXT, 0.1, "center")
-        para(c, cx, y0 + 90, colw - 18, d.replace("\n", " "), R, 9.2, 13, MUT,
+        U.badge(c, cx, rail_y, 21, n, col, WHITE, 13, MED)
+        text(c, cx, rail_y + 52, t, MED, 13.2, INK, 0, "center")
+        para(c, cx - colw / 2 + 6, rail_y + 72, colw - 12, d, R, 8.5, 12.2, MUT,
              align="center")
 
-    # principle strip
-    y = 470
-    hline(c, M, y, W - M, LINE_SOFT)
-    principles = [
-        ("Non-custodial", "21 never holds funds. A per-task escrow contract does."),
-        ("Rule-bound", "Verification and payment rules are pinned before funding opens."),
-        ("Composable", "Any city, DAO or funder can plug into the same registry."),
-        ("Forkable", "MIT-licensed contracts and client. No lock-in for municipalities."),
-    ]
-    for i, (k, v) in enumerate(principles):
-        x = M + i * ((W - 2 * M) / 4)
-        text(c, x, y + 34, k, MED, 11.6, TXT)
-        para(c, x, y + 52, (W - 2 * M) / 4 - 34, v, R, 9.4, 13.5, MUT)
+    # notes under the rail
+    card(c, M, 468, 552, 118, fill=WHITE, stroke=LINE, r=16, shadow=True)
+    label(c, M + 22, 494, "Public by default", VIOLET, 7.4, 1.5)
+    for i, s_ in enumerate(("who bid, and for how much",
+                            "who voted, and on which rules",
+                            "who was paid, and for which milestone")):
+        U.dot(c, M + 26, 518 + i * 20, 2.4, VIOLET)
+        text(c, M + 38, 522 + i * 20, s_, R, 9.2, MUT)
 
-    # operators
-    U.card(c, M, 590, W - 2 * M, 56, fill=PANEL_2, stroke=LINE_SOFT, r=8)
-    label(c, M + 18, 612, "Same registry, many front doors", VIO, 7.4, 1.4)
-    text(c, M + 18, 632,
-         "A city can run its own branded instance, a funder can open a round, a "
-         "contractor can use a mobile-only client \u2014 all writing to one task registry.",
-         R, 9.2, MUT)
+    card(c, 648, 468, 560, 118, fill=WHITE, stroke=LINE, r=16, shadow=True)
+    label(c, 670, 494, "Private by design", TEAL, 7.4, 1.5)
+    for i, s_ in enumerate(("faces and plates blurred on the device",
+                            "coarse public coordinates, never your door",
+                            "personal data off-chain, deleteable on request")):
+        U.dot(c, 674, 518 + i * 20, 2.4, TEAL)
+        text(c, 686, 522 + i * 20, s_, R, 9.2, MUT)
     foot(c, idx, "The protocol")
 
 
-# ============================================================ 04  end to end
-def s04(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "03 \u2014 One task, end to end",
-           "A broken bench in nine days.",
-           "Demo scenario built from the product spec. Amounts and dates are "
-           "illustrative, not reported results.")
+# ============================================================ 05  contractor bids
+def s05(c, idx):
+    page(c)
+    T.head(c, "04 \u2014 Contractor bids",
+           "Bids arrive itemised,\nin public.",
+           "A contractor needs a phone and a price list. No tender documents, no "
+           "90-day invoice cycle, no relationship with city hall required.",
+           width=700, subw=520, y=106, size=36, leading=41)
 
-    # photo pair
-    px, py, pw, ph = M, 300, 336, 224
-    photo(c, A + "/bench-before.jpg", px, py, pw, ph, r=8,
-          overlay=INK, overlay_alpha=0.16)
-    photo(c, A + "/bench-after.jpg", px + pw + 10, py, pw, ph, r=8,
-          overlay=INK, overlay_alpha=0.10)
-    U.chip(c, px + 12, py + 12, "DAY 0 \u00b7 REPORTED", TXT, alpha(INK, 0.55),
-         alpha(TXT, 0.2), 7, 16, 6)
-    U.chip(c, px + pw + 22, py + 12, "DAY 9 \u00b7 VERIFIED", MINT, alpha(INK, 0.55),
-         None, 7, 16, 6)
-    text(c, px, py + ph + 24, "Before \u2014 three missing slats, reported from the phone",
-         R, 9.4, MUT)
-    text(c, px + pw + 10, py + ph + 24, "After \u2014 replaced and re-fixed by Groenwerk BV",
-         R, 9.4, MUT)
-
-    # ledger
-    x = 810
-    label(c, x, 300, "Task ledger \u00b7 public by default", VIO, 8.2, 1.5)
-    rows = [
-        ("Day 0", "Task published", "\u20ac420 target", SAND),
-        ("Day 1", "3 proposals received", "\u20ac380 \u2013 \u20ac455", TXT),
-        ("Day 3", "84 residents voted", "62% Groenwerk", TXT),
-        ("Day 4", "Escrow funded", "\u20ac420 in USDC", VIO),
-        ("Day 7", "Milestone evidence", "6 photos + GPS", TXT),
-        ("Day 9", "Dual attestation", "payment released", MINT),
+    bids = [
+        ("Groenwerk BV", "Bench repair \u00b7 Amsterdam", "\u20ac412", "9 days",
+         "24-month warranty", True),
+        ("Studio Tak", "Bench repair + repaint \u00b7 Utrecht", "\u20ac455", "12 days",
+         "24-month warranty", False),
+        ("M. de Vries", "Bench repair \u00b7 Rotterdam", "\u20ac380", "7 days",
+         "9-month warranty", False),
     ]
-    y = 322
-    vline(c, x + 5, y + 8, y + 8 + 44 * (len(rows) - 1), LINE, 0.8)
+    y = 248
+    for name, sub, price, days, warranty, selected in bids:
+        card(c, M, y, 520, 84, fill=WHITE if not selected else VIOLET_SOFT,
+             stroke=VIOLET if selected else LINE, r=16, lw=1.4 if selected else 1,
+             shadow=True, shadow_dy=5)
+        U.avatar(c, M + 34, y + 34, 17, name[:1], WHITE if selected else PAPER_2,
+                 VIOLET if selected else INK_SOFT)
+        text(c, M + 62, y + 32, name, MED, 12.2, INK)
+        text(c, M + 62, y + 50, sub, R, 8.4, MUT)
+        text(c, M + 62, y + 68, f"{days} \u00b7 {warranty}", MONO, 7.2, MUT_DIM, 0.2)
+        text(c, M + 496, y + 36, price, MED, 19, INK, -0.4, "right")
+        if selected:
+            chip(c, M + 404, y + 58, "SELECTED", WHITE, VIOLET, None, 6.5, 18, 8,
+                 rot=-2)
+        y += 98
+
+    # bid detail
+    x, y0, w, h = 640, 210, 568, 350
+    card(c, x, y0, w, h, fill=WHITE, stroke=LINE, r=18, shadow=True, shadow_dy=6)
+    label(c, x + 24, y0 + 28, "Winning bid \u00b7 line by line", VIOLET, 7.4, 1.5)
+    text(c, x + 24, y0 + 54, "Groenwerk BV", MED, 15, INK)
+    chip(c, x + w - 116, y0 + 38, "\u20ac412 TOTAL", VIOLET, VIOLET_SOFT, None,
+         7, 22, 9)
+
+    lines = [("Oak slats, 6 pcs, FSC", "\u20ac114"),
+             ("Stainless fixings", "\u20ac24"),
+             ("Labour, 2 \u00d7 4 h", "\u20ac236"),
+             ("Transport + old-slat disposal", "\u20ac38")]
+    ly = y0 + 88
+    for k, v in lines:
+        text(c, x + 24, ly, k, R, 9.2, MUT)
+        text(c, x + w - 24, ly, v, MONO, 8.8, INK, 0.2, "right")
+        hline(c, x + 24, ly + 10, x + w - 24, LINE_SOFT, 0.8)
+        ly += 34
+    text(c, x + 24, ly + 4, "Total, no surprises", MED, 10.6, INK)
+    text(c, x + w - 24, ly + 4, "\u20ac412", MED, 13, VIOLET, 0.2, "right")
+    hline(c, x + 24, ly + 16, x + w - 24, alpha(INK, 0.2), 1.2)
+
+    rect(c, x + 24, y0 + h - 58, w - 48, 34, fill=PAPER, r=10)
+    text(c, x + 38, y0 + h - 36,
+         "Every line is editable in the bid form. No lump sums, no allowances.",
+         R, 8.4, MUT)
+
+    # bottom numbers
+    hline(c, M, 602, W - M, alpha(INK, 0.12))
+    stats = [("3", "bidders per task"), ("18%", "price spread"),
+             ("6 h", "to first bid"), ("24 h", "to payout after verification")]
+    for i, (a, b) in enumerate(stats):
+        x = M + i * 272
+        text(c, x, 634, a, MED, 19, INK, -0.4)
+        text(c, x + T.sw(a, MED, 19, -0.4) + 10, 634, b, R, 8.6, MUT)
+    foot(c, idx, "Contractor bids")
+
+
+# ============================================================ 06  end to end
+def s06(c, idx):
+    page(c)
+    T.head(c, "05 \u2014 One task, end to end",
+           "A bench in Oosterpark.\nNine days, start to receipt.",
+           "Demo scenario from the product spec. Amounts and dates are "
+           "illustrative, not reported results.", width=720, subw=540, y=106,
+           size=36, leading=41)
+
+    phone_shot(c, PHOTOS + "/bench-broken.jpg", 78, 226, 168, 340, rot=-2.5,
+               caption="DAY 0 \u00b7 REPORTED BY A RESIDENT")
+    doodle_arrow(c, 260, 392, 304, 372, VIOLET, 1.6, 0.25)
+    phone_shot(c, PHOTOS + "/bench-fixed.jpg", 320, 226, 168, 340, rot=2.0,
+               caption="DAY 9 \u00b7 FIXED AND ATTESTED")
+
+    x = 590
+    label(c, x, 226, "Task ledger \u00b7 public by default", VIOLET, 7.6, 1.5)
+    rows = [
+        ("Day 0", "Task published", "\u20ac420 target", YELLOW),
+        ("Day 1", "3 bids received", "\u20ac380 \u2013 \u20ac455", INK_SOFT),
+        ("Day 3", "84 residents voted", "62% Groenwerk", INK_SOFT),
+        ("Day 4", "Escrow funded", "\u20ac420 in USDC", VIOLET),
+        ("Day 7", "Milestone evidence", "6 photos + GPS", INK_SOFT),
+        ("Day 9", "Dual attestation", "payment released", TEAL),
+    ]
+    y = 250
+    vline(c, x + 6, y + 8, y + 8 + 44 * (len(rows) - 1), LINE, 1)
     for t, a, b, col in rows:
-        U.dot(c, x + 5, y + 8, 3.6, col)
-        text(c, x + 22, y + 11, t, MONO, 8.2, MUT_DIM, 0.4)
-        text(c, x + 70, y + 11, a, MED, 10.2, TXT)
-        text(c, W - M, y + 11, b, MONO, 8.6, MUT, 0.2, "right")
+        U.dot(c, x + 6, y + 8, 4.2, col)
+        text(c, x + 24, y + 12, t, MONO, 8, MUT_DIM, 0.4)
+        text(c, x + 72, y + 12, a, MED, 10.4, INK)
+        text(c, W - M, y + 12, b, MONO, 8.4, MUT, 0.2, "right")
         y += 44
 
-    # footer note
-    hline(c, M, 604, W - M, LINE_SOFT)
-    label(c, M, 630, "What the resident gets", MUT_DIM, 8, 1.5)
-    para(c, M + 190, 630, 300,
-         "A public URL with the full history, the contractor's identity and the "
-         "final payment.", R, 9.8, 14, MUT)
-    label(c, 620, 630, "What the contractor gets", MUT_DIM, 8, 1.5)
-    para(c, 826, 630, 340,
-         "Milestone payments released in stablecoin the day verification clears "
-         "\u2014 no 90-day invoice cycle.", R, 9.8, 14, MUT)
+    card(c, x, 540, W - M - x, 78, fill=WHITE, stroke=LINE, r=14, shadow=True)
+    label(c, x + 18, 564, "What the resident keeps", VIOLET, 7.2, 1.4)
+    text(c, x + 18, 588,
+         "A public URL with the full history, the contractor's name and the final "
+         "payment.", R, 9.2, MUT)
+    text(c, x + 18, 604, "21.city/t/oosterpark-bench", MONO, 7.8, MUT_DIM, 0.2)
+
+    text(c, M, 610, "Payments land the day verification clears \u2014 not in the next quarter.",
+         R, 9.0, MUT_DIM)
     foot(c, idx, "One task")
 
 
-# ============================================================ 05  surfaces
-def s05(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "04 \u2014 The product",
-           "Six surfaces, one continuous workflow.",
-           "Responsive web app plus an installable mobile PWA. Every screen below "
-           "is part of the MVP scope, not a future release.")
+# ============================================================ 07  street furniture
+def s07(c, idx):
+    page(c)
+    T.head(c, "06 \u2014 The kit",
+           "Modern street furniture,\npriced line by line.",
+           "Every task template carries a specification, so three contractors bid "
+           "on the same object \u2014 same material, same life, same repair.",
+           width=760, subw=600, y=104, size=34, leading=39)
 
-    frames = [
-        ("Explore", "Map-first discovery with live task markers", "map"),
-        ("Project", "Evidence, budget, milestones, discussion", "project"),
-        ("Report", "Photo, GPS, category \u2014 under 60 seconds", "report"),
-        ("Proposals", "Competing bids with itemised budgets", "proposals"),
-        ("Contractor", "Bids, contracts, evidence, payouts", "workspace"),
-        ("Completed", "Before / after and the payment record", "done"),
+    tiles = [
+        ("Lijn bench", PHOTOS + "/plaza.jpg", "Cast concrete base, FSC oak top",
+         "30 yr base \u00b7 12 yr top", "\u20ac420"),
+        ("Lus rack", PHOTOS + "/bike-rack.jpg", "Powder-coated steel loops",
+         "20 yr \u00b7 6 bikes", "\u20ac950"),
+        ("Sedum shelter", PHOTOS + "/shelter.jpg", "Steel + glass, sedum roof, 340 Wp",
+         "25 yr \u00b7 off-grid", "\u20ac6,400"),
     ]
-    cw, ch = 356, 172
-    for i, (title, desc, kind) in enumerate(frames):
-        col, row = i % 3, i // 3
-        x = M + col * (cw + 30)
-        y = 232 + row * 216
-        U.browser(c, x, y, cw, ch, url="21.city/" + kind)
-        c.saveState()
-        p = c.beginPath()
-        p.roundRect(x, T.ty(y) - ch, cw, ch, 10)
-        c.clipPath(p, stroke=0, fill=0)
-        U.window_content(c, x, y + 22, cw, ch - 22, kind)
-        c.restoreState()
-        text(c, x, y + ch + 22, f"0{i + 1}  ", MONO, 8, VIO, 1.2)
-        text(c, x + 22, y + ch + 22, title, MED, 10.6, TXT)
-        text(c, x + 22 + T.sw(title, MED, 10.6) + 12, y + ch + 22, desc, R, 8.8, MUT)
-    foot(c, idx, "Product")
+    for i, (name, p, spec, life, price) in enumerate(tiles):
+        x = M + i * 384
+        card(c, x, 202, 368, 258, fill=WHITE, stroke=LINE, r=16, shadow=True,
+             shadow_dy=6)
+        photo(c, p, x + 8, 210, 352, 146, r=10)
+        text(c, x + 20, 382, name, MED, 12.4, INK)
+        text(c, x + 348, 382, price, MED, 12.4, VIOLET, 0, "right")
+        text(c, x + 20, 400, spec, R, 8.4, MUT)
+        text(c, x + 20, 418, life, MONO, 7.2, MUT_DIM, 0.2)
+        chip(c, x + 20, 428, "SPEC SHEET \u00b7 V21", INK, PAPER, alpha(INK, 0.14),
+             6.2, 18, 7)
+
+    # spec table
+    y = 496
+    hline(c, M, y, W - M, alpha(INK, 0.15))
+    heads = [(M, "ITEM"), (330, "MATERIAL"), (700, "DESIGN LIFE"),
+             (930, "UNIT COST"), (1208, "REPAIR")]
+    for hx, h_ in heads:
+        label(c, hx, y - 8, h_, MUT_DIM, 6.8, 1.4,
+              "right" if hx == 1208 else "left")
+    rows = [("Lijn bench", "Concrete + oak", "30 / 12 yr", "\u20ac420", "2 h"),
+            ("Lus rack", "Powder-coated steel", "20 yr", "\u20ac950", "4 h"),
+            ("Sedum shelter", "Steel, glass, sedum, PV", "25 yr", "\u20ac6,400", "2 days"),
+            ("Zon light", "Solar LED, 5-day autonomy", "15 yr", "\u20ac780", "3 h"),
+            ("Rond planter", "Recycled concrete", "30 yr", "\u20ac310", "1 h")]
+    y += 16
+    for name, mat, life, cost, repair in rows:
+        text(c, M, y + 12, name, MED, 8.8, INK)
+        text(c, 330, y + 12, mat, R, 8.4, MUT)
+        text(c, 700, y + 12, life, MONO, 7.8, MUT, 0.2)
+        text(c, 930, y + 12, cost, MONO, 8.2, INK, 0.2)
+        text(c, 1208, y + 12, repair, MONO, 7.8, MUT_DIM, 0.2, "right")
+        hline(c, M, y + 19, W - M, LINE_SOFT, 0.7)
+        y += 25
+    foot(c, idx, "The kit")
 
 
-# ============================================================ 06  trust
-def s06(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "05 \u2014 Verification",
-           "Money moves only when the street agrees.",
-           "A photo alone is not proof. 21 combines device-signed capture, "
-           "geofencing, independent attestors and an economic challenge window.")
+# ============================================================ 08  verification
+def s08(c, idx):
+    page(c)
+    T.head(c, "07 \u2014 Verification",
+           "Proof first. Then money.",
+           "A photo alone is not proof. 21 combines signed capture, a geofence, "
+           "independent attestors and a 72-hour window to object.", width=700,
+           subw=520, y=106, size=36, leading=41)
 
     rows = [
-        ("Device-signed capture", "Photos are taken in-app: EXIF, GPS, gyroscope and "
-                                  "a hardware-backed signature are hashed and stored with the file."),
+        ("Signed capture", "Photos are taken inside the app. EXIF, GPS, gyroscope "
+                           "and a device signature are hashed and stored with the file."),
         ("Proximity, not claims", "The capture must fall inside the task geofence; "
-                                  "high-value tasks require a reviewer visit."),
-        ("Dual attestation", "A citizen attestor and a city partner sign the milestone. "
-                             "A random reviewer is added above \u20ac1,000."),
-        ("Challenge window", "72 hours to dispute with a staked bond. Losing a dispute "
-                             "costs the bond; winning returns it plus a share of the fee."),
-        ("Reputation that cannot be bought", "Scores come from verified work only "
-                                             "(ERC-5192, non-transferable) and decay without activity."),
+                                  "anything above \u20ac1,000 gets a reviewer visit."),
+        ("Dual attestation", "A resident attestor and a city partner sign each "
+                             "milestone. Above \u20ac1,000, a random reviewer is added."),
+        ("A real challenge window", "72 hours to dispute with a staked bond. Lose "
+                                    "and the bond pays the reviewer; win and it comes back."),
     ]
-    y = 236
+    y = 240
     for i, (k, v) in enumerate(rows):
-        text(c, M, y + 12, f"0{i + 1}", MONO_MED, 8.6, VIO, 1.2)
-        text(c, M + 30, y + 12, k, MED, 12, TXT)
-        para(c, M + 30, y + 32, 470, v, R, 10, 15, MUT)
-        hline(c, M, y + 68, 560, LINE_SOFT)
-        y += 76
+        text(c, M, y + 10, f"0{i + 1}", MONO_MED, 8.4, VIOLET, 1.2)
+        text(c, M + 28, y + 10, k, MED, 11.6, INK)
+        para(c, M + 28, y + 28, 430, v, R, 9.4, 14, MUT)
+        hline(c, M, y + 66, 520, LINE_SOFT)
+        y += 78
 
-    # evidence package panel
-    x, y0, w, h = 636, 226, 568, 372
-    U.card(c, x, y0, w, h, fill=PANEL, stroke=LINE, r=14)
-    text(c, x + 22, y0 + 30, "Evidence package", MED, 12.5, TXT)
-    U.chip(c, x + w - 132, y0 + 16, "VERIFIED", MINT, alpha(MINT, 0.10), alpha(MINT, 0.35), 7.2, 17, 8)
-    photo(c, A + "/bench-after.jpg", x + 22, y0 + 48, 176, 112, r=6)
-    meta = [
-        ("Content hash", "bafkrei\u2026 4f2c"),
-        ("Captured", "2026-03-23T09:14Z"),
-        ("GPS", "52.35821, 4.91357 \u00b1 6 m"),
-        ("Within geofence", "yes \u00b7 11 m from task"),
-        ("Milestone", "M2 \u00b7 re-fix + paint"),
-    ]
-    my = y0 + 62
+    # evidence card
+    x, y0, w, h = 580, 210, 628, 386
+    card(c, x, y0, w, h, fill=WHITE, stroke=LINE, r=18, shadow=True, shadow_dy=6)
+    text(c, x + 22, y0 + 32, "Evidence package", MED, 12.6, INK)
+    chip(c, x + w - 122, y0 + 18, "VERIFIED", TEAL, TEAL_SOFT, alpha(TEAL, 0.5),
+         7, 20, 9)
+    photo(c, PHOTOS + "/bench-fixed.jpg", x + 22, y0 + 50, 178, 118, r=10)
+    meta = [("Content hash", "bafkrei\u2026 4f2c"),
+            ("Captured", "2026-03-23T09:14Z"),
+            ("GPS", "52.35821, 4.91357 \u00b1 6 m"),
+            ("Within geofence", "yes \u00b7 11 m from task"),
+            ("Milestone", "M2 \u00b7 re-fix + paint")]
+    my = y0 + 58
     for k, v in meta:
-        text(c, x + 216, my, k, MONO, 7.6, MUT_DIM, 0.5)
-        text(c, x + 216, my + 13, v, MONO, 8.4, TXT, 0.2)
-        my += 32
-    hline(c, x + 22, y0 + 182, x + w - 22, LINE_SOFT)
-    label(c, x + 22, y0 + 204, "Attestations", MUT_DIM, 7.6, 1.4)
-    atts = [("Citizen", "0x8a\u20264c1", MINT), ("City partner", "0x1f\u20269be", MINT),
-            ("Reviewer", "0x6c\u20262d7", MINT)]
+        text(c, x + 216, my, k, MONO, 7.0, MUT_DIM, 0.4)
+        text(c, x + 216, my + 13, v, MONO, 8.0, INK, 0.2)
+        my += 28
+
+    hline(c, x + 22, y0 + 194, x + w - 22, LINE_SOFT)
+    label(c, x + 22, y0 + 214, "Attestations", MUT_DIM, 7.2, 1.4)
+    atts = [("Citizen", "0x8a\u20264c1", TEAL), ("City partner", "0x1f\u20269be", SKY),
+            ("Reviewer", "0x6c\u20262d7", VIOLET)]
     for i, (role, addr, col) in enumerate(atts):
-        ax = x + 22 + i * 176
-        U.card(c, ax, y0 + 216, 164, 52, fill=PANEL_2, stroke=LINE_SOFT, r=8)
-        U.dot(c, ax + 16, y0 + 232, 3.2, col)
-        text(c, ax + 26, y0 + 235, role, MED, 9.4, TXT)
-        text(c, ax + 26, y0 + 250, addr, MONO, 7.6, MUT_DIM, 0.3)
-        text(c, ax + 26, y0 + 261, "signed \u00b7 09:41", MONO, 6.8, MUT_DIM, 0.3)
-    label(c, x + 22, y0 + 278, "Evidence files", MUT_DIM, 7.4, 1.4)
-    for i, (nm, sz) in enumerate((("P1020431", "3.2 MB"), ("P1020434", "2.9 MB"),
-                                  ("P1020440", "3.4 MB"), ("site mp4", "18 MB"))):
-        fx = x + 22 + i * 136
-        photo(c, T.A + ("/bench-after.jpg" if i < 3 else "/crew.jpg"), fx, y0 + 288,
-              124, 28, r=3, overlay=INK, overlay_alpha=0.12)
-        text(c, fx, y0 + 328, nm, MONO, 6.4, MUT, 0.2)
-        text(c, fx + 124, y0 + 328, sz, MONO, 6, MUT_DIM, 0.2, "right")
-    # settlement footer
-    rect(c, x + 1, y0 + 346, w - 2, 18, fill=alpha(VIO, 0.07))
-    hline(c, x + 1, y0 + 346, x + w - 1, alpha(VIO, 0.28), 0.7)
-    text(c, x + 22, y0 + 359,
-         "Escrow tranche 2 released 09:41 UTC", MONO, 7.2, alpha(VIO, 1.0), 0.3)
-    text(c, x + w - 22, y0 + 359, "\u20ac210  \u00b7  tx 0x4c9\u20262a1", MONO, 7.2,
-         MUT, 0.3, "right")
+        ax = x + 22 + i * 196
+        card(c, ax, y0 + 222, 184, 52, fill=PAPER, stroke=LINE_SOFT, r=10,
+             lw=0.8, shadow=False)
+        U.dot(c, ax + 16, y0 + 238, 3.4, col)
+        text(c, ax + 28, y0 + 242, role, MED, 9.4, INK)
+        text(c, ax + 28, y0 + 256, addr, MONO, 7.2, MUT_DIM, 0.2)
+        text(c, ax + 28, y0 + 267, "signed \u00b7 09:41", MONO, 6.4, MUT_DIM, 0.2)
+
+    rect(c, x + 1, y0 + 300, w - 2, 42, fill=VIOLET_SOFT)
+    text(c, x + 22, y0 + 326,
+         "Tranche 2 released \u00b7 09:41 UTC", MONO, 7.6, VIOLET_DEEP, 0.3)
+    text(c, x + w - 22, y0 + 326, "\u20ac210  \u00b7  tx 0x4c9\u20262a1", MONO, 7.6,
+         INK_SOFT, 0.3, "right")
+    text(c, x + 22, y0 + 366,
+         "Escrow is frozen by default: a missed attestation means no payment, not a polite reminder.",
+         R, 8.2, MUT)
     foot(c, idx, "Verification")
 
 
-# ============================================================ 07  governance
-def s07(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "06 \u2014 Governance",
-           "Funding buys outcomes, not votes.",
-           "Each project publishes its rules before the first euro arrives. The "
-           "rules hash is pinned on-chain, so the game cannot change mid-round.")
-
-    cards = [
-        ("Who may vote", "Three configurable profiles",
-         ["Resident: proof-of-personhood inside a 2 km radius",
-          "Contributor: any wallet above a \u20ac5 floor",
-          "Partner: city wallet, advisory weight only"]),
-        ("How money is weighted", "Default profile: one person, one vote",
-         ["A \u20ac5 and a \u20ac500 contribution carry equal voice",
-          "Token-weighted modes require an explicit opt-in by the city",
-          "Quadratic matching from the 21 pool, capped per project"]),
-        ("How a winner is chosen", "Approval vote, 5-day window",
-         ["Quorum: 25% of eligible voters, minimum 20 people",
-          "No quorum \u2192 partner + council decide, rationale published",
-          "Losers' proposals stay open for other rounds"]),
-    ]
-    for i, (k, sub, items) in enumerate(cards):
-        x = M + i * 372
-        U.card(c, x, 232, 348, 214, fill=PANEL, stroke=LINE, r=12)
-        label(c, x + 20, 258, f"0{i + 1}", VIO, 8, 1.4)
-        text(c, x + 20, 286, k, MED, 13, TXT)
-        text(c, x + 20, 304, sub, R, 9.4, MUT_DIM)
-        yy = 332
-        for it in items:
-            U.dot(c, x + 24, yy - 3, 1.8, VIO)
-            yy = para(c, x + 34, yy, 298, it, R, 9.2, 13.5, MUT) + 10
-
-    # matching illustration
-    y = 486
-    hline(c, M, y, W - M, LINE_SOFT)
-    label(c, M, y + 26, "Quadratic matching, illustrated", VIO, 8, 1.5)
-    text(c, M, y + 52, "Pool \u20ac1,000 \u00b7 3 projects", MONO, 8.4, MUT, 0.3)
-    text(c, M, y + 82, "Every contribution is square-rooted before it counts, so "
-                       "twenty small donors outrank one large one.",
-         R, 9.2, MUT_DIM)
-
-    demo = [("Bench repair", "\u20ac460", 0.46), ("Bike rack", "\u20ac160", 0.16),
-            ("Mural: 21", "\u20ac380", 0.38)]
-    bx = 520
-    bw = W - M - bx - 90
-    yy = y + 22
-    for name, amt, share in demo:
-        text(c, bx, yy, name, R, 9.2, MUT)
-        text(c, W - M, yy, amt, MONO, 9, TXT, 0.2, "right")
-        U.progress(c, bx, yy + 8, bw, share, 3.5, VIO)
-        yy += 30
-
-    # rule hash strip
-    ry = 600
-    U.card(c, M, ry, W - 2 * M, 42, fill=PANEL_2, stroke=LINE_SOFT, r=8)
-    U.chip(c, M + 16, ry + 11, "RULES HASH", VIO, alpha(VIO, 0.08), alpha(VIO, 0.3), 7, 18, 8)
-    text(c, M + 116, ry + 26, "0x9d2e71\u2026c40b  \u00b7  pinned at funding open  \u00b7  "
-                              "quorum 25%  \u00b7  5-day vote  \u00b7  one-person-one-vote",
-         MONO, 8.2, MUT, 0.2)
-    text(c, W - M - 16, ry + 26, "editable only with 72h timelock", R, 8.4,
-         MUT_DIM, 0, "right")
-    foot(c, idx, "Governance")
-
-
-# ============================================================ 08  campaign
-def s08(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "07 \u2014 The cultural layer",
-           "21 is a number anyone can paint.",
+# ============================================================ 09  artists
+def s09(c, idx):
+    page(c)
+    T.head(c, "08 \u2014 The cultural layer",
+           "21 is a number anyone\ncan paint.",
            "A commissioned, always-authorised mural programme runs alongside the "
            "protocol. It is how a civic tool becomes recognisable on a street in "
-           "Lagos or Lisbon without a translation.")
+           "Lagos or Lisbon without a translation.", width=720, subw=470, y=104,
+           size=36, leading=41)
 
     blocks = [
-        ("Commission, never tag", "Every wall has a signed owner consent, a removal "
-                                  "clause and a paid artist. The registry refuses "
-                                  "locations without a permission record."),
-        ("21 murals in 21 cities", "Year one: \u20ac300\u2013\u20ac1,200 per wall, funded by the "
-                                   "campaign pool and local sponsors. Each is a "
-                                   "Proof-of-Place entry on-chain."),
-        ("The number is the message", "No slogan to translate, no logo to explain. "
-                                      "Two digits, painted by hand, pointing back to "
-                                      "a working protocol."),
+        ("Commission, never tag", VIOLET,
+         "Every wall has a signed owner consent, a removal clause and a paid artist. "
+         "The registry refuses locations without a permission record."),
+        ("One artist per wall", TEAL,
+         "Year one: 21 walls in 9 cities, \u20ac300\u2013\u20ac1,200 per wall. Each work is a "
+         "Proof-of-Place entry, so the number and the place stay linked."),
+        ("The number is the message", CORAL,
+         "No slogan to translate, no logo to explain. Two digits, painted by hand, "
+         "pointing back to a working protocol."),
     ]
-    y = 240
-    for i, (k, v) in enumerate(blocks):
-        label(c, M, y, f"0{i + 1}", VIO, 8, 1.4)
-        text(c, M + 26, y + 2, k, MED, 12.5, TXT)
-        para(c, M + 26, y + 22, 470, v, R, 9.8, 14.5, MUT)
-        y += 106
+    y = 268
+    for i, (k, col, v) in enumerate(blocks):
+        U.dot(c, M + 4, y + 4, 4.2, col)
+        text(c, M + 20, y + 8, k, MED, 12.2, INK)
+        para(c, M + 20, y + 28, 452, v, R, 9.2, 14, MUT)
+        y += 100
 
-    photo(c, A + "/artist-mural.jpg", 636, 214, 568, 300, r=12,
-          overlay=INK, overlay_alpha=0.08)
-    U.chip(c, 652, 230, "COMMISSIONED \u00b7 BERLIN", TXT, alpha(INK, 0.6),
-         alpha(TXT, 0.25), 7, 17, 7)
-    fade(c, 636, 454, 568, 60, INK, 0.55, "bottom")
-    text(c, 652, 500, "Artist: paid 50% on brief, 50% on documentation", R, 9, alpha(TXT, 0.75))
+    illustration(c, ART + "/artist-wall.png", 588, 190, 632)
+    chip(c, 1160, 172, "BERLIN \u00b7 2026", WHITE, INK, None, 6.6, 20, 8, rot=4)
 
-    # stats strip
-    y = 552
-    hline(c, M, y - 16, W - M, LINE_SOFT)
-    stats = [("21", "cities in year one"), ("\u20ac300\u20131,200", "artist fee per wall"),
-             ("100%", "consented walls"), ("1", "permanent registry entry per mural")]
+    hline(c, M, 548, W - M, alpha(INK, 0.15))
+    stats = [("21", "walls commissioned"), ("21", "artists paid"),
+             ("9", "cities in 6 months"), ("100%", "consented walls")]
     for i, (a, b) in enumerate(stats):
-        x = M + i * ((W - 2 * M) / 4)
-        text(c, x, y + 30, a, MED, 22, TXT, -0.4)
-        text(c, x, y + 48, b, R, 9.2, MUT)
+        x = M + i * 284
+        text(c, x, 596, a, MED, 34, INK, -1.0)
+        text(c, x, 618, b, R, 9, MUT)
     foot(c, idx, "The 21 campaign")
 
 
-# ============================================================ 09  brand
-def s09(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "08 \u2014 Design system",
-           "Serious enough for a treasury.\nSimple enough for a phone.",
-           "A compact system ships with the MVP: tokens, components, interaction "
-           "states and usage rules, documented in a public Storybook.")
-
-    # ---- wordmark
-    U.card(c, M, 250, 420, 268, fill=PANEL, stroke=LINE, r=12)
-    label(c, M + 24, 276, "Wordmark", MUT_DIM, 7.4, 1.5)
-    t = c.beginText(M + 22, T.ty(382))
-    t.setFont(BOLD, 112)
-    t.setFillColor(TXT)
-    t.setCharSpace(-5)
-    t.textOut("21")
-    c.drawText(t)
-    T.diamond(c, M + 196, 322, 42, VIO)
-    text(c, M + 24, 414, "Build the world together.", MED, 14, MUT)
-    hline(c, M + 24, 434, M + 396, LINE_SOFT)
-    text(c, M + 24, 456, "Lockup: app icon  \u00b7  sticker  \u00b7  wall  \u00b7  favicon",
-         MONO, 7.6, MUT_DIM, 0.6)
-    text(c, M + 24, 480, "Geist Sans + Geist Mono  \u00b7  OFL  \u00b7  no gradients, no glow",
-         R, 8.8, MUT_DIM)
-
-    # ---- palette
-    px = 548
-    label(c, px, 276, "Palette", MUT_DIM, 7.4, 1.5)
-    swatches = [(TXT, "Paper", "#F3F1EC"), (T.PANEL_2, "Graphite", "#16161C"),
-                (VIO, "Signal violet", "#8B7CFF"), (T.VIO_DEEP, "Deep violet", "#5343D6"),
-                (T.MINT, "Verified", "#7FDCC0"), (SAND, "Sand", "#E4D3B2")]
-    for i, (col, name, hexv) in enumerate(swatches):
-        sx = px + (i % 3) * 226
-        sy = 292 + (i // 3) * 84
-        rect(c, sx, sy, 132, 40, fill=col, stroke=LINE, r=5, lw=0.6)
-        text(c, sx + 148, sy + 18, name, R, 8.8, TXT)
-        text(c, sx + 148, sy + 31, hexv, MONO, 7.2, MUT_DIM, 0.4)
-
-    # ---- type scale
-    ty_ = 460
-    label(c, px, ty_, "Type scale", MUT_DIM, 7.4, 1.5)
-    text(c, px, ty_ + 34, "Display 56 / 60", MED, 26, TXT, -0.4)
-    text(c, px + 250, ty_ + 34, "Title 30 / 36", MED, 15, TXT)
-    text(c, px + 250, ty_ + 56, "Body 13 / 19", L, 12.4, MUT)
-    text(c, px + 250, ty_ + 76, "LABEL 8.5 / MONO / 1.5", MONO_MED, 8, VIO, 1.4)
-
-    # ---- components
-    y = 544
-    hline(c, M, y - 24, W - M, LINE_SOFT)
-    label(c, M, y, "Components", MUT_DIM, 7.4, 1.5)
-    bx = M
-    bx += U.chip(c, bx, y + 14, "REPORT AN ISSUE", T.INK, VIO, None, 8, 30, 15) + 10
-    bx += U.chip(c, bx, y + 18, "EXPLORE MAP", TXT, None, LINE, 8, 22, 12) + 10
-    bx += U.chip(c, bx, y + 18, "VERIFIED", MINT, alpha(MINT, 0.1), alpha(MINT, 0.35), 7.2, 22, 9) + 10
-    bx += U.chip(c, bx, y + 18, "VOTING OPEN", SAND, alpha(SAND, 0.08), alpha(SAND, 0.3), 7.2, 22, 9) + 10
-    bx += U.chip(c, bx, y + 18, "PENDING \u00b7 12s", TXT, None, alpha(VIO, 0.45), 7.2, 22, 9) + 10
-    bx += U.chip(c, bx, y + 18, "INSUFFICIENT FUNDS", ALERT, None, alpha(ALERT, 0.4), 7.2, 22, 9) + 10
-
-    label(c, M, y + 64, "Lifecycle", MUT_DIM, 7.4, 1.5)
-    text(c, M, y + 84,
-         "draft \u2192 proposals \u2192 voting \u2192 funding \u2192 in progress \u2192 "
-         "verification \u2192 settled", MONO, 8.2, MUT, 0.2)
-    text(c, W - M, y + 84, "one colour, one word, one next action per state",
-         R, 8.6, MUT_DIM, 0, "right")
-    foot(c, idx, "Design system")
-
-
-# ============================================================ 10  architecture
+# ============================================================ 10  artist deal
 def s10(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "09 \u2014 Architecture",
-           "Boring where it matters.\nVerifiable where it counts.",
-           "TypeScript end to end, Foundry for contracts, no custodial backend.")
+    page(c)
+    T.head(c, "09 \u2014 The artist deal",
+           "Paid before the paint dries.",
+           "No exposure, no revenue share, no waiting for the grant to close. "
+           "Half on the brief, half on documentation, five days median.", width=800,
+           subw=600, y=106, size=36, leading=41)
 
-    # layers
-    layers = [
-        ("Clients", 244, [("Next.js web app", "Map, tasks, wallet, governance"),
-                          ("Mobile PWA", "Camera, GPS, offline queue")]),
-        ("Application", 336, [("tRPC API", "Auth, drafts, media, moderation"),
-                              ("Ponder indexer", "On-chain events \u2192 Postgres")]),
-        ("Storage & identity", 428, [("IPFS + Filecoin", "Content-addressed evidence"),
-                                     ("EAS + ENS", "Partner attestations, names")]),
-        ("Ethereum", 520, [("Base L2 contracts", "Registry, escrow, governance"),
-                           ("L1 anchor", "Daily merkle root of the registry")]),
+    steps = [
+        ("Open call", "A public call per city, reviewed with a local curator.",
+         "fee band", VIOLET, "\u20ac300\u20131,200 per wall"),
+        ("Owner consent", "Signed permission, removal clause, insurance binder.",
+         "before paint", TEAL, "one page, no lawyer"),
+        ("50% on brief", "Half the fee lands when the sketch is approved.",
+         "day 1", YELLOW, "SEPA or USDC"),
+        ("Wall painted", "Materials, lift and prep covered separately.",
+         "days 2\u20135", CORAL, "producer on site"),
+        ("50% + record", "Final half on photo documentation and a registry entry.",
+         "day 6", SKY, "median 5 days"),
     ]
-    for name, y, node_list in layers:
-        label(c, M, y + 12, name, MUT_DIM if name != "Ethereum" else VIO, 7.4, 1.5)
-        for i, (t, d) in enumerate(node_list):
-            x = 200 + i * 320
-            U.card(c, x, y - 14, 300, 56, fill=PANEL if name != "Ethereum" else PANEL_2,
-                 stroke=LINE if name != "Ethereum" else alpha(VIO, 0.35), r=8)
-            text(c, x + 16, y + 4, t, MED, 10.6, TXT)
-            text(c, x + 16, y + 22, d, R, 8.6, MUT)
-        if name != "Ethereum":
-            U.arrow(c, 660, y + 44, 660, y + 74, MUT_DIM, 0.8, 4)
+    x0, y0, cw, gap = M, 256, 204, 18
+    for i, (k, d, tag, col, fact) in enumerate(steps):
+        x = x0 + i * (cw + gap)
+        card(c, x, y0, cw, 190, fill=WHITE, stroke=LINE, r=14, shadow=True,
+             shadow_dy=5)
+        U.badge(c, x + 26, y0 + 30, 14, str(i + 1), col, WHITE, 11, MED)
+        text(c, x + 18, y0 + 70, k, MED, 11.2, INK)
+        para(c, x + 18, y0 + 90, cw - 36, d, R, 8.6, 12.6, MUT)
+        text(c, x + 18, y0 + 132, fact, MONO, 7.0, MUT_DIM, 0.2)
+        chip(c, x + 18, y0 + 150, tag.upper(), col, alpha(col, 0.10),
+             alpha(col, 0.45), 6.2, 18, 7)
 
-    # side notes
-    x = 872
-    notes = [("Gas per task", "< $0.02 on Base"),
-             ("Contract standard", "Solidity 0.8 / Foundry"),
-             ("Upgrade policy", "Immutable core + factory"),
-             ("Data on-chain", "State + hashes, never media"),
-             ("Who can pause", "3-of-5 guardian, 48h delay")]
-    U.card(c, x, 196, W - M - x, 340, fill=PANEL, stroke=LINE, r=12)
-    label(c, x + 18, 222, "Constraints", MUT_DIM, 7.4, 1.4)
-    yy = 246
-    for k, v in notes:
-        text(c, x + 18, yy, k, R, 8.6, MUT_DIM)
-        text(c, x + 18, yy + 15, v, MED, 9.6, TXT)
-        hline(c, x + 18, yy + 26, W - M - 18, LINE_SOFT)
-        yy += 50
+    card(c, M, 480, 552, 128, fill=WHITE, stroke=LINE, r=16, shadow=True)
+    label(c, M + 22, 506, "Artist contract, plain language", VIOLET, 7.4, 1.5)
+    for i, s_ in enumerate(("Artist keeps copyright and credit; 21 gets a licence to document.",
+                            "Removal clause: the owner can ask for the wall back, paid.",
+                            "No wall starts before consent and insurance are on file.")):
+        U.dot(c, M + 26, 530 + i * 22, 2.2, VIOLET)
+        text(c, M + 38, 534 + i * 22, s_, R, 8.6, MUT)
 
-    # trust boundary
-    U.card(c, M, 594, W - 2 * M, 52, fill=PANEL_2, stroke=LINE_SOFT, r=8)
-    label(c, M + 18, 616, "Trust boundary", MUT_DIM, 7.4, 1.4)
-    text(c, M + 18, 634,
-         "Funds live in escrow contracts. The 21 server can censor a list, but it "
-         "cannot move, freeze or redirect a single euro.", R, 9.4, MUT)
-    foot(c, idx, "Architecture")
+    card(c, 648, 480, 560, 128, fill=TEAL_SOFT, stroke=alpha(TEAL, 0.4), r=16,
+         shadow=True)
+    label(c, 670, 506, "How the money arrives", TEAL, 7.4, 1.5)
+    text(c, 670, 538, "SEPA in EUR or USDC on Base \u2014 the artist chooses.", MED, 10.6, INK)
+    text(c, 670, 558, "Median payout: 5 days from approval, not from a funding round.",
+         R, 9.0, INK_SOFT)
+    text(c, 670, 584, "Escrow is only used for contractor work, never for artist fees.",
+         MONO, 7.2, MUT, 0.2)
+    foot(c, idx, "Artist deal")
 
 
-# ============================================================ 11  contracts
+# ============================================================ 11  why eth
 def s11(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "10 \u2014 Smart contracts",
-           "Eight small contracts, one escrow per task.",
-           "Immutable core deployed by a factory, so each task gets its own escrow "
-           "address and its own accounting. No proxy admin can touch user funds.")
+    page(c)
+    T.head(c, "10 \u2014 Why Ethereum",
+           "The receipt should outlive\nthe grant.",
+           "A civic platform that moves public money should not be able to rewrite "
+           "its own history. Ethereum gives 21 four properties no SaaS can offer.",
+           width=760, subw=580, y=106, size=36, leading=41)
 
-    rows = [
-        ("TaskRegistry", "Canonical task record: geohash, category, media CID, status", "core"),
-        ("ProposalBook", "Bids, itemised budgets, milestone schedule, withdrawal", "core"),
-        ("FundingPool", "Contributions, refunds on failure, matching accounting", "core"),
-        ("Escrow", "Per-task USDC, milestone tranches, release conditions", "value"),
-        ("Verification", "Attestation quorum, evidence CIDs, challenge window", "core"),
-        ("Dispute", "Staked arbiters, slashing, escalation to council", "core"),
-        ("Reputation", "Non-transferable score from verified completions", "side"),
-        ("Treasury", "Matching pool, Safe multisig + 72h timelock", "side"),
+    reasons = [
+        ("Neutral settlement", VIOLET,
+         "No company sits between a resident's euro and a contractor's invoice. "
+         "The escrow is the counterparty."),
+        ("A global payment rail", TEAL,
+         "USDC on Base pays a contractor in Nairobi or Nijmegen in seconds, "
+         "without a bank account."),
+        ("Composable public goods", YELLOW,
+         "Quadratic funding, retro funding, EAS attestations and Safe treasuries "
+         "plug in unchanged."),
+        ("A permanent public record", CORAL,
+         "What was promised, funded and delivered stays queryable \u2014 even if 21 "
+         "the company disappears."),
     ]
-    y = 226
-    for name, desc, kind in rows:
-        U.card(c, M, y, 636, 40, fill=PANEL if kind != "value" else PANEL_2,
-             stroke=LINE if kind != "value" else alpha(VIO, 0.4), r=7)
-        text(c, M + 16, y + 24, name, MONO_MED, 9.4, TXT, 0.2)
-        text(c, M + 186, y + 24, desc, R, 8.8, MUT)
-        U.dot(c, M + 616, y + 20, 2.6, VIO if kind == "value" else LINE)
-        y += 46
+    for i, (k, col, v) in enumerate(reasons):
+        x = M + (i % 2) * 572
+        y = 250 + (i // 2) * 100
+        rect(c, x, y - 16, 44, 44, fill=alpha(col, 0.14), r=12, stroke=None)
+        U.dot(c, x + 22, y + 6, 7, col)
+        text(c, x + 58, y + 2, k, MED, 12.4, INK)
+        para(c, x + 58, y + 22, 450, v, R, 9.4, 13.6, MUT)
 
-    # escrow state machine
-    sx, sy = 760, 226
-    label(c, sx, sy - 8, "Escrow lifecycle", VIO, 8, 1.5)
-    states = [("Draft", "rules pinned"), ("Funded", "target reached"),
-              ("Building", "tranche 1 out"), ("Review", "evidence in"),
-              ("Settled", "balance released")]
-    yy = sy + 18
-    for i, (st, note) in enumerate(states):
-        U.card(c, sx, yy, 220, 44, fill=PANEL, stroke=LINE, r=7)
-        U.dot(c, sx + 18, yy + 22, 3.2, VIO if i < 4 else MINT)
-        text(c, sx + 32, yy + 20, st, MED, 9.8, TXT)
-        text(c, sx + 32, yy + 33, note, R, 7.6, MUT_DIM)
-        if i < 4:
-            U.arrow(c, sx + 110, yy + 44, sx + 110, yy + 56, MUT_DIM, 0.8, 4)
-        yy += 56
+    card(c, M, 462, 552, 132, fill=WHITE, stroke=LINE, r=16, shadow=True)
+    label(c, M + 22, 488, "What 21 deliberately does not do", MUT_DIM, 7.4, 1.4)
+    for i, s_ in enumerate(("No token sale and no speculative asset",
+                            "No custody of user funds at any point",
+                            "No paid placement of projects or contractors",
+                            "No growth metric that is not on-chain verifiable")):
+        text(c, M + 22, 514 + i * 22, "\u00d7", MONO, 9, alpha(CORAL, 0.9))
+        text(c, M + 38, 514 + i * 22, s_, R, 8.8, MUT)
 
-    # dispute branch
-    U.card(c, sx + 236, sy + 130, 150, 96, fill=PANEL, stroke=alpha(ALERT, 0.35), r=7)
-    text(c, sx + 250, sy + 152, "Disputed", MED, 9.4, ALERT)
-    para(c, sx + 250, sy + 168, 122, "Escrow frozen. Arbiters stake, review, decide.",
-         R, 7.6, 10.5, MUT)
-    text(c, sx + 250, sy + 206, "max 14 days", MONO, 7, MUT_DIM, 0.4)
-    U.arrow(c, sx + 220, sy + 178, sx + 236, sy + 178, ALERT, 0.8, 4)
-
-    U.card(c, M, 596, W - 2 * M, 40, fill=PANEL_2, stroke=LINE_SOFT, r=7)
-    text(c, M + 16, 621,
-         "Escrow rules are hashed and emitted on TaskPublished. A task cannot be "
-         "funded until its payment logic is immutable.", R, 9.2, MUT)
-    foot(c, idx, "Contracts")
+    card(c, 648, 462, 560, 132, fill=VIOLET_SOFT, stroke=alpha(VIOLET, 0.35),
+         r=16, shadow=True)
+    label(c, 670, 488, "What actually goes on-chain", VIOLET, 7.4, 1.4)
+    text(c, 670, 516, "who was selected  \u00b7  what was promised  \u00b7  what was paid",
+         MONO, 8.0, VIOLET_DEEP, 0.2)
+    text(c, 670, 542, "Not on-chain: faces, plates, addresses, phone numbers.",
+         R, 9.0, INK_SOFT)
+    text(c, 670, 566, "Media stays content-addressed off-chain; the hash is forever.",
+         R, 8.4, MUT)
+    foot(c, idx, "Why Ethereum")
 
 
-# ============================================================ 12  security
+# ============================================================ 12  product
 def s12(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "11 \u2014 Security & threat model",
-           "The attacker is a person with a camera.",
-           "Physical-world verification has adversarial failure modes that a normal "
-           "audit does not catch. Each one is handled explicitly.")
+    page(c)
+    T.head(c, "11 \u2014 The product",
+           "Six screens, one continuous workflow.",
+           "Responsive web app plus an installable mobile PWA. Every screen below "
+           "is MVP scope, not a future release.", width=900, subw=700, y=104,
+           size=34, leading=39)
 
-    cols = ["Threat", "Why it is real", "Mitigation in the MVP"]
-    xs = [M, 332, 760]
-    y = 232
-    hline(c, M, y, W - M, LINE)
-    for i, col in enumerate(cols):
-        label(c, xs[i], y - 10, col, MUT_DIM, 7.4, 1.5)
-    y += 10
-    rows = [
-        ("Fabricated or AI-generated proof",
-         "A model can draw a fixed bench in seconds.",
-         "In-app capture only, signed device metadata, C2PA content credentials, phash dedupe, human spot audits."),
-        ("GPS spoofing",
-         "Mock locations are one developer setting away.",
-         "Geofence + cell/Wi-Fi corroboration, on-site reviewer above \u20ac1,000, anomalous-radius flags."),
-        ("Reporter\u2013contractor collusion",
-         "The easiest way to extract money from a pool.",
-         "Role separation, random reviewer panel, reputation at risk, payout caps for new addresses."),
-        ("Sybil voting",
-         "Free wallets, cheap votes.",
-         "Personhood-gated eligibility, snapshot at vote open, one-person-one-vote as the default."),
-        ("Escrow bug or exploit",
-         "Contracts hold real money on day one.",
-         "Two independent audits, invariant fuzzing, per-task caps, 3-of-5 guardian pause with 48h delay."),
-        ("Privacy of residents",
-         "Photos contain faces, plates and windows.",
-         "On-device blur, coarse public coordinates, off-chain personal data, GDPR DPIA before pilot 1."),
+    frames = [
+        ("Explore", "Map-first discovery with live tasks", "map"),
+        ("Project", "Evidence, budget, milestones, discussion", "project"),
+        ("Report", "Photo, GPS, category \u2014 under 60 seconds", "report"),
+        ("Bids", "Competing quotes with itemised budgets", "proposals"),
+        ("Contractor", "Bids, contracts, evidence, payouts", "workspace"),
+        ("Completed", "Before / after and the payment record", "done"),
     ]
-    row_h = 52
-    for i, (a, b, cc_) in enumerate(rows):
-        yy = y + 12 + i * row_h
-        if i % 2 == 0:
-            rect(c, M - 12, yy - 4, W - 2 * M + 24, row_h - 8,
-                 fill=alpha(PANEL, 0.6), r=5)
-        text(c, xs[0], yy + 20, a, MED, 9.8, TXT)
-        para(c, xs[1], yy + 20, 360, b, R, 9, 12.5, MUT, max_lines=2)
-        para(c, xs[2], yy + 20, 400, cc_, R, 9, 12.5, MUT, max_lines=2)
-        hline(c, M, yy + row_h - 10, W - M, LINE_SOFT, 0.5)
+    cw, ch = 360, 176
+    for i, (title, desc, kind) in enumerate(frames):
+        col, row = i % 3, i // 3
+        x = M + col * (cw + 28)
+        y = 214 + row * 216
+        U.browser(c, x, y, cw, ch, url="21.city/" + kind)
+        c.saveState()
+        p = c.beginPath()
+        p.roundRect(x, T.ty(y) - ch, cw, ch, 12)
+        c.clipPath(p, stroke=0, fill=0)
+        U.window_content(c, x, y + 24, cw, ch - 24, kind)
+        c.restoreState()
+        text(c, x, y + ch + 24, f"0{i + 1}", MONO, 7.8, VIOLET, 1.2)
+        text(c, x + 20, y + ch + 24, title, MED, 10.4, INK)
+        text(c, x + 20 + T.sw(title, MED, 10.4) + 10, y + ch + 24, desc, R, 8.4, MUT)
+    foot(c, idx, "Product")
 
-    text(c, M, 602, "Open question we bring to reviewers: what is the minimum viable "
-                    "proof for a \u20ac300 repair that still resists a determined "
-                    "faker?", L, 9.6, MUT_DIM)
-    foot(c, idx, "Security")
 
-
-# ============================================================ 13  roadmap
+# ============================================================ 13  interface
 def s13(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "12 \u2014 Roadmap",
-           "Ten months from spec to three live cities.",
-           "Every milestone ships something a reviewer can open, test or audit. "
-           "Nothing is marked done without a public artefact.")
+    page(c)
+    T.head(c, "12 \u2014 Interface",
+           "Friendly on purpose.",
+           "Civic software usually looks like a form. Ours looks like something a "
+           "neighbour would send you: warm paper, big targets, one clear action.",
+           width=700, subw=520, y=104, size=36, leading=41)
 
-    x0, y0 = 356, 262
-    colw = (W - M - x0) / 10
-    hline(c, x0, y0 - 14, W - M, LINE)
-    for i in range(10):
-        text(c, x0 + colw * i + colw / 2, y0 - 22, f"Month {i + 1}", MONO, 7.2,
-             MUT_DIM, 0.6, "center")
-        if i:
-            vline(c, x0 + colw * i, y0 - 14, 560, LINE_SOFT, 0.5)
+    # palette
+    label(c, M, 250, "Palette", MUT_DIM, 7.2, 1.5)
+    swatches = [(PAPER, "Paper", "#FAF2DE"), (INK, "Ink", "#17161B"),
+                (VIOLET, "Signal", "#6C24DF"), (TEAL, "Verified", "#12B98A"),
+                (YELLOW, "Attention", "#F6C445"), (CORAL, "Alert", "#F0603F"),
+                (SKY, "Info", "#6F9BF5"), (PINK, "Joy", "#FF51BC")]
+    for i, (col, name, hexv) in enumerate(swatches):
+        sx = M + (i % 4) * 118
+        sy = 266 + (i // 4) * 74
+        rect(c, sx, sy, 42, 42, fill=col, stroke=alpha(INK, 0.14), r=12, lw=0.9)
+        text(c, sx + 52, sy + 16, name, R, 8.6, INK)
+        text(c, sx + 52, sy + 29, hexv, MONO, 6.4, MUT_DIM, 0.2)
 
-    bars = [
-        ("Spec, threat model, design system", 0, 1.5, MUT),
-        ("Contracts v1 + invariant tests", 1, 1.6, VIO),
-        ("Web app alpha: report \u2192 task \u2192 map", 2, 1.8, VIO),
-        ("Funding, voting, escrow UI", 3.2, 1.6, VIO),
-        ("Verification, dispute, reputation", 4.4, 1.8, VIO),
-        ("Two independent audits + fixes", 5.4, 1.6, SAND),
-        ("Mainnet on Base \u00b7 pilot city 1", 6.2, 1.2, MINT),
-        ("Contractor workspace + mobile PWA", 6.8, 1.4, MINT),
-        ("Pilot cities 2 and 3", 7.6, 1.6, MINT),
-        ("Open-source release, SDK, public report", 9, 1.0, TXT),
-    ]
-    y = y0 + 18
-    for name, start, dur, col in bars:
-        text(c, M, y + 12, name, R, 8.6, TXT)
-        bx = x0 + start * colw
-        bw = max(6, dur * colw)
-        rect(c, bx, y + 4, bw, 12, fill=alpha(col, 0.28 if col != MUT else 0.12), r=3)
-        rect(c, bx, y + 4, bw, 12, fill=None, stroke=alpha(col, 0.55), r=3, lw=0.6)
-        y += 30
+    # type
+    label(c, M, 430, "Type", MUT_DIM, 7.2, 1.5)
+    text(c, M, 470, "Display", MED, 30, INK, -0.8)
+    text(c, M + 132, 470, "Geist", MONO, 8, MUT_DIM, 0.3)
+    text(c, M, 502, "Accent", SERIF_IT, 30, VIOLET, -0.3)
+    text(c, M + 132, 502, "Instrument Serif Italic", MONO, 8, MUT_DIM, 0.3)
+    text(c, M, 530, "Body 12 / 19", R, 11.4, MUT)
+    text(c, M + 132, 530, "LABEL 8 / MONO / 1.6", MONO_MED, 8, VIOLET, 1.4)
 
-    # gate markers
-    gates = [(6.2, "audit gate"), (10, "close-out")]
-    for gx, name in gates:
-        pass
+    # components
+    label(c, M, 570, "Components", MUT_DIM, 7.2, 1.5)
+    bx = M
+    bx += chip(c, bx, 584, "REPORT A PROBLEM", WHITE, VIOLET, None, 7.4, 30, 13) + 8
+    bx += chip(c, bx, 588, "EXPLORE MAP", INK, WHITE, alpha(INK, 0.18), 7.4, 22, 11) + 8
+    bx += chip(c, bx, 588, "VERIFIED", TEAL, TEAL_SOFT, alpha(TEAL, 0.45), 7, 22, 9) + 8
+    bx += chip(c, bx, 588, "VOTING OPEN", YELLOW, YELLOW_SOFT, alpha(YELLOW, 0.6), 7, 22, 9)
+    U.progress(c, M, 634, 300, 0.62, 8, VIOLET)
+    text(c, M + 314, 641, "\u20ac362 of \u20ac420", MONO, 7.6, MUT, 0.2)
 
-    y = 584
-    hline(c, M, y, W - M, LINE_SOFT)
-    label(c, M, y + 30, "Release gates", MUT_DIM, 7.4, 1.5)
-    gates_text = [("Month 6", "audits closed \u00b7 no critical or high findings open",
-                   "milestone M5"),
-                  ("Month 7", "first real euro spent through escrow", "milestone M6"),
-                  ("Month 10", "three pilots, public report, open SDK", "milestone M8")]
-    x = 356
-    for i, (g, t, ms) in enumerate(gates_text):
-        text(c, x, y + 30, g, MONO_MED, 8, VIO, 0.8)
-        text(c, x + 62, y + 30, t, R, 9, MUT)
-        text(c, x + 62, y + 44, ms, MONO, 6.6, MUT_DIM, 0.4)
-        x += 350
-    foot(c, idx, "Roadmap")
+    # phone
+    px, py, pw, ph = 948, 190, 200, 424
+    rect(c, px + 2, py + 8, pw, ph, fill=SHADOW, r=26)
+    rect(c, px, py, pw, ph, fill=INK, r=26)
+    rect(c, px + 6, py + 6, pw - 12, ph - 12, fill=WHITE, r=22)
+    rect(c, px + pw / 2 - 20, py + 12, 40, 8, fill=INK, r=4)
+    text(c, px + 20, py + 38, "Report", MED, 11, INK)
+    text(c, px + pw - 20, py + 38, "\u00d7", R, 12, MUT_DIM, 0, "right")
+    photo(c, PHOTOS + "/bench-broken.jpg", px + 16, py + 52, pw - 32, 132, r=12)
+    chip(c, px + 24, py + 62, "IN-APP CAMERA", WHITE, alpha(INK, 0.7), None,
+         6, 16, 6)
+    text(c, px + 16, py + 206, "Broken bench", MED, 10.4, INK)
+    text(c, px + 16, py + 222, "52.3582 N \u00b7 Oosterpark", MONO, 6.6, MUT, 0.2)
+    for i, (s_, bg) in enumerate((("Street furniture", VIOLET_SOFT),
+                                  ("This week", YELLOW_SOFT),
+                                  ("Photo + GPS attached", TEAL_SOFT))):
+        chip(c, px + 16, py + 238 + i * 26, s_.upper(), INK, bg, None, 6.2, 20, 8)
+    rect(c, px + 16, py + ph - 58, pw - 32, 34, fill=VIOLET, r=12)
+    text(c, px + pw / 2, py + ph - 36, "Publish task", MED, 10, WHITE, 0.2, "center")
+    text(c, px + pw / 2, py + ph - 14, "1 of 3 steps", MONO, 5.8, MUT_DIM, 0.2, "center")
+    foot(c, idx, "Interface")
 
 
-# ============================================================ 14  milestones
+# ============================================================ 14  budget
 def s14(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "13 \u2014 Milestones",
-           "What the grant actually pays for.",
-           "Acceptance criteria are written as artefacts, not intentions. Each "
-           "milestone is reviewed before the next tranche is released.")
-
-    rows = [
-        ("M1", "Protocol spec + threat model", "Published RFC, 2 external reviews", 5),
-        ("M2", "Contracts on testnet", "90%+ coverage, invariants fuzzed, testnet deploy", 10),
-        ("M3", "Alpha app: report \u2192 task \u2192 escrow", "A bench task completed end-to-end on testnet", 15),
-        ("M4", "Verification + dispute modules", "Dual attestation and a resolved dispute in a live drill", 10),
-        ("M5", "Two independent audits", "Reports published; all critical/high fixed", 20),
-        ("M6", "Base mainnet launch", "Verified contracts, per-task cap, guardian live", 10),
-        ("M7", "Three city pilots", "3 partners, 20 tasks each, real payouts", 20),
-        ("M8", "Open source + SDK", "MIT release, docs, 3 external integrators", 10),
-    ]
-    y = 216
-    hline(c, M, y, W - M, LINE)
-    heads = [("", M), ("Milestone", M + 60), ("Acceptance criterion", 420)]
-    for t, x in heads:
-        if t:
-            label(c, x, y - 10, t, MUT_DIM, 7.4, 1.4)
-    label(c, 1044, y - 10, "Share", MUT_DIM, 7.4, 1.4, "right")
-    y += 12
-    for code, name, crit, share in rows:
-        text(c, M, y + 16, code, MONO_MED, 8.4, VIO, 1.0)
-        text(c, M + 60, y + 16, name, MED, 10.4, TXT)
-        para(c, 420, y + 16, 560, crit, R, 9.2, 12.5, MUT, max_lines=2)
-        text(c, 1044, y + 16, f"{share}%", MONO, 9, TXT, 0.3, "right")
-        U.progress(c, 1064, y + 12, 56, share / 25, 3.5, alpha(VIO, 0.8))
-        hline(c, M, y + 32, W - M, LINE_SOFT, 0.5)
-        y += 44
-
-    text(c, M, 606, "Cumulative release: 15% by M2, 40% by M4, 70% by M6, 100% at "
-                    "close-out. An unmet criterion means an unpaid milestone, "
-                    "not a renegotiation.", L, 9.4, MUT_DIM)
-    foot(c, idx, "Milestones")
-
-
-# ============================================================ 15  budget
-def s15(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "14 \u2014 Budget",
-           "$75,000, allocated line by line.",
-           "People, audits and pilots. No token, no marketing spend, no margin hidden "
-           "in the total.")
+    page(c)
+    T.head(c, "13 \u2014 Budget",
+           "Why the ask is $21,000.",
+           "We are not asking anyone to pay for code. The team writes it. The one "
+           "thing we cannot do ourselves is pay artists on time.", width=800,
+           subw=620, y=104, size=36, leading=41)
 
     items = [
-        ("Smart contracts, tests, two audits", 24000, VIO),
-        ("Product, frontend, mobile PWA", 18000, alpha(VIO, 0.8)),
-        ("Backend, indexer, storage pipeline", 9500, alpha(VIO, 0.62)),
-        ("Verification, dispute and reviewer tooling", 7500, alpha(VIO, 0.48)),
-        ("Three city pilots and the mural programme", 9000, MINT),
-        ("Design system, documentation, Storybook", 4000, alpha(MINT, 0.7)),
-        ("Legal, GDPR review, operations, travel", 3000, SAND),
+        ("Artist fees, 21 walls \u00d7 $700 avg", 14700, VIOLET),
+        ("Paint, wall prep, lift or scaffold", 2100, TEAL),
+        ("Local photographer + short film", 2100, YELLOW),
+        ("Consent, permits, insurance", 1050, CORAL),
+        ("Open call + paid curator", 1050, SKY),
     ]
     total = sum(i[1] for i in items)
 
+    # headline number
+    text(c, M, 258, "$21,000", SERIF, 74, INK, -1)
+    text(c, M + 300, 250, "over 6 months", MED, 13, MUT)
+    text(c, M + 300, 268, "21 artists \u00b7 21 walls \u00b7 9 cities", R, 9.4, MUT)
+    chip(c, M + 300, 282, "CODE: $0", VIOLET, VIOLET_SOFT, None, 7, 22, 9, rot=-2)
+
     # stacked bar
-    bx, bw, by = M, W - 2 * M, 230
+    bx, bw, by = M, W - 2 * M, 330
     xx = bx
     for name, amt, col in items:
         wseg = bw * amt / total
-        rect(c, xx, by, wseg - 2, 26, fill=col, r=3)
+        rect(c, xx, by, wseg - 3, 24, fill=col, r=4)
         xx += wseg
-    text(c, bx, by + 52, "Total $75,000  \u00b7  10 months  \u00b7  2 FTE + 1 part-time",
-         MONO, 8.6, MUT, 0.5)
+    text(c, M, by + 46, "70% of the ask goes straight to artists. Nothing is spent on "
+                        "marketing, tokens or exchange listings.", R, 9.4, MUT)
 
     # table
-    y = 326
-    hline(c, M, y, W - M, LINE)
-    label(c, M, y - 10, "Line item", MUT_DIM, 7.4, 1.4)
-    label(c, 860, y - 10, "Share", MUT_DIM, 7.4, 1.4)
-    label(c, 1204, y - 10, "USD", MUT_DIM, 7.4, 1.4, "right")
-    y += 16
+    y = 432
+    hline(c, M, y, W - M, alpha(INK, 0.15))
+    label(c, M, y - 10, "Line item", MUT_DIM, 7.2, 1.4)
+    label(c, 878, y - 10, "Share", MUT_DIM, 7.2, 1.4)
+    label(c, W - M, y - 10, "USD", MUT_DIM, 7.2, 1.4, "right")
+    y += 18
     for name, amt, col in items:
-        rect(c, M, y + 10, 6, 6, fill=col, r=1.5)
-        text(c, M + 18, y + 16, name, R, 9.8, TXT)
-        U.progress(c, 860, y + 11, 160, amt / 24000, 3, alpha(col, 0.9))
-        text(c, 1036, y + 16, f"{amt / total * 100:.0f}%", MONO, 8.4, MUT_DIM, 0.3)
-        text(c, 1204, y + 16, f"${amt:,}", MONO, 9, TXT, 0.2, "right")
-        hline(c, M, y + 30, W - M, LINE_SOFT, 0.5)
-        y += 36
+        rect(c, M, y + 11, 8, 8, fill=col, r=2.5)
+        text(c, M + 20, y + 18, name, R, 9.6, INK)
+        U.progress(c, 878, y + 12, 150, amt / 14700, 5, col)
+        text(c, 1052, y + 18, f"{amt / total * 100:.0f}%", MONO, 8.2, MUT_DIM, 0.3)
+        text(c, W - M, y + 18, f"${amt:,}", MONO, 9, INK, 0.2, "right")
+        hline(c, M, y + 30, W - M, LINE_SOFT, 0.7)
+        y += 34
 
-    text(c, M, 630, "If the grant is smaller than requested, the audits and the "
-                    "mainnet launch are the last things we cut.", L, 9.4, MUT_DIM)
+    card(c, M, 606, W - 2 * M, 34, fill=WHITE, stroke=LINE_SOFT, r=10, lw=0.8, shadow=False)
+    text(c, M + 16, 628, "If the grant is smaller, we paint fewer walls \u2014 not cheaper ones.",
+         R, 9.0, MUT)
+    text(c, W - M - 16, 628, "$21,000 total", MED, 11, INK, 0, "right")
     foot(c, idx, "Budget")
+
+
+# ============================================================ 15  milestones
+def s15(c, idx):
+    page(c)
+    T.head(c, "14 \u2014 Milestones",
+           "Five payments, each tied\nto walls that exist.",
+           "No milestone is closed on a slide. Each one ships something a reviewer "
+           "can visit, photograph or open.", width=760, subw=560, y=106, size=34,
+           leading=39)
+
+    rows = [
+        ("M1", "Month 1", "Open call + 21 contracts",
+         "21 signed artist contracts, 9 owner-consent letters, curator engaged",
+         10, 2100, VIOLET),
+        ("M2", "Months 2\u20133", "First 7 walls, 3 cities",
+         "7 walls installed, photographed and registered with proof-of-place",
+         30, 6300, TEAL),
+        ("M3", "Months 3\u20134", "Walls 8\u201314 + documentation",
+         "7 more walls, plus a photo and short-film package per city",
+         25, 5250, YELLOW),
+        ("M4", "Months 4\u20135", "Walls 15\u201321, 9 cities",
+         "All 21 walls installed and registered; 21 artists paid in full",
+         25, 5250, CORAL),
+        ("M5", "Month 6", "Exhibition + open kit",
+         "21 walls shown publicly; the artist kit published under MIT",
+         10, 2100, SKY),
+    ]
+    y = 236
+    hline(c, M, y, W - M, alpha(INK, 0.15))
+    label(c, M, y - 10, "", MUT_DIM)
+    label(c, 100, y - 10, "Milestone", MUT_DIM, 7.2, 1.4)
+    label(c, 470, y - 10, "Acceptance criterion", MUT_DIM, 7.2, 1.4)
+    label(c, 1010, y - 10, "Share", MUT_DIM, 7.2, 1.4, "right")
+    label(c, W - M, y - 10, "Release", MUT_DIM, 7.2, 1.4, "right")
+    y += 16
+    for code, month, name, crit, share, amount, col in rows:
+        U.badge(c, M + 14, y + 22, 14, code, col, WHITE, 9.4, MED)
+        text(c, M + 40, y + 16, month, MONO, 7.2, MUT_DIM, 0.3)
+        text(c, M + 40, y + 32, name, MED, 10.4, INK)
+        para(c, 470, y + 22, 470, crit, R, 8.8, 12.4, MUT, max_lines=2)
+        text(c, 1010, y + 26, f"{share}%", MONO, 8.6, INK, 0.2, "right")
+        text(c, W - M, y + 26, f"${amount:,}", MED, 10.2, INK, 0.2, "right")
+        hline(c, M, y + 44, W - M, LINE_SOFT, 0.7)
+        y += 54
+
+    card(c, M, 560, W - 2 * M, 86, fill=WHITE, stroke=LINE, r=16, shadow=True)
+    label(c, M + 22, 584, "Cumulative release", VIOLET, 7.2, 1.4)
+    cum = [("M1", 10), ("M2", 40), ("M3", 65), ("M4", 90), ("M5", 100)]
+    for i, (k, v) in enumerate(cum):
+        x = M + 24 + i * 216
+        text(c, x, 612, k, MONO, 7.2, MUT_DIM, 0.4)
+        U.progress(c, x + 22, 607, 120, v / 100, 6, alpha(VIOLET, 0.85))
+        text(c, x + 148, 613, f"{v}%", MONO, 7.6, MUT, 0.2)
+    text(c, M + 24, 636, "An unmet criterion means an unpaid milestone, not a renegotiation.",
+         R, 8.4, MUT_DIM)
+    foot(c, idx, "Milestones")
 
 
 # ============================================================ 16  team
 def s16(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "15 \u2014 Team",
-           "Three roles, named before the first tranche.",
-           "21 is a small team plus one municipal advisor. Replace the bracketed "
-           "fields with names and profile links before submission.")
+    page(c)
+    T.head(c, "15 \u2014 Team",
+           "Three people, one curator,\n21 artists.",
+           "Small by design. Most of the money leaves the building on day one of "
+           "each wall, on its way to the person holding the brush.", width=780,
+           subw=600, y=106, size=34, leading=39)
 
     people = [
-        ("Protocol lead", "contracts",
-         "Solidity and Foundry, escrow design, one prior public-goods deployment. "
-         "Owns M1\u2013M6 and both audits."),
-        ("Product & design lead", "product",
-         "Civic interfaces, map and form UX, accessible design systems. "
-         "Owns M3, M7 and the pilot onboarding."),
-        ("Full-stack engineer", "backend",
-         "Next.js, indexer, media pipeline, PWA capture and offline queue. "
-         "Owns M3 and M7."),
+        ("Protocol & product", "contracts \u00b7 app \u00b7 escrow", VIOLET,
+         "Solidity and Foundry, civic interfaces, PWA capture. Owns the escrow, "
+         "the registry and the public task page.", "[name]  \u00b7  [github]"),
+        ("Programme lead", "cities \u00b7 artists \u00b7 permissions", TEAL,
+         "Runs the open calls, the consent paperwork and the wall calendar with "
+         "the local curator in each city.", "[name]  \u00b7  [linkedin]"),
+        ("Field producer", "build \u00b7 lift \u00b7 documentation", CORAL,
+         "Books the lift, the paint and the photographer; makes sure every wall "
+         "finishes on the day it was promised.", "[name]  \u00b7  [linkedin]"),
     ]
-    for i, (role, key, desc) in enumerate(people):
-        x = M + i * 372
-        U.card(c, x, 222, 348, 168, fill=PANEL, stroke=LINE, r=12)
-        c.saveState()
-        c.setFillColor(PANEL_3)
-        c.circle(x + 42, T.ty(264), 20, stroke=0, fill=1)
-        c.restoreState()
-        text(c, x + 42, 270, role[0], MED, 14, MUT, 0, "center")
-        text(c, x + 74, 260, role, MED, 11.6, TXT)
-        text(c, x + 74, 276, key, MONO, 7.2, VIO, 0.8)
-        text(c, x + 24, 302, "[name]  \u00b7  [github / linkedin]", MONO, 7.8, MUT_DIM, 0.3)
-        para(c, x + 24, 322, 300, desc, R, 9.2, 13.5, MUT)
-        text(c, x + 24, 376, "commitment: full time, 10 months", MONO, 6.8, MUT_DIM, 0.3)
+    for i, (role, key, col, desc, link) in enumerate(people):
+        x = M + i * 384
+        card(c, x, 218, 368, 196, fill=WHITE, stroke=LINE, r=16, shadow=True,
+             shadow_dy=6)
+        rect(c, x + 22, 240, 42, 42, fill=alpha(col, 0.15), r=12)
+        text(c, x + 43, 268, role[0], MED, 16, col, 0, "center")
+        text(c, x + 78, 258, role, MED, 11.6, INK)
+        text(c, x + 78, 274, key, MONO, 6.8, MUT, 0.3)
+        para(c, x + 22, 302, 324, desc, R, 9.0, 13.4, MUT)
+        hline(c, x + 22, 358, x + 346, LINE_SOFT, 0.8)
+        text(c, x + 22, 380, link, MONO, 7.6, MUT, 0.3)
+        text(c, x + 346, 380, "full time \u00b7 6 months", MONO, 6.6, MUT_DIM, 0.3, "right")
 
-    # advisor
-    U.card(c, M, 418, 660, 116, fill=PANEL_2, stroke=LINE_SOFT, r=10)
-    label(c, M + 20, 442, "Advisor", MUT_DIM, 7.4, 1.4)
-    text(c, M + 20, 466, "Municipal procurement + public-art permissions", MED, 10.2, TXT)
-    para(c, M + 20, 482, 610, "A former city procurement officer reviews pilot "
-                              "contracts, consent templates and the mural programme "
-                              "before any wall is touched.  [name \u00b7 organisation]",
-         R, 8.8, 12.5, MUT)
+    card(c, M, 438, 700, 106, fill=WHITE, stroke=LINE, r=16, shadow=True)
+    label(c, M + 22, 462, "Curator \u00b7 paid, one per city", VIOLET, 7.2, 1.4)
+    text(c, M + 22, 486, "Local curator, selected with the city", MED, 10.6, INK)
+    para(c, M + 22, 502, 650,
+         "They shortlist artists, sit on the open call and write the wall notes. "
+         "Paid from the budget line, never asked to work for visibility.", R, 8.8,
+         12.6, MUT)
 
-    # how we work
-    U.card(c, 752, 418, 452, 116, fill=PANEL, stroke=LINE, r=10)
-    label(c, 772, 442, "How we work", MUT_DIM, 7.4, 1.4)
-    rules = ["Public roadmap, public repo, weekly demo",
-             "Every payment in milestone tranches",
-             "No token, no presale, no paid listings"]
-    yy = 468
-    for r_ in rules:
-        U.dot(c, 776, yy - 3, 1.9, VIO)
-        text(c, 788, yy, r_, R, 9, MUT)
-        yy += 20
+    card(c, 796, 438, 412, 106, fill=TEAL_SOFT, stroke=alpha(TEAL, 0.4), r=16,
+         shadow=True)
+    label(c, 818, 462, "The 21 artists", TEAL, 7.2, 1.4)
+    text(c, 818, 486, "Paid per wall, credited by name", MED, 10.6, INK)
+    text(c, 818, 506, "No equity. No tokens. No exposure.", R, 9.2, INK_SOFT)
+    text(c, 818, 524, "Fee range \u20ac300\u2013\u20ac1,200, always published.", MONO, 7.0, MUT, 0.2)
 
-    # what we still need
-    hline(c, M, 566, W - M, LINE_SOFT)
-    label(c, M, 588, "Open role funded by tranche 2", MUT_DIM, 7.4, 1.4)
-    text(c, M, 610, "Verification & field-operations lead \u2014 runs reviewer panels "
-                    "in the three pilot cities.", R, 9.4, MUT)
-    label(c, 760, 588, "Not applying for", MUT_DIM, 7.4, 1.4)
-    text(c, 760, 610, "Marketing budget, token liquidity, or exchange listings.",
-         R, 9.4, MUT)
+    hline(c, M, 574, W - M, alpha(INK, 0.12))
+    label(c, M, 598, "Open role, funded by tranche 2", MUT_DIM, 7.2, 1.4)
+    text(c, M, 620, "Verification & field-operations lead \u2014 runs reviewer panels in the pilot cities.",
+         R, 9.2, MUT)
+    label(c, 780, 598, "Not applying for", MUT_DIM, 7.2, 1.4)
+    text(c, 780, 620, "Marketing budget, token liquidity, or exchange listings.",
+         R, 9.2, MUT)
     foot(c, idx, "Team")
 
 
 # ============================================================ 17  metrics
 def s17(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "16 \u2014 Success metrics",
+    page(c)
+    T.head(c, "16 \u2014 Success metrics",
            "Targets, not traction.",
-           "21 is pre-launch. These are the numbers we commit to reporting at "
-           "close-out, with the methodology published alongside them.")
+           "21 is pre-launch. These are the numbers we commit to publishing at "
+           "close-out, with the raw registry export next to them.", width=820,
+           subw=620, y=106, size=36, leading=41)
 
     metrics = [
-        ("3", "city partners under a signed pilot agreement", "signed pilot MOUs"),
-        ("60", "tasks published, verified and settled", "registry events"),
-        ("\u20ac45k", "value moved through escrow", "escrow contract balance"),
-        ("25", "contractors paid, median payout < 24h", "payout timestamps"),
-        ("21", "commissioned murals registered on-chain", "proof-of-place entries"),
-        ("500", "unique participants with proof-of-personhood", "eligible voter snapshot"),
+        ("21", "walls commissioned and documented", "proof-of-place entries", VIOLET),
+        ("21", "artists paid, median 5 days", "payout timestamps", TEAL),
+        ("9", "cities with a signed consent", "owner permission records", YELLOW),
+        ("100%", "walls with written owner consent", "consent registry", CORAL),
+        ("40", "tasks published, verified and settled", "registry events", SKY),
+        ("25", "contractors paid through escrow", "payout timestamps", PINK),
     ]
-    for i, (big, small, src) in enumerate(metrics):
-        col, row = i % 3, i // 3
-        x = M + col * 376
-        y = 226 + row * 150
-        U.card(c, x, y, 352, 128, fill=PANEL, stroke=LINE, r=10)
-        text(c, x + 22, y + 54, big, MED, 32, TXT, -1)
-        para(c, x + 22, y + 80, 300, small, R, 9.4, 13, MUT)
-        text(c, x + 22, y + 112, "source: " + src, MONO, 6.8, MUT_DIM, 0.3)
+    for i, (big, small, src, col) in enumerate(metrics):
+        col_i, row = i % 3, i // 3
+        x = M + col_i * 384
+        y = 226 + row * 142
+        card(c, x, y, 368, 128, fill=WHITE, stroke=LINE, r=16, shadow=True,
+             shadow_dy=5)
+        rect(c, x + 1, y + 10, 6, 108, fill=col, r=3)
+        text(c, x + 24, y + 52, big, MED, 32, INK, -0.9)
+        para(c, x + 24, y + 82, 300, small, R, 9.2, 12.6, MUT)
+        text(c, x + 24, y + 112, "source: " + src, MONO, 6.4, MUT_DIM, 0.2)
 
-    # guardrail metrics
-    U.card(c, M, 528, W - 2 * M, 92, fill=PANEL_2, stroke=LINE_SOFT, r=10)
-    label(c, M + 20, 552, "Guardrail metrics \u2014 we fail if these move the wrong way", ALERT, 7.4, 1.4)
-    guard = [("Fraud rate", "< 1% of released value"), ("Dispute rate", "< 8% of tasks"),
-             ("Time to first proposal", "< 72h median"), ("Repeat contractors", "> 40%")]
+    card(c, M, 524, W - 2 * M, 106, fill=WHITE, stroke=LINE, r=16, shadow=True)
+    label(c, M + 22, 548, "Guardrails \u2014 we fail if these move the wrong way",
+          CORAL, 7.2, 1.4)
+    guard = [("Unauthorised walls", "0, ever"), ("Artist payment median", "< 7 days"),
+             ("Fraud rate", "< 1% of released value"), ("Disputes", "< 8% of tasks")]
     for i, (k, v) in enumerate(guard):
-        x = M + 24 + i * 272
-        text(c, x, 580, v, MED, 10.2, TXT)
-        text(c, x, 596, k, R, 8.4, MUT_DIM)
+        x = M + 24 + i * 276
+        text(c, x, 578, v, MED, 11, INK)
+        text(c, x, 598, k, R, 8.2, MUT_DIM)
+    text(c, M + 24, 620, "Every number is a target for month six, not a result. The methodology ships with the report.",
+         R, 8.0, MUT_DIM)
     foot(c, idx, "Metrics")
 
 
-# ============================================================ 18  why eth
+# ============================================================ 18  risks
 def s18(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "17 \u2014 Why Ethereum",
-           "Because the alternative is a database\nsomeone else controls.",
-           "A civic platform that holds public money should not be able to rewrite "
-           "its own history. Ethereum gives 21 four properties no SaaS can offer.")
+    page(c)
+    T.head(c, "17 \u2014 Risks",
+           "What could go wrong,\nand what we do about it.",
+           "A mural programme and a payment protocol have different failure modes. "
+           "Both are written down before the first euro moves.", width=780,
+           subw=560, y=106, size=34, leading=39)
 
-    reasons = [
-        ("Neutral settlement", "No company sits between a resident's euro and a "
-                               "contractor's invoice. The escrow is the counterparty."),
-        ("A global payment rail", "USDC on Base pays a contractor in Nairobi or "
-                                  "Nijmegen in seconds, without a bank account."),
-        ("Composable public goods", "Quadratic funding, retro funding, EAS "
-                                     "attestations and Safe treasuries plug in unchanged."),
-        ("Permanent public record", "What was promised, funded and delivered stays "
-                                    "queryable \u2014 even if 21 disappears."),
+    xs = [M, 330, 770]
+    y = 250
+    hline(c, M, y, W - M, alpha(INK, 0.18))
+    for i, col in enumerate(("Threat", "Why it is real", "Mitigation in the MVP")):
+        label(c, xs[i], y - 10, col, MUT_DIM, 7.2, 1.5)
+    y += 8
+    rows = [
+        ("Artist pulls out",
+         "A wall is booked, a fee is committed, the artist disappears.",
+         "Signed contract before the open call closes; a named backup artist per city; the fee is escrowed in two tranches."),
+        ("Owner revokes permission",
+         "Buildings change hands; a new owner wants a plain wall.",
+         "Removal clause signed up front; the registry marks the wall retired; the documentation stays public."),
+        ("Weather and access",
+         "Rain, scaffolding permits and festival weeks move the calendar.",
+         "Two-week buffer per city; indoor walls in the mix; the lift is booked only after consent."),
+        ("Fabricated evidence",
+         "A model can draw a fixed bench in seconds.",
+         "In-app capture only, signed metadata, C2PA credentials, perceptual-hash dedupe, human spot audits."),
+        ("GPS spoofing",
+         "Mock locations are one developer setting away.",
+         "Geofence plus cell/Wi-Fi corroboration; a reviewer visits anything above \u20ac1,000."),
+        ("Escrow bug",
+         "Contracts hold real money from day one.",
+         "Two audits before mainnet, invariant fuzzing, per-task caps, 3-of-5 guardian pause with 48 h delay."),
     ]
-    for i, (k, v) in enumerate(reasons):
-        x = M + (i % 2) * 568
-        y = 262 + (i // 2) * 96
-        text(c, x, y, f"0{i + 1}", MONO_MED, 8.4, VIO, 1.2)
-        text(c, x + 30, y, k, MED, 12.6, TXT)
-        para(c, x + 30, y + 22, 470, v, R, 9.6, 14, MUT)
+    row_h = 54
+    for i, (a, b, cc_) in enumerate(rows):
+        yy = y + 10 + i * row_h
+        if i % 2 == 0:
+            rect(c, M - 12, yy - 6, W - 2 * M + 24, row_h - 6, fill=WHITE, r=8)
+        text(c, xs[0], yy + 22, a, MED, 9.6, INK)
+        para(c, xs[1], yy + 22, 380, b, R, 8.8, 12.2, MUT, max_lines=2)
+        para(c, xs[2], yy + 22, 430, cc_, R, 8.8, 12.2, MUT, max_lines=2)
 
-    # what we do not do
-    U.card(c, M, 452, 660, 160, fill=PANEL_2, stroke=LINE_SOFT, r=10)
-    label(c, M + 20, 478, "What 21 deliberately does not do", MUT_DIM, 7.4, 1.4)
-    no = ["No token sale and no speculative asset",
-          "No custody of user funds at any point",
-          "No paid placement of projects or contractors",
-          "No growth metrics that are not on-chain verifiable"]
-    yy = 506
-    for n in no:
-        text(c, M + 20, yy, "\u00d7", MONO, 9, alpha(ALERT, 0.8))
-        text(c, M + 36, yy, n, R, 9.4, MUT)
-        yy += 24
-
-    # ecosystem ask
-    U.card(c, 752, 452, 452, 160, fill=PANEL, stroke=alpha(VIO, 0.3), r=10)
-    label(c, 772, 478, "Where the grant fits", VIO, 7.4, 1.4)
-    fits = ["21 is public-goods infrastructure: an open registry and escrow any "
-            "city, DAO or funding round can build on.",
-            "Public-goods rounds can fund tasks directly through the same escrow "
-            "\u2014 no new rails, no new audit surface.",
-            "The grant funds the protocol and the first three proofs, not a "
-            "company's growth."]
-    yy = 504
-    for f in fits:
-        U.dot(c, 776, yy - 3, 1.8, VIO)
-        yy = para(c, 788, yy, 388, f, R, 8.8, 12.5, MUT) + 8
-    foot(c, idx, "Why Ethereum")
+    text(c, M, 626, "Open question we bring to reviewers: what is the minimum viable proof for a \u20ac300 repair "
+                    "that still resists a determined faker?", L, 9.2, MUT_DIM)
+    foot(c, idx, "Risks")
 
 
 # ============================================================ 19  after
 def s19(c, idx):
-    page(c, True, GRAIN)
-    U.head(c, "18 \u2014 After the grant",
-           "Built to outlive the funding round.",
-           "The protocol is open source and unowned. Revenue, if any, is optional "
-           "and capped; the public instance stays free for residents.")
+    page(c)
+    T.head(c, "18 \u2014 After the grant",
+           "Built to outlive the round.",
+           "The artist kit and the protocol are open source. Revenue, if any, is "
+           "optional and capped; the public instance stays free for residents.",
+           width=780, subw=620, y=106, size=34, leading=39)
 
     cols = [
-        ("01", "Sustainable by design",
+        ("01", "Sustainable by design", VIOLET,
          ["Optional 1.5% fee on released escrow, capped and opt-in per city",
           "Hosted instance + support subscription for municipalities",
           "Matching pools funded by partners, not by the protocol"]),
-        ("02", "Progressive decentralisation",
-         ["M1\u2013M6: core team ships, guardian multisig holds pause rights",
-          "M7\u2013M10: council elected by contributors, parameters on-chain",
+        ("02", "Progressive, slowly", TEAL,
+         ["M1\u2013M5: core team ships, guardian multisig holds pause rights",
+          "Year 1: a council elected by contributors, parameters on-chain",
           "Year 2: registry ownership renounced; fee switch under token-less vote"]),
-        ("03", "What stays open",
+        ("03", "What stays open", CORAL,
          ["Contracts, indexer and client under MIT",
-          "Public data export: every task, attestation and payment",
-          "A documented schema so other cities can fork without us"]),
+          "The artist kit: call template, contract, consent form, spec sheets",
+          "A public export of every task, attestation and payment"]),
     ]
-    for i, (n, k, items) in enumerate(cols):
+    for i, (n, k, col, items) in enumerate(cols):
         x = M + i * 372
-        text(c, x, 236, n, MONO, 8.4, VIO, 1.2)
-        text(c, x, 258, k, MED, 12.4, TXT)
-        yy = 290
+        U.badge(c, x + 14, 232, 14, n, col, WHITE, 9.4, MED)
+        text(c, x + 38, 238, k, MED, 12.2, INK)
+        yy = 270
         for it in items:
-            U.dot(c, x + 3, yy - 3, 1.9, VIO)
-            yy = para(c, x + 14, yy, 320, it, R, 9.2, 13.5, MUT) + 12
+            U.dot(c, x + 4, yy - 3, 2.2, col)
+            yy = para(c, x + 16, yy, 320, it, R, 8.9, 13, MUT) + 12
 
-    # next phase
-    U.card(c, M, 470, W - 2 * M, 148, fill=PANEL, stroke=LINE, r=12)
-    label(c, M + 24, 496, "If the pilot works, the next eighteen months look like", MUT_DIM, 7.4, 1.4)
-    steps = [("10 cities", "EU + one emerging-market\nmunicipality"),
-             ("300 tasks", "recurring maintenance,\nnot one-off demos"),
+    card(c, M, 428, W - 2 * M, 138, fill=WHITE, stroke=LINE, r=18, shadow=True,
+         shadow_dy=6)
+    label(c, M + 24, 454, "If the pilot works, the next eighteen months look like",
+          MUT_DIM, 7.2, 1.4)
+    steps = [("21 cities", "the full campaign, one wall\nin each city"),
+             ("200 walls", "recurring artist commissions,\nnot one-off demos"),
              ("\u20ac1m escrow", "mostly partner-funded\nmatching pools"),
-             ("1 SDK", "any civic org can run\ntheir own instance")]
+             ("1 kit", "any civic group can run\ntheir own edition")]
     for i, (a, b) in enumerate(steps):
         x = M + 24 + i * 272
-        text(c, x, 522, a, MED, 20, TXT, -0.4)
-        para(c, x, 542, 240, b.replace("\n", " "), R, 8.8, 12, MUT)
-    text(c, M, 604, "The registry stays public, the code stays MIT, and the three "
-                    "pilots decide whether this is real.", L, 10, MUT_DIM)
+        text(c, x, 492, a, MED, 22, INK, -0.5)
+        para(c, x, 514, 240, b.replace("\n", " "), R, 8.6, 12, MUT)
+
+    text(c, M, 620, "The registry stays public, the artist kit stays MIT, and the first 21 walls decide whether this is real.",
+         L, 9.6, MUT_DIM)
     foot(c, idx, "After the grant")
 
 
 # ============================================================ 20  close
 def s20(c, idx):
-    page(c, True, GRAIN)
-    photo(c, A + "/cover-mural.jpg", 0, 0, W, H, overlay=INK, overlay_alpha=0.72)
-    fade(c, 0, 0, 1080, H, INK, 0.96, "left")
-    fade(c, 0, 0, W, 160, INK, 0.75, "top")
-    fade(c, 0, H - 160, W, 160, INK, 0.8, "bottom")
-    glow(c, 940, 560, 420, VIO_DEEP, 0.16)
+    page(c)
+    illustration(c, ART + "/artist-wall.png", 470, 178, 810)
+    chip(c, 1196, 192, "21", VIOLET, WHITE, None, 11, 38, 12, rot=8, shadow=True)
 
-    logotype(c, M, 74, 24, TXT, VIO)
-    label(c, M, 214, "The ask", VIO, 9, 2.0)
-    para(c, M, 300, 720, "Build the world\ntogether.", MED, 56, 62, TXT, -1)
-    para(c, M, 446, 540,
-         "$75,000 over ten months to ship the contracts, audit them, launch on "
-         "Base and settle real work in three cities.", L, 13.5, 21, alpha(TXT, 0.75))
+    logotype(c, M, 84, 26, INK, VIOLET)
+    label(c, M, 214, "The ask", VIOLET, 8.8, 1.9)
+    text(c, M, 292, "Let's paint", MED, 54, INK, -1.2)
+    text(c, M, 358, "21", SERIF_IT, 76, VIOLET, -1)
+    squiggle(c, M + 2, 374, 96, TEAL, 2.8, 2.4, 4)
 
-    # deliverable chips
-    chips = ["Escrow protocol", "Open-source app", "3 city pilots", "21 murals"]
-    x = M
-    for ch in chips:
-        x += U.chip(c, x, 512, ch.upper(), TXT, alpha(TXT, 0.06), alpha(TXT, 0.2),
-                    7.4, 26, 12) + 10
+    para(c, M, 418, 420,
+         "$21,000 over six months to pay 21 artists, install 21 walls in 9 cities, "
+         "and leave behind an open kit any city can copy.", R, 12, 18.5, MUT)
 
-    hline(c, M, 606, 720, alpha(TXT, 0.16))
-    text(c, M, 636, "21.city", MED, 12, TXT, 0.2)
-    text(c, M + 110, 636, "hello@21.city", MONO, 9.4, MUT, 0.3)
-    text(c, M + 250, 636, "github.com/21-movement", MONO, 9.4, MUT, 0.3)
+    card(c, M, 514, 420, 96, fill=WHITE, stroke=LINE, r=16, shadow=True, shadow_dy=6)
+    text(c, M + 22, 548, "21.city", MED, 15, INK, 0.2)
+    text(c, M + 22, 570, "hello@21.city  \u00b7  github.com/21-movement", MONO, 7.6,
+         MUT, 0.3)
+    text(c, M + 22, 592, "Open source \u00b7 MIT \u00b7 no token", MONO, 7.0, MUT_DIM, 0.4)
 
-    text(c, W - M, 636, "Thank you.", MED, 12, alpha(TXT, 0.6), 0, "right")
-    foot(c, idx)
+    text(c, M, 654, "Thank you. Bring a wall.", MED, 11, MUT_DIM, 0.2)
+    text(c, W - M, 654, f"{idx:02d} / {TOTAL}", MONO, 8.4, MUT_DIM, 0.8, "right")
 
 
 SLIDES = [s01, s02, s03, s04, s05, s06, s07, s08, s09, s10, s11, s12, s13, s14,
@@ -1076,7 +1045,7 @@ def build(path):
     c.setTitle("21 \u2014 Ethereum-native civic infrastructure")
     c.setAuthor("21")
     c.setSubject("Ethereum ecosystem grant application \u2014 2026")
-    c.setKeywords("Ethereum, public goods, civic infrastructure, escrow, grant")
+    c.setKeywords("Ethereum, public goods, civic infrastructure, escrow, grant, murals")
     for i, fn in enumerate(SLIDES, start=1):
         fn(c, i)
         c.showPage()
@@ -1091,6 +1060,6 @@ if __name__ == "__main__":
         import pypdfium2 as pdfium
         doc = pdfium.PdfDocument(out)
         for i in range(len(doc)):
-            pg = doc[i].render(scale=1.1).to_pil()
+            pg = doc[i].render(scale=1.2).to_pil()
             pg.save(os.path.join(T.PREVIEW, f"p{i + 1:02d}.png"))
         print("previews:", len(doc))
