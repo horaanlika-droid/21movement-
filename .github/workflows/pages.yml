@@ -27,28 +27,28 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # The site is served one of two ways, depending on Settings → Pages:
-      #   Source "GitHub Actions"  → this workflow deploys docs/.
-      #   Source "Deploy from a branch" → GitHub already serves the branch
-      #     (root index.html redirects to docs/), and this workflow must not
-      #     fight it. So we ask the Pages API which mode is on.
-      - name: Which Pages mode is on?
-        id: mode
-        env:
-          GH_TOKEN: ${{ github.token }}
+      # Ask GitHub to switch Pages on for this repo (enablement: true). The
+      # workflow token is allowed to do that only on some repositories, so a
+      # failure here is not an error in the site: it means Pages is off and has
+      # to be enabled once by hand —
+      #   Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+      # The run still goes green and leaves that instruction as a warning.
+      - id: pages
+        uses: actions/configure-pages@v6
+        continue-on-error: true
+        with:
+          enablement: true
+
+      - name: Pages is off
+        if: steps.pages.outcome != 'success'
         run: |
-          bt=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type 2>/dev/null || echo none)
-          echo "build_type=$bt" >> "$GITHUB_OUTPUT"
-          if [ "$bt" = "legacy" ]; then
-            echo "::warning title=Pages uses branch deploys::The site is already live from the branch (root index.html redirects to docs/). To deploy from this workflow instead: Settings → Pages → Build and deployment → Source: GitHub Actions."
-          elif [ "$bt" = "none" ]; then
-            echo "::warning title=Pages is off::Settings → Pages → Build and deployment → Source: GitHub Actions (or Deploy from a branch, main, /(root)), then re-run this workflow. Nothing is wrong with docs/."
-          fi
+          echo "::warning title=Actions deploy skipped::The site is already served by the branch deployment — the root index.html redirects to docs/, nothing is wrong with docs/. To deploy from this workflow instead: Settings → Pages → Build and deployment → Source: GitHub Actions, then re-run this workflow (Actions → pages → Re-run jobs)."
 
       - uses: actions/upload-pages-artifact@v5
-        if: steps.mode.outputs.build_type == 'workflow'
-        path: docs
+        if: steps.pages.outcome == 'success'
+        with:
+          path: docs
 
       - id: deployment
-        if: steps.mode.outputs.build_type == 'workflow'
+        if: steps.pages.outcome == 'success'
         uses: actions/deploy-pages@v5
