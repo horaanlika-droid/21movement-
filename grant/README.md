@@ -34,10 +34,13 @@ timeline, open tender, milestone escrow, and each milestone splittable into
 quests. No dispatch algorithm, no commission taken from the worker before the
 work exists, no paid placement.
 
-**No total ask.** The deck fixes the *split*, not a sum: 45% quest and project
-rewards in escrow, 15% consented walls and artists, 15% PR and kit, 10%
-verification, 6% safety/legal, 5% infrastructure, 4% reserve. A smaller round buys
-fewer quests and fewer walls, never cheaper ones. Code is $0 — the team writes it.
+**A floor, then the split.** The deck names the smallest round that moves:
+**€7,500** for six months in one city — 960 hours of code at 250 ₽/h (€2,500),
+60 quests at €30, three consented walls at €300, verification, three creators, 500
+kits, legal, infrastructure and an €800 reserve. Above the floor the original
+split applies: 45% quest and project rewards in escrow, 15% consented walls and
+artists, 15% PR and kit, 10% verification, 6% safety/legal, 5% infrastructure, 4%
+reserve. A smaller round buys fewer quests and fewer walls, never cheaper ones.
 
 ## Files
 
@@ -82,7 +85,7 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
 
 | # | Slide | Why it is there |
 |---|---|---|
-| 01 | Cover | The number is the PR, the quest is the product; no total ask |
+| 01 | Cover | The number is the PR, the quest is the product; the €7,500 floor |
 | 02 | The problem | Tickets, DMs, invisible supply + a resident's photo |
 | 03 | The mark | Why a number: unownable, amateur, every mark is a link |
 | 04 | Mark on infrastructure | Chalked bench, marked lift door, stickered tram stop; a mark is a hyperlink |
@@ -97,8 +100,8 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
 | 13 | Interface | Palette, type, components, the phone screen |
 | 14 | The PR machine | Make 21 a meme: one large agency, TikTok formats, what we count, guardrails |
 | 15 | The kit | Stencil, stickers, chalk, the three PR waves, what we won't do |
-| 16 | Budget | Shares, not sums; no total anywhere |
-| 17 | What a round buys | Three scope shapes, each with a project, and the floor |
+| 16 | Budget | The €7,500 floor by unit, then the split above it |
+| 17 | What a round buys | What the floor buys, and what a larger round adds |
 | 18 | Milestones | Five releases in percentages |
 | 19 | Team | Three people, one large PR partner, paid curators and creators |
 | 20 | Metrics | Targets with sources, plus guardrails |
@@ -107,12 +110,14 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
 
 ## What to fill in before submitting
 
-1. `s19` (team) — the three `[name] · [github / linkedin]` fields and the curator.
+1. `s19` (team) — the `[name] · [github / linkedin]` fields and the curator; the
+   graffiti background is written in, but the links are not.
 2. `s14` (PR) — the agency, once one is chosen; do not invent a logo wall.
 3. City list, if partners are already named — `s17`, `s18`, `s19`.
 4. Sweep the deck for `[` to make sure no placeholder survived.
-5. Do **not** add a total ask: `s01`, `s16`, `s22` and `application.md` all argue
-   against naming one.
+5. The floor is €7,500: if you change a unit price, change the table, the stacked
+   bar, the milestone euros and `application.md` together. Above the floor the
+   split stays 45/15/15/10/6/5/4.
 
 ## Honesty rules baked into the deck
 
@@ -124,8 +129,10 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
 - The mark is described as consented where we pay, and as other people's art where
   we don't. No slide implies trespassing or painting without permission — the
   construction hoarding is explicitly "with the owner's consent".
-- "Shares, not sums" is a real constraint, not a rhetorical dodge: percentages are
-  what we can commit to without inventing a figure.
+- The floor is arithmetic, not a wish: every line is a unit price × a quantity,
+  and the table adds up to exactly €7,500. Above the floor the percentages apply.
+- The code line is the author's current wage as a cook — 250 ₽/hour — not a
+  market rate. The deck says so in those words.
 - No token, no fake traction, no invented partnerships, no purchased engagement.
   Photography and illustration are placeholders and are labelled as such here.
 

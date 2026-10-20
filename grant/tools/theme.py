@@ -92,10 +92,14 @@ _FONT_FILES = {
     "Mono-Semi": "GeistMono-SemiBold.ttf",
     "Serif": "InstrumentSerif-Regular.ttf",
     "Serif-It": "InstrumentSerif-Italic.ttf",
+    # a child's hand: used for the number, the floor and handwritten notes
+    "Hand": "Gaegu-Regular.ttf",
+    "Hand-Bold": "Gaegu-Bold.ttf",
 }
 R, L, MED, SEMI, BOLD = "Geist", "Geist-Light", "Geist-Med", "Geist-Semi", "Geist-Bold"
 MONO, MONO_MED, MONO_SEMI = "Mono", "Mono-Med", "Mono-Semi"
 SERIF, SERIF_IT = "Serif", "Serif-It"
+HAND, HAND_B = "Hand", "Hand-Bold"
 
 
 def register_fonts():

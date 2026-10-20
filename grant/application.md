@@ -3,9 +3,10 @@
 Copy-paste source for the written parts of an Ethereum ecosystem grant
 (ESP-style form). It matches the 22-slide deck in `build/`.
 
-**No total ask appears anywhere in this document on purpose.** The round sets its
-own budget; we fix the ratios and the scope instead. See *Budget* and *What a
-round buys*.
+**The ask is a floor, not a wish.** €7,500 for six months in one city, with the
+code hours in the budget at 250 ₽ an hour. Every line is a unit price × a
+quantity and adds up to the floor; above it, the original split returns. See
+*Budget*.
 
 Replace every `[…]` placeholder before submitting.
 
@@ -29,14 +30,29 @@ projects, paid by milestone.
 
 ## The ask, in one paragraph
 
-We are not naming a sum. A round knows its own budget better than we do, and a
-figure would be either a guess or a fiction. Instead we fix the **split**: 45% of
-whatever arrives goes into quest rewards held in escrow, 15% into consented walls
-and the artists who paint them, 15% into the PR campaign and the open kit, 10%
-into verification and field operations, 6% into safety, legal and insurance, 5%
-into infrastructure, 4% into reserve. A smaller grant buys fewer quests and fewer
-walls — not cheaper ones, and never an unpaid person. Code is not in the budget:
-the team writes it.
+The floor is **€7,500 over six months**: one city, one person full-time, sixty
+quests, three consented walls. It is built from unit prices, not from a
+percentage:
+
+- **€2,500 — code.** 960 hours at 250 ₽/hour (€2.60), which is what I earn
+  cooking today. Not a market rate and not equity: the price of time that can be
+  audited. The first three versions of this application said “code: $0”; that
+  assumed my evenings are free forever. They are not.
+- **€1,800 — rewards in escrow.** 60 quests at an average of €30, funded before
+  the first offer is shown.
+- **€900 — three consented walls.** €300 each: artist fee, paint, lift.
+- **€400 — verification and attestors.** 60 checks plus a dispute panel.
+- **€300 — PR.** Three local creators, paid per published placement.
+- **€250 — the kit.** 500 stencil, sticker and chalk packs at €0.50.
+- **€400 — safety and legal.** DPIA, contracts, insurance.
+- **€150 — infrastructure.** Hosting, indexer and RPC for six months.
+- **€800 — reserve.** The week something breaks.
+
+Above €7,500 the original split returns: 45% quest and project rewards in escrow,
+15% consented walls, 15% PR and kit, 10% verification, 6% safety and legal, 5%
+infrastructure, 4% reserve. My hours do not take a share of that; they stay at
+the same rate. Currency: €1 = 96 ₽ (CBR, 20 October 2026: $1 = 82.85 ₽). If the
+rate moves, I cut my hours — never someone else’s reward.
 
 ## Problem
 
@@ -234,46 +250,53 @@ data deletable on request.
 
 ## Budget
 
-**Shares, not sums.** The split is published before the first euro moves.
+**A floor, then shares.** The floor is unit-costed and published before the first
+euro moves; anything above it uses the same split at every size.
 
-| Line | Share | What it buys |
+| Line | Unit | At the floor |
 |---|---|---|
-| Quest and project rewards in escrow | 45% | one reward = one finished piece |
-| Consented walls, artists, materials | 15% | fees, paint, lifts, consent |
-| PR campaign and the kit | 15% | one agency, 20 creators, print, film |
-| Verification and field ops | 10% | attestors, reviewers, spot audits |
-| Safety, legal, insurance | 6% | contracts, DPIA, liability |
-| Ops and infrastructure | 5% | hosting, indexer, RPC |
-| Reserve | 4% | the week something breaks |
-| **Total** | **100%** | |
+| Code — protocol, PWA, escrow contract, kit | 250 ₽/h × 960 h | €2,500 |
+| Quest rewards in escrow | €30 × 60 | €1,800 |
+| Consented walls — fee, paint, lift | €300 × 3 | €900 |
+| Verification and attestors | 60 checks + panel | €400 |
+| PR — local creators, per placement | €100 × 3 | €300 |
+| Kit — stencil, stickers, chalk | €0.50 × 500 | €250 |
+| Safety, legal, insurance | at cost | €400 |
+| Infrastructure — hosting, indexer, RPC | €25 × 6 | €150 |
+| Reserve | 10.7% | €800 |
+| **Total, the floor** | | **€7,500** |
 
-If the round is smaller, we cut quests, projects and walls — never the escrow,
-never the kit, never the fee paid to a person who did the work. Code is not in this budget:
-the team writes it.
+Above the floor: 45% quest and project rewards in escrow, 15% consented walls,
+15% PR and kit, 10% verification and field ops, 6% safety/legal, 5% ops and
+infrastructure, 4% reserve. Code is not in that split: it is at cost, at the
+same hourly rate, whatever the size of the round.
 
-## What a round buys
+## What the floor buys, and what more buys
 
 | Shape | Scope |
 |---|---|
-| If the round is small | One city, one board: 60 quests through escrow, one project page (a street), 3 consented walls with paid artists, kit v1 under MIT, 10 askers recruited by hand. |
-| The likely shape | Three cities: 250 quests, 9 consented walls, 2 projects (a street and a construction site), PR wave 1 (one large agency, 20 creators), a staffed verification panel, kiosk pilot. |
-| If the round is full | Nine cities: 900 quests, 21 consented walls, 3 large projects paid by milestone, kit v2 in three languages, kiosks in three cities, a public export anyone can audit. |
+| **The floor — €7,500** | One city, one board: 60 quests through escrow, 3 consented walls with paid artists, kit v1 under MIT, 10 askers recruited by hand, one project page (a street), one kiosk pilot. No agency retainer: three creators paid per placement. |
+| About €30,000 | Three cities: 250 quests, 9 consented walls, 2 projects (a street and a construction site), PR wave 1 (an agency, 20 creators), a staffed verification panel. |
+| About €100,000 | Nine cities: 900 quests, 21 consented walls, 3 large projects paid by milestone, kit v2 in three languages, kiosks in three cities, a public export anyone can audit. |
 
-**The floor.** Below the smallest shape we ship the kit, one city and the escrow
-contract — and say publicly that is what happened.
+The scope grows with the round; the unit prices do not. A larger grant buys more
+quests and more walls, never cheaper ones and never an unpaid person.
 
 ## Milestones
 
 Shares, not sums: each milestone releases a fixed percentage of whatever the grant
 turns out to be. No milestone closes on a slide.
 
-| # | Month | Name | Acceptance criterion | Share |
-|---|---|---|---|---|
-| M1 | 1 | Board live + kit v1 | 1 city live: ask, offers, escrow, settlement. Kit v1 published. 10 quests done. | 10% |
-| M2 | 2–3 | 3 cities, 150 quests | 150 quests completed, 7 consented walls, first dispute resolved in public. | 30% |
-| M3 | 3–4 | Public space + first project | Civic tasks live with attestors; 60 repairs settled; first project page (a street) with milestone escrow; kiosk pilot. | 25% |
-| M4 | 4–5 | 9 cities, 900 quests, 3 projects | 900 quests, 21 consented walls, 3 large projects paid by milestone; 100% of walls with written consent. | 25% |
-| M5 | 6 | Kit v2 + open export | Everything exported, kit v2 under MIT, exhibition of the 21 walls. | 10% |
+Each milestone releases a fixed percentage of whatever the round turns out to
+be; at the floor those percentages are also euros.
+
+| # | Month | Name | Acceptance criterion | Share | At the floor |
+|---|---|---|---|---|---|
+| M1 | 1 | Board live + kit v1 | 1 city live: ask, offers, escrow, settlement. Kit v1 published. 10 quests done. | 10% | €750 |
+| M2 | 2–3 | 60 quests, 3 walls | 60 quests completed, 3 consented walls with paid artists, first dispute resolved in public. | 30% | €2,250 |
+| M3 | 3–4 | Public space + first project | Civic tasks live with attestors; 20 repairs settled; first project page (a street) with milestone escrow; kiosk pilot. | 25% | €1,875 |
+| M4 | 4–5 | Kit v2 + wall registry | 21 walls in the public registry — 3 paid by us, 18 registered by the community with consent. Kit v2 in three languages. | 25% | €1,875 |
+| M5 | 6 | Open export + report | Everything exported, an exhibition, a report on every euro. | 10% | €750 |
 
 An unmet criterion means an unpaid milestone, not a renegotiation.
 
@@ -284,27 +307,32 @@ In the kit: an A4 stencil; a sticker sheet of twelve 21s; two chalk templates
 six-second vertical video script with no speaking; and the rules on the first
 line — *ask the owner*.
 
-Three waves: (1) month 1, one agency retainer, 20 local creators, 3 cities;
+Three waves: (1) month 1, three creators paid per placement in the first city;
 (2) months 2–4, city permissions make walls legal and every settled quest posts
 its own before/after; (3) months 4–6, groups we have never met print the sheet —
-the only metric we cannot buy.
+the only metric we cannot buy. Above the floor, wave 1 is an agency retainer with
+20 creators per city.
 
 ## Success metrics (targets, reported at close-out)
 
-- 900 quests completed through escrow (escrow events)
+Targets at the floor, measured at month six:
+
+- 60 quests completed through escrow, 3 consented walls registered
 - 7 days median from ask to confirmed work (timestamps)
-- 60% of askers post a second quest (repeat asks)
-- 21 consented walls painted and registered (consent registry)
-- 3 large projects paid by milestone (project registry)
+- 40% of askers post a second quest (repeat asks)
+- 21 walls in the public registry: 3 paid by us, 18 registered by the community
+  with written consent (consent registry)
+- one project page (a street) paid by milestone (project registry)
 - 0 euros paid outside escrow (reconciliation)
 - 5 device classes tested every week (release checklist)
+
+At a larger round the same metrics scale to 250 and 900 quests, 9 and 21 paid
+walls, and two to three projects. Every number is a target for month six, not a
+result. The methodology ships with the report.
 
 **Guardrails — we fail if these move the wrong way:** 0 off-escrow payments,
 disputes under 8% of quests, fraud under 1% of released value, 0 walls without
 consent.
-
-Every number is a target for month six, not a result. The methodology ships with
-the report.
 
 ## Risks
 
@@ -323,10 +351,16 @@ did the work — and how few clicks should it cost?
 
 ## Team
 
-Three people, plus a paid curator and paid creators per city.
+**At the floor: one person, full-time**, plus a paid curator and paid creators
+per city. The two other roles below are the plan for a larger round, not a claim
+that they are signed.
 
-- **[Name]** — protocol & product. Solidity/Foundry, the PWA capture flow, the
-  kiosk build. Owns escrow, the registry and the public task page.
+- **[Name]** — protocol & product. A former active graffiti artist: the wall
+  network — artists, crews and wall owners across a dozen countries — is not a
+  partner list, it is people I know from the scene, and it is where the first
+  consented walls come from. Writes the Solidity/Foundry contracts, the PWA
+  capture flow and the kiosk build; owns escrow, the registry and the public task
+  page.
 - **[Name]** — programme lead. Consented walls, open calls, consent paperwork with
   a paid curator in each city.
 - **[Name]** — field ops & trust. Recruits attestors, runs the dispute panel,
@@ -380,9 +414,28 @@ the close-out report. Not applying for: a marketing department, a token, an offi
 банковского счёта, а обещания и выплаты остаются проверяемыми после закрытия
 гранта. Без токена, без кастодиального хранения, лицензия MIT.
 
-**Сумму гранта мы не указываем** — раунд сам знает свой бюджет. Вместо суммы
-фиксируем пропорции: 45% в награды в эскроу, 15% на согласованные стены и
-художников, 15% на PR-кампанию и набор, 10% на верификацию и полевую работу, 6%
-на безопасность и страховку, 5% на инфраструктуру, 4% в резерв. Меньше грант —
-меньше квестов и стен, но не дешевле и никогда за счёт людей, которые сделали
-работу.
+**Порог раунда — €7 500 на шесть месяцев**: один город, один человек на полной
+ставке, 60 квестов, 3 согласованные стены. Это не сумма, которую я хочу, а
+сумма, ниже которой проект не поедет. Считается по единицам: код — 960 часов по
+250 ₽ в час, то есть по моей нынешней ставке повара (€2 500 при €1 = 96 ₽);
+награды — 60 × €30 = €1 800; три стены по €300; верификация €400; PR — три
+местных автора по €100; набор — 500 трафаретов и стикеров по €0,50; юрист и
+страховка €400; инфраструктура €150; резерв €800. Всё вместе ровно €7 500.
+
+В прошлых версиях заявки стояло «код — $0». Это было неправдой в одном месте:
+я считал свои вечера бесплатными навсегда. Теперь моё время — самая большая
+строка сметы, и это и есть минимум. Если раунд хочет код за $0, проект выйдет
+через двенадцать месяцев вечерами, а не за шесть.
+
+Выше порога возвращаются прежние пропорции: 45% в награды в эскроу, 15% на
+согласованные стены и художников, 15% на PR и набор, 10% на верификацию и
+полевую работу, 6% на безопасность и страховку, 5% на инфраструктуру, 4% в
+резерв. Мои часы долю не забирают — они остаются по той же ставке. Если курс
+уйдёт, я режу свои часы, а не чужие награды.
+
+**Почему я:** я был активным граффити-художником и до сих пор связан с людьми в
+индустрии по всему миру — художниками, экипажами и владельцами стен в десятке
+стран. Для кампании это не строчка в резюме, а готовая первая сеть стен и
+авторов: мы не ищем подрядчика на каждую стену через закупки, мы спрашиваем тех,
+чью работу видели на стене. И это же моя ответственность: я знаю, как выглядит
+стена, покрашенная без спроса, поэтому первая строка набора — «спроси владельца».
