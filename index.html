@@ -1,21 +1,392 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>21.city — открыть приложение</title>
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url=docs/">
-<link rel="canonical" href="https://horaanlika-droid.github.io/21movement-/docs/">
-<script>try{location.replace("docs/")}catch(e){}</script>
-<style>
-  body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#faf2de;
-       font-family:Georgia,serif;color:#17161b}
-  a{display:block;padding:14px 26px;border:2px solid #17161b;border-radius:14px;
-    background:#fffdf7;text-decoration:none;font-size:18px;box-shadow:6px 6px 0 #e7dbc0}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>21.city — городские проекты и квесты рядом</title>
+<meta name="description" content="21.city — мокап приложения: сообщаем о городских проблемах с фото и координатами, видим их на карте, пополняем бюджет проекта донатами, пока идут коммерческие предложения. Цель бюджета — минимальная цена КП. Эскроу платит подрядчику после приёмки.">
+<meta name="theme-color" content="#FAF2DE">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+<link rel="canonical" href="https://horaanlika-droid.github.io/21movement-/">
+<meta property="og:url" content="https://horaanlika-droid.github.io/21movement-/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="21.city — the number is the PR, the quest is the product">
+<meta property="og:description" content="Report a broken sidewalk with a photo and coordinates, see it on the map, add to the project budget while commercial offers come in. The target is the lowest offer. Escrow pays after acceptance.">
+<meta property="og:image" content="https://horaanlika-droid.github.io/21movement-/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://horaanlika-droid.github.io/21movement-/assets/img/og.jpg">
+
+<link rel="preload" href="assets/fonts/geist-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-semibold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pangolin-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/gaegu-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="city.css">
 </head>
+
 <body>
-<noscript><a href="docs/">21.city — <span lang="ru">открыть приложение</span><span lang="en">open the app</span></a></noscript>
+<a class="skip" href="#screen"><span lang="ru">Перейти к содержанию</span><span lang="en">Skip to content</span></a>
+
+<!-- desktop backdrop: the app is a phone on a sheet of paper -->
+<div class="backdrop" aria-hidden="true">
+  <div class="backdrop__num">21</div>
+  <p class="backdrop__note backdrop__note--1" lang="ru">мокап приложения · данные живут в этом браузере</p>
+  <p class="backdrop__note backdrop__note--1" lang="en">app mockup · the data lives in this browser</p>
+  <p class="backdrop__note backdrop__note--2" lang="ru">цель бюджета — минимальная цена коммерческого предложения</p>
+  <p class="backdrop__note backdrop__note--2" lang="en">the budget target is the lowest commercial offer</p>
+  <p class="backdrop__note backdrop__note--3" lang="ru">донаты идут, пока ищутся подрядчики · эскроу платит после приёмки</p>
+  <p class="backdrop__note backdrop__note--3" lang="en">donations flow while contractors bid · escrow pays after acceptance</p>
+  <p class="backdrop__note backdrop__note--4"><a href="landing.html">лендинг заявки →</a><a href="landing.html?lang=en" lang="en">grant landing →</a></p>
+</div>
+
+<div class="device" id="device">
+
+  <header class="app-head">
+    <a class="logo" href="#screen" data-nav="home" aria-label="21 — на главную"><b>21</b><i aria-hidden="true"></i></a>
+    <p class="app-head__sub" id="headSub">21.city</p>
+    <div class="lang" role="group" aria-label="Language / Язык">
+      <button type="button" data-set-lang="ru" aria-pressed="true" lang="ru">RU</button>
+      <button type="button" data-set-lang="en" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </header>
+
+  <main class="screen" id="screen">
+
+    <!-- ================================================== home -->
+    <section class="view view--home is-on" id="view-home" aria-label="Главная">
+      <div class="hero">
+        <p class="kicker"><span lang="ru">мокап приложения · 21.city</span><span lang="en">app mockup · 21.city</span></p>
+        <div class="hero__row">
+          <h1 class="hero__h">
+            <span lang="ru">Реальная помощь.<br>Реальные люди.<br>Реальный результат.</span>
+            <span lang="en">Real help.<br>Real people.<br>Real impact.</span>
+          </h1>
+          <span class="hero__num" aria-hidden="true">21</span>
+        </div>
+        <p class="hero__sub">
+          <span lang="ru">Задачи, услуги и городские проекты рядом с домом — для крепкого района.</span>
+          <span lang="en">Local tasks, services and projects for a stronger community.</span>
+        </p>
+        <div class="hero__btns">
+          <button class="btn btn--primary" type="button" data-nav="projects" data-i18n="findProject">Найти проект</button>
+          <button class="btn" type="button" data-open-new="1"><span lang="ru">Сообщить о проблеме</span><span lang="en">Post a need</span></button>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block__head">
+          <h2 data-i18n="questsNearby">Квесты рядом</h2>
+          <div class="chips chips--mini" id="questChips">
+            <button class="chip chip--btn is-on" type="button" data-qsort="forYou" data-i18n="forYou">Для вас</button>
+            <button class="chip chip--btn" type="button" data-qsort="popular" data-i18n="popular">Популярные</button>
+            <button class="chip chip--btn" type="button" data-qsort="near" data-i18n="nearby">Рядом</button>
+          </div>
+        </div>
+        <div class="hscroll" id="homeQuests"></div>
+      </div>
+
+      <div class="block">
+        <div class="block__head">
+          <h2 data-i18n="projectsNearby">Проекты рядом</h2>
+          <button class="linklike" type="button" data-nav="projects"><span lang="ru">все →</span><span lang="en">all →</span></button>
+        </div>
+        <div class="list" id="homeProjects"></div>
+      </div>
+    </section>
+
+    <!-- ================================================== map -->
+    <section class="view view--map" id="view-map" aria-label="Карта">
+      <div class="searchbar">
+        <input type="search" id="mapSearch" autocomplete="off"
+               placeholder="Проект, задача, место…">
+        <button class="iconbtn" type="button" id="btnLocate" data-i18n-title="locate" title="Где я">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M2 12h3.5M18.5 12H22"/></svg>
+        </button>
+      </div>
+      <div class="map-wrap">
+        <div id="map" role="application" aria-label="Карта проектов"></div>
+        <button class="fab" type="button" data-open-new="1" data-i18n-title="newProblem" title="Сообщить о проблеме" aria-label="Сообщить о проблеме">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+      </div>
+      <div class="block block--tight">
+        <div class="block__head">
+          <h2 data-i18n="nearbyProjects">Проекты рядом</h2>
+          <span class="block__note" id="mapCount"></span>
+        </div>
+        <div class="list" id="mapList"></div>
+      </div>
+    </section>
+
+    <!-- ================================================== projects -->
+    <section class="view view--projects" id="view-projects" aria-label="Проекты">
+      <div class="block__head block__head--page">
+        <h1 class="page-h" data-i18n="projectsTitle">Проекты и квесты</h1>
+        <p class="page-sub" data-i18n="projectsSub">Городские проблемы с фото и координатами — и задания соседей</p>
+      </div>
+      <div class="chips" id="projChips">
+        <button class="chip chip--btn is-on" type="button" data-plist="all" data-i18n="all">Все</button>
+        <button class="chip chip--btn" type="button" data-plist="projects" data-i18n="projects">Проекты</button>
+        <button class="chip chip--btn" type="button" data-plist="quests" data-i18n="quests">Квесты</button>
+      </div>
+      <div class="list" id="projList"></div>
+    </section>
+
+    <!-- ================================================== wallet -->
+    <section class="view view--wallet" id="view-wallet" aria-label="Кошелёк">
+      <div class="block__head block__head--page">
+        <h1 class="page-h" data-i18n="walletTitle">Кошелёк</h1>
+        <p class="page-sub" data-i18n="walletSub">Ваши взносы в бюджеты городских проектов</p>
+      </div>
+      <div class="card card--balance">
+        <p class="balance__label" data-i18n="inBudgets">В бюджетах проектов</p>
+        <p class="balance__num"><b id="walletBalance">€0</b></p>
+        <p class="balance__note">
+          <span lang="ru">деньги уйдут подрядчику из эскроу только после приёмки работ</span>
+          <span lang="en">escrow releases the money to the contractor only after acceptance</span>
+        </p>
+      </div>
+      <div class="chips" id="walletTabs">
+        <button class="chip chip--btn is-on" type="button" data-wtab="active" data-i18n="active">Активные</button>
+        <button class="chip chip--btn" type="button" data-wtab="contributed" data-i18n="contributed">Мои взносы</button>
+        <button class="chip chip--btn" type="button" data-wtab="done" data-i18n="completed">Завершённые</button>
+      </div>
+      <div class="list" id="walletList"></div>
+    </section>
+
+    <!-- ================================================== profile -->
+    <section class="view view--profile" id="view-profile" aria-label="Профиль">
+      <div class="card card--me">
+        <span class="me__ava" aria-hidden="true">В</span>
+        <div>
+          <h1 class="me__name" data-i18n="you">Вы</h1>
+          <p class="me__joined" id="meJoined"></p>
+        </div>
+      </div>
+      <div class="stats3" id="profileStats"></div>
+      <p class="hand-quote">
+        <span lang="ru">вместе — лучше.</span>
+        <span lang="en">better together.</span>
+      </p>
+      <div class="cbx" id="contractorBox"></div>
+      <div class="menu">
+        <button class="menu__row" type="button" data-nav="wallet">
+          <span data-i18n="myProjects">Мои проекты</span><b id="meProjectsN" class="num"></b>
+        </button>
+        <button class="menu__row" type="button" data-nav="home">
+          <span data-i18n="myQuests">Мои квесты</span><b id="meQuestsN" class="num"></b>
+        </button>
+        <button class="menu__row" type="button" data-nav="wallet">
+          <span data-i18n="wallet">Кошелёк</span><b id="meWallet" class="num"></b>
+        </button>
+        <button class="menu__row" type="button" data-how="1" data-i18n="howWorks">Как это работает</button>
+        <a class="menu__row" href="landing.html">
+          <span lang="ru">О проекте · лендинг</span><span lang="en">About · landing</span>
+        </a>
+        <a class="menu__row" href="https://github.com/horaanlika-droid/21movement-">GitHub ↗</a>
+        <button class="menu__row menu__row--danger" type="button" id="btnReset" data-i18n="resetDemo">Сбросить демо-данные</button>
+      </div>
+      <p class="foot-note">
+        <span lang="ru">Мокап. Фото — сгенерированные плейсхолдеры. Всё хранится локально в вашем браузере, никаких серверов и токенов.</span>
+        <span lang="en">A mockup. Photos are generated placeholders. Everything is stored locally in your browser — no servers, no token.</span>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- project detail overlay -->
+  <section class="detail" id="detail" hidden aria-label="Проект">
+    <div class="detail__in" id="detailIn"></div>
+  </section>
+
+  <!-- ================================================== modal: donate -->
+  <div class="modal" id="mDonate" hidden role="dialog" aria-modal="true" aria-labelledby="dTitle">
+    <div class="sheet">
+      <button class="sheet__x" type="button" data-close="1" aria-label="Закрыть">✕</button>
+      <h2 id="dTitle" data-i18n="addToBudget">Добавить в бюджет</h2>
+      <p class="sheet__sub" id="dProject"></p>
+      <p class="sheet__note">
+        <span lang="ru">Поддержите проект донатом. Взнос поможет найти подрядчиков и довести работу до конца.</span>
+        <span lang="en">Support this project with a donation. Your contribution will help us find contractors and get the work done.</span>
+      </p>
+      <div class="amounts" id="dAmounts">
+        <button class="amt" type="button" data-amt="10">10</button>
+        <button class="amt is-on" type="button" data-amt="25">25</button>
+        <button class="amt" type="button" data-amt="50">50</button>
+        <button class="amt" type="button" data-amt="100">100</button>
+        <button class="amt" type="button" data-amt="200">200</button>
+        <button class="amt amt--other" type="button" data-amt="other" data-i18n="other">Другая</button>
+      </div>
+      <label class="field field--hidden" id="dOtherWrap" hidden>
+        <span data-i18n="yourAmount">Ваша сумма, €</span>
+        <input type="number" id="dOther" min="1" step="1" inputmode="numeric" placeholder="25">
+      </label>
+      <label class="field">
+        <span data-i18n="yourName">Имя (как показать)</span>
+        <input type="text" id="dName" maxlength="40" placeholder="">
+      </label>
+      <button class="btn btn--primary btn--wide" type="button" id="dGo" data-i18n="donate">Пожертвовать</button>
+      <p class="sheet__micro">
+        <span lang="ru">Донат идёт в бюджет проекта и тратится на работу, а не на комиссии платформы.</span>
+        <span lang="en">Your donation goes to the project budget and is used for the work, not for platform fees.</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ================================================== modal: offer (КП) -->
+  <div class="modal" id="mOffer" hidden role="dialog" aria-modal="true" aria-labelledby="oTitle">
+    <div class="sheet">
+      <button class="sheet__x" type="button" data-close="1" aria-label="Закрыть">✕</button>
+      <h2 id="oTitle" data-i18n="submitOffer">Подать КП</h2>
+      <p class="sheet__sub" id="oProject"></p>
+      <p class="sheet__note">
+        <span lang="ru">Коммерческое предложение попадает в открытый тендер. Минимальная цена становится целью бюджета проекта.</span>
+        <span lang="en">A commercial offer joins the open tender. The lowest price becomes the project’s budget target.</span>
+      </p>
+      <label class="field">
+        <span data-i18n="contractor">Подрядчик / компания</span>
+        <input type="text" id="oName" maxlength="60" placeholder="">
+      </label>
+      <div class="grid2">
+        <label class="field">
+          <span data-i18n="price">Цена, €</span>
+          <input type="number" id="oPrice" min="1" step="1" inputmode="numeric" placeholder="450">
+        </label>
+        <label class="field">
+          <span data-i18n="days">Срок, дней</span>
+          <input type="number" id="oDays" min="1" step="1" inputmode="numeric" placeholder="7">
+        </label>
+      </div>
+      <button class="btn btn--primary btn--wide" type="button" id="oGo" data-i18n="sendOffer">Отправить КП</button>
+    </div>
+  </div>
+
+  <!-- ================================================== modal: advance request -->
+  <div class="modal" id="mAdvance" hidden role="dialog" aria-modal="true" aria-labelledby="aTitle">
+    <div class="sheet">
+      <button class="sheet__x" type="button" data-close="1" aria-label="Закрыть">✕</button>
+      <h2 id="aTitle" data-i18n="requestAdvance">Запросить аванс</h2>
+      <p class="sheet__note">
+        <span lang="ru">Предоплата на материалы и работу — с обоснованием. Решение принимают донатеры проекта голосованием.</span>
+        <span lang="en">A prepayment for materials and work — with a justification. The project’s donors decide by vote.</span>
+      </p>
+      <label class="field">
+        <span data-i18n="advAmount">Сумма аванса, €</span>
+        <input type="number" id="aAmount" min="1" step="1" inputmode="numeric" placeholder="60">
+      </label>
+      <label class="field">
+        <span data-i18n="advReason">Обоснование</span>
+        <textarea id="aReason" rows="3" maxlength="300"></textarea>
+      </label>
+      <button class="btn btn--primary btn--wide" type="button" id="aGo" data-i18n="sendRequest">Отправить запрос</button>
+    </div>
+  </div>
+
+  <!-- ================================================== modal: new problem -->
+  <div class="modal" id="mNew" hidden role="dialog" aria-modal="true" aria-labelledby="nTitle">
+    <div class="sheet">
+      <button class="sheet__x" type="button" data-close="1" aria-label="Закрыть">✕</button>
+      <h2 id="nTitle" data-i18n="postNeed">Сообщить о проблеме</h2>
+      <p class="sheet__note">
+        <span lang="ru">Сфотографируйте проблему и укажите место. Соседи увидят её на карте и смогут пополнять бюджет, пока идут коммерческие предложения.</span>
+        <span lang="en">Photograph the problem and mark the place. Neighbours will see it on the map and can add to the budget while commercial offers come in.</span>
+      </p>
+      <label class="photobox" id="nPhotoBox">
+        <input type="file" id="nPhoto" accept="image/*" hidden>
+        <span class="photobox__hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
+          <span lang="ru">сделать фото / выбрать файл</span>
+          <span lang="en">take a photo / choose a file</span>
+        </span>
+        <img id="nPreview" alt="" hidden>
+      </label>
+      <label class="field">
+        <span data-i18n="whatHappened">Что случилось</span>
+        <input type="text" id="nTitleIn" maxlength="80" placeholder="">
+      </label>
+      <label class="field">
+        <span data-i18n="desc">Подробнее</span>
+        <textarea id="nDesc" rows="3" maxlength="300" placeholder=""></textarea>
+      </label>
+      <label class="field">
+        <span data-i18n="category">Категория</span>
+        <select id="nCat"></select>
+      </label>
+      <label class="field">
+        <span><span lang="ru">Оценка автора, €</span><span lang="en">Author’s estimate, €</span></span>
+        <input type="number" id="nEstimate" min="1" step="1" inputmode="numeric" placeholder="300">
+      </label>
+      <div class="field field--coords">
+        <span data-i18n="place">Место</span>
+        <div class="coords__btns">
+          <button class="btn btn--sm" type="button" id="nGeo"><span lang="ru">Мои координаты</span><span lang="en">My coordinates</span></button>
+          <button class="btn btn--sm" type="button" id="nPick"><span lang="ru">Ткнуть на карте</span><span lang="en">Pick on map</span></button>
+        </div>
+        <output class="coords__out num" id="nCoords">—</output>
+      </div>
+      <button class="btn btn--primary btn--wide" type="button" id="nGo" data-i18n="publish">Опубликовать</button>
+    </div>
+  </div>
+
+  <!-- ================================================== modal: how it works -->
+  <div class="modal" id="mHow" hidden role="dialog" aria-modal="true" aria-labelledby="hTitle">
+    <div class="sheet">
+      <button class="sheet__x" type="button" data-close="1" aria-label="Закрыть">✕</button>
+      <h2 id="hTitle" data-i18n="howWorks">Как это работает</h2>
+      <ol class="how">
+        <li><b data-i18n="how1t">1 · Поддержка сообщества</b><span data-i18n="how1d">Кто-то фотографирует сломанный асфальт у дома. Соседи рядом видят проблему на карте и пополняют бюджет проекта донатами.</span></li>
+        <li><b data-i18n="how2t">2 · Поиск подрядчиков</b><span data-i18n="how2d">Пока собираются донаты, контрагенты присылают коммерческие предложения. Цель бюджета — минимальная цена КП.</span></li>
+        <li><b data-i18n="how3t">3 · Работа</b><span data-i18n="how3d">Когда бюджет собран, выбирается лучшее КП и подрядчик приступает. Аванс на материалы — по обоснованию, голосованием донатеров.</span></li>
+        <li><b data-i18n="how4t">4 · Приёмка</b><span data-i18n="how4d">Соседи подтверждают результат — эскроу платит подрядчику.</span></li>
+        <li><b data-i18n="how5t">5 · Готово</b><span data-i18n="how5d">Чек остаётся публичным: каждый шаг виден, деньги ушли на работу.</span></li>
+      </ol>
+      <p class="sheet__micro">
+        <span lang="ru">В этом мокапе нет блокчейна и платежей: данные живут в localStorage вашего браузера.</span>
+        <span lang="en">This mockup has no blockchain and no payments: the data lives in your browser’s localStorage.</span>
+      </p>
+      <button class="btn btn--wide" type="button" data-close="1" data-i18n="gotIt">Понятно</button>
+    </div>
+  </div>
+
+  <!-- tabbar -->
+  <nav class="tabbar" id="tabbar" aria-label="Разделы">
+    <button class="tab is-on" type="button" data-view="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10.5V20h4.6v-4.4h2.8V20H18v-9.5"/></svg>
+      <span data-i18n="tabHome">Главная</span>
+    </button>
+    <button class="tab" type="button" data-view="map">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4Z"/><path d="M9 4v14M15 6v14"/></svg>
+      <span data-i18n="tabMap">Карта</span>
+    </button>
+    <button class="tab" type="button" data-view="projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>
+      <span data-i18n="tabProjects">Проекты</span>
+    </button>
+    <button class="tab" type="button" data-view="wallet">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="6" width="17" height="13" rx="2.4"/><path d="M3.5 10h17"/><circle cx="16.5" cy="14.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+      <span data-i18n="tabWallet">Кошелёк</span>
+    </button>
+    <button class="tab" type="button" data-view="profile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8.4" r="3.6"/><path d="M5 20c1.2-3.6 3.8-5.2 7-5.2s5.8 1.6 7 5.2"/></svg>
+      <span data-i18n="tabProfile">Профиль</span>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<noscript><p style="text-align:center;padding:24px;font-family:sans-serif">
+  <span lang="ru">Приложению нужен JavaScript. Статичный лендинг — на <a href="landing.html">landing.html</a>.</span>
+  <span lang="en">The app needs JavaScript. The static landing is at <a href="landing.html">landing.html</a>.</span>
+</p></noscript>
+
+<script src="assets/vendor/leaflet/leaflet.js" defer></script>
+<script src="city.js" defer></script>
 </body>
 </html>
