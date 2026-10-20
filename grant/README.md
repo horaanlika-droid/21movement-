@@ -1,38 +1,58 @@
 # 21 — grant deck
 
-A 20-slide, 16:9 application deck for an Ethereum ecosystem grant, plus the
-written application text.
+A 22-slide, 16:9 application deck for an Ethereum ecosystem grant, plus the
+written application text. Built in the visual language of **ethereum.org**: warm
+paper, ink-outlined sticker cards, pastel accents, flat editorial illustration and
+a serif accent face. Photography stays deliberately phone-shaped and amateur:
+vertical, overcast, slightly crooked, so a reviewer reads it as "a resident took
+this".
 
-The deck was rebuilt in the visual language of **ethereum.org**: warm paper,
-ink-outlined "sticker" cards, pastel accents, flat editorial illustration and a
-serif accent face — instead of the previous dark investor template. Photography
-is deliberately phone-shaped and amateur: vertical, overcast, slightly crooked,
-so a reviewer reads it as "a resident took this" rather than "a stock shoot".
-The street-furniture photos show contemporary benches, racks and shelters in
-modern neighbourhoods, not postcard streets.
+## What the deck argues
 
-## What the deck asks for
+Two layers, one number.
 
-**$21,000 over 6 months**, of which **70% is artist fees**. The campaign is
-21 commissioned murals by 21 paid artists in 9 cities; the 21 protocol (open
-registry + per-task escrow) is the receipt underneath it. Code is not in the
-budget — the team writes it.
+**The mark.** 21 is the campaign, and it is a number on purpose: you cannot
+confiscate it, copyright it or make it need a translation. Chalk on asphalt, a
+marker on a lift door, a sticker on a broken bench, a construction hoarding, a
+five-second TikTok. Amateur is the format — polish would kill it. The number has
+to become a meme before it becomes a brand: ten templates, a six-second script, a
+stencil in every caption, and **one large PR agency on retainer**, paid per
+published placement and per settled quest rather than per impression. Every mark
+points at the task page under it, and a free MIT kit (stencil, stickers, chalk
+templates) lets anyone print their own. We pay for consented walls, artists, film
+and the kit; we never pay for illegal paint and never instruct anyone to break a
+rule.
+
+**The exchange.** Under the number sits a demand-first services board: a person
+posts what they need — a tutor, a handyman, a psychologist — names a reward and a
+deadline, and offers arrive from named people. The asker chooses, the work
+happens, both sides confirm, escrow pays, the record stays. The unit is medium:
+an hour, a session, a visit, a small fix. Above it sit two larger sizes on the
+same protocol — a civic task for one object (a bench, a bike rack, a tram stop),
+and a **project** for a whole street, school roof or construction site: budget,
+timeline, open tender, milestone escrow, and each milestone splittable into
+quests. No dispatch algorithm, no commission taken from the worker before the
+work exists, no paid placement.
+
+**No total ask.** The deck fixes the *split*, not a sum: 45% quest and project
+rewards in escrow, 15% consented walls and artists, 15% PR and kit, 10%
+verification, 6% safety/legal, 5% infrastructure, 4% reserve. A smaller round buys
+fewer quests and fewer walls, never cheaper ones. Code is $0 — the team writes it.
 
 ## Files
 
 | Path | What it is |
 |---|---|
-| `build/21-grant-deck.pdf` | **The deliverable.** 20 pages, 1280×720 pt, embedded fonts. |
+| `build/21-grant-deck.pdf` | **The deliverable.** 22 pages, 1280×720 pt, embedded fonts. |
 | `application.md` | The same content as copy-paste text for a grant form (EN + short RU version). |
-| `preview/p01…p20.png` | Rendered page previews (1.5× scale) for quick review in a browser. |
-| `art/` | Five flat illustrations in the ethereum.org style (cover, city upgrade, artist wall, contractors, artist kit). |
-| `photos/` | Six phone-style photographs (bench before/after, modern bike rack, solar shelter, contemporary plaza, crew). |
-| `tools/` | The generator: `theme.py` (design system), `uikit.py` (UI kit), `build.py` (slides). |
+| `preview/p01…p22.png` | Rendered page previews (1.2× scale) for quick review in a browser. |
+| `art/` | Flat illustrations in the ethereum.org style: `cover-21`, `meme-wall`, `quest-exchange`, `devices`, `stencil-kit`, `project-block` (used), plus the earlier `cover-city`, `upgrade-block`, `artist-wall`, `contractor-duo`, `artist-kit` (kept, unused in this version). |
+| `photos/` | Six phone-style photographs (bench before/after, bike rack, solar shelter, plaza, crew). Used for the quest screens, the "mark on broken things" page and the PR wall. |
+| `tools/` | The generator: `theme.py` (design system), `uikit.py` (UI kit, quest screens, device frames), `build.py` (slides). |
 
-All illustrations and photographs are AI-generated placeholder material.
-Replace them with real commissions and real photographs before submitting — the
-`art/` and `photos/` filenames are the only contract between the deck and the
-image files.
+All illustrations and photographs are AI-generated placeholder material. Replace
+them with real commissions and real photographs before submitting — the `art/`
+and `photos/` filenames are the only contract between the deck and the files.
 
 ## Rebuilding
 
@@ -47,72 +67,67 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
 
 ## Editing
 
-- **Text and numbers live in `build.py`**, one function per slide, top to bottom
-  in reading order (`s01` … `s20`). The `NN / 20` footer comes from `TOTAL`.
-- **Colours, fonts, cards and doodles** are defined once in `tools/theme.py`.
-  The illustration background is `#FAF2DE`, identical to `theme.PAPER`, which is
-  why images can be dropped on the page without a frame.
-- **Slides** `s12`–`s20` also live in `application.md`; keep the two in sync.
-
-## Notes on the visual pass
-
-- **Illustrations** are flat, ink-outlined and pastel, drawn on `#FAF2DE`, so they
-  drop onto the page with no frame. `artist-kit.png` illustrates what an open
-  kit actually is; `contractor-duo.png` puts two bidders next to the bid sheet.
-- **Photographs** are vertical, overcast and slightly crooked, with wet paving
-  and autumn leaves — the look of a phone snapshot in a modern neighbourhood,
-  not a postcard. The street furniture in them is contemporary: oak-and-concrete
-  benches, powder-coated loop racks, a sedum-roofed solar shelter.
-- **The interface** leans into ethereum.org's playfulness: rotated sticker
-  chips, hand-drawn arrows, sparkles and one very large button. Every one of
-  them carries a sentence, never decoration for its own sake.
-- **Contractor bids** are visible in three places now: the bid sheet (`s05`),
-  the itemised quote (`s05`), and a `3 BIDS · 1 WINNER` label on every item in
-  the street-furniture kit (`s07`).
+- **Text and numbers live in `build.py`**, one function per slide, top to bottom in
+  reading order (`s01` … `s22`). The `NN / 22` footer comes from `TOTAL`.
+- **Colours, fonts, cards and doodles** are defined once in `tools/theme.py`. The
+  illustration background is `#FAF2DE`, identical to `theme.PAPER`, which is why
+  images drop onto the page without a frame.
+- **Quest screens** (`uikit.quest_screen`) draw the miniature app: `feed`,
+  `quest`, `offers`, `ask`, `pay`. `uikit.chalk_number` draws the hand-chalked 21
+  over a photo without using a font, so it reads as paint rather than typography.
+  `build.project_page` draws the public project page on slide 11.
+- **Slides `s15`–`s22`** also live in `application.md`; keep the two in sync.
 
 ## Slide map
 
 | # | Slide | Why it is there |
 |---|---|---|
-| 01 | Cover | Ask, artist share, three proof chips |
-| 02 | The problem | Ticket, small fixes, invisible contractors + a resident's photo |
-| 03 | The upgrade | What the protocol changes, in plain language |
-| 04 | The protocol | Seven steps, public/private split |
-| 05 | Contractor bids | Itemised public bids, line-by-line quote |
-| 06 | One task | Bench, nine days, iPhone before/after + ledger |
-| 07 | The kit | Modern street furniture with specs and unit costs |
-| 08 | Verification | Evidence package, attestations, release |
-| 09 | The cultural layer | The 21 mural programme |
-| 10 | The artist deal | Open call → consent → 50% → wall → 50% + record |
-| 11 | Why Ethereum | Neutral settlement, global rail, permanent record |
-| 12 | The product | Six app screens |
-| 13 | Interface | Palette, type, components, phone mockup |
-| 14 | Budget | $21,000, line by line, 70% to artists |
-| 15 | Milestones | Five payments tied to walls that exist |
-| 16 | Team | Three people, one curator per city, 21 artists |
-| 17 | Metrics | Targets, not traction |
-| 18 | Risks | Artist, owner, weather, evidence, escrow |
-| 19 | After the grant | Sustainability and what stays open |
-| 20 | Close | The ask |
+| 01 | Cover | The number is the PR, the quest is the product; no total ask |
+| 02 | The problem | Tickets, DMs, invisible supply + a resident's photo |
+| 03 | The mark | Why a number: unownable, amateur, every mark is a link |
+| 04 | Mark on infrastructure | Chalked bench, marked lift door, stickered tram stop; a mark is a hyperlink |
+| 05 | The exchange | Demand first: ask → offers → choose → work → confirm |
+| 06 | Anatomy of a quest | Six fields, a medium unit, why not a gig app |
+| 07 | One quest, end to end | Psychology session, three screens, public ledger |
+| 08 | Trust | Escrow, two-sided confirmation, disputes, safety rules |
+| 09 | Civic layer | The same machinery on a bench in Oosterpark |
+| 10 | Two doors | Personal quest vs civic task, side by side |
+| 11 | Scale | Quest → civic task → project; large city problems and construction sites, paid by milestone |
+| 12 | Devices | Phone, tablet, desktop, kiosk, TV; one codebase |
+| 13 | Interface | Palette, type, components, the phone screen |
+| 14 | The PR machine | Make 21 a meme: one large agency, TikTok formats, what we count, guardrails |
+| 15 | The kit | Stencil, stickers, chalk, the three PR waves, what we won't do |
+| 16 | Budget | Shares, not sums; no total anywhere |
+| 17 | What a round buys | Three scope shapes, each with a project, and the floor |
+| 18 | Milestones | Five releases in percentages |
+| 19 | Team | Three people, one large PR partner, paid curators and creators |
+| 20 | Metrics | Targets with sources, plus guardrails |
+| 21 | Risks | Hijacked mark, illegal paint, cold board, safety, practice, escrow |
+| 22 | Close | Bring a wall. Bring a quest. |
 
 ## What to fill in before submitting
 
-1. `s16` (team) — the three `[name] · [github / linkedin]` fields and the curator.
-2. Confirm the ask. `$21,000 / 6 months` appears on `s01`, `s14`, `s20` and in
-   `application.md`; keep them in sync.
-3. City list, if partners are already named — `s09`, `s15`, `s16`.
+1. `s19` (team) — the three `[name] · [github / linkedin]` fields and the curator.
+2. `s14` (PR) — the agency, once one is chosen; do not invent a logo wall.
+3. City list, if partners are already named — `s17`, `s18`, `s19`.
 4. Sweep the deck for `[` to make sure no placeholder survived.
+5. Do **not** add a total ask: `s01`, `s16`, `s22` and `application.md` all argue
+   against naming one.
 
 ## Honesty rules baked into the deck
 
-- Every number that is a target is labelled as a target (`s17` is titled
+- Every number that is a target is labelled as a target (`s20` is titled
   "Targets, not traction").
-- The bench story on `s06` is explicitly marked as a demo scenario.
-- The mural programme is described as commissioned and consented only; no slide
-  implies trespassing or painting without permission.
-- "70% to artists" is a budget line, not a claim about past spending.
-- No token, no fake traction, no invented partnerships. Photography and
-  illustration are placeholders and are labelled as such here.
+- The quest story on `s07`, the bench on `s09` and the project page on `s11` are
+  explicitly demo scenarios. No city, developer or construction partner is claimed
+  as signed.
+- The mark is described as consented where we pay, and as other people's art where
+  we don't. No slide implies trespassing or painting without permission — the
+  construction hoarding is explicitly "with the owner's consent".
+- "Shares, not sums" is a real constraint, not a rhetorical dodge: percentages are
+  what we can commit to without inventing a figure.
+- No token, no fake traction, no invented partnerships, no purchased engagement.
+  Photography and illustration are placeholders and are labelled as such here.
 
 ## Language
 
