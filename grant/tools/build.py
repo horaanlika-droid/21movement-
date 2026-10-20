@@ -693,7 +693,8 @@ def s13(c, idx):
     colw = (W - M - x0) / 10
     hline(c, x0, y0 - 14, W - M, LINE)
     for i in range(10):
-        text(c, x0 + colw * i + colw / 2, y0 - 22, f"M{i + 1}", MONO, 7.6, MUT_DIM, 0.8, "center")
+        text(c, x0 + colw * i + colw / 2, y0 - 22, f"Month {i + 1}", MONO, 7.2,
+             MUT_DIM, 0.6, "center")
         if i:
             vline(c, x0 + colw * i, y0 - 14, 560, LINE_SOFT, 0.5)
 
@@ -723,16 +724,19 @@ def s13(c, idx):
     for gx, name in gates:
         pass
 
-    y = 596
+    y = 584
     hline(c, M, y, W - M, LINE_SOFT)
     label(c, M, y + 24, "Release gates", MUT_DIM, 7.4, 1.5)
-    gates_text = [("M6", "audits closed \u00b7 no critical or high findings open"),
-                  ("M7", "first real euro spent through escrow"),
-                  ("M10", "three pilots, public report, open SDK")]
-    for i, (g, t) in enumerate(gates_text):
-        x = 356 + i * 350
-        U.chip(c, x, y + 12, g, VIO, alpha(VIO, 0.08), alpha(VIO, 0.3), 7, 18, 7)
-        text(c, x + 40, y + 26, t, R, 9, MUT)
+    gates_text = [("Month 6", "audits closed \u00b7 no critical or high findings open",
+                   "milestone M5"),
+                  ("Month 7", "first real euro spent through escrow", "milestone M6"),
+                  ("Month 10", "three pilots, public report, open SDK", "milestone M8")]
+    x = 356
+    for i, (g, t, ms) in enumerate(gates_text):
+        text(c, x, y + 26, g, MONO_MED, 8, VIO, 0.8)
+        text(c, x + 62, y + 26, t, R, 9, MUT)
+        text(c, x + 62, y + 41, ms, MONO, 6.6, MUT_DIM, 0.4)
+        x += 350
     foot(c, idx, "Roadmap")
 
 
