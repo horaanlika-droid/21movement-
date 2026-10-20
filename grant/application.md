@@ -36,8 +36,10 @@ percentage:
 
 - **€2,500 — code.** 960 hours at 250 ₽/hour (€2.60), which is what I earn
   cooking today. Not a market rate and not equity: the price of time that can be
-  audited. The first three versions of this application said “code: $0”; that
-  assumed my evenings are free forever. They are not.
+  audited. It is also what lets me clear my debts and leave the kitchen for the
+  project full-time instead of writing code at night after a shift. The first
+  three versions of this application said “code: $0”; that assumed my evenings
+  are free forever. They are not.
 - **€1,800 — rewards in escrow.** 60 quests at an average of €30, funded before
   the first offer is shown.
 - **€900 — three consented walls.** €300 each: artist fee, paint, lift.
@@ -422,9 +424,12 @@ the close-out report. Not applying for: a marketing department, a token, an offi
 местных автора по €100; набор — 500 трафаретов и стикеров по €0,50; юрист и
 страховка €400; инфраструктура €150; резерв €800. Всё вместе ровно €7 500.
 
-В прошлых версиях заявки стояло «код — $0». Это было неправдой в одном месте:
-я считал свои вечера бесплатными навсегда. Теперь моё время — самая большая
-строка сметы, и это и есть минимум. Если раунд хочет код за $0, проект выйдет
+Эти шесть месяцев — ещё и то, что позволяет мне закрыть долги и уйти из кухни в
+проект целиком, а не тянуть его вечерами после смены. Поэтому это минимум, а не
+желаемая сумма: ниже него я остаюсь поваром, который пишет код по ночам. В
+прошлых версиях заявки стояло «код — $0»: это было неправдой в одном месте — я
+считал свои вечера бесплатными навсегда. Теперь моё время — самая большая строка
+сметы, и это и есть минимум. Если раунд хочет код за $0, проект выйдет
 через двенадцать месяцев вечерами, а не за шесть.
 
 Выше порога возвращаются прежние пропорции: 45% в награды в эскроу, 15% на
