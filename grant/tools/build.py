@@ -726,16 +726,16 @@ def s13(c, idx):
 
     y = 584
     hline(c, M, y, W - M, LINE_SOFT)
-    label(c, M, y + 24, "Release gates", MUT_DIM, 7.4, 1.5)
+    label(c, M, y + 30, "Release gates", MUT_DIM, 7.4, 1.5)
     gates_text = [("Month 6", "audits closed \u00b7 no critical or high findings open",
                    "milestone M5"),
                   ("Month 7", "first real euro spent through escrow", "milestone M6"),
                   ("Month 10", "three pilots, public report, open SDK", "milestone M8")]
     x = 356
     for i, (g, t, ms) in enumerate(gates_text):
-        text(c, x, y + 26, g, MONO_MED, 8, VIO, 0.8)
-        text(c, x + 62, y + 26, t, R, 9, MUT)
-        text(c, x + 62, y + 41, ms, MONO, 6.6, MUT_DIM, 0.4)
+        text(c, x, y + 30, g, MONO_MED, 8, VIO, 0.8)
+        text(c, x + 62, y + 30, t, R, 9, MUT)
+        text(c, x + 62, y + 44, ms, MONO, 6.6, MUT_DIM, 0.4)
         x += 350
     foot(c, idx, "Roadmap")
 
