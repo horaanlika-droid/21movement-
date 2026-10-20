@@ -1,4 +1,4 @@
-/* 21.city — приложение-мокап.
+/* 21.city — локальный черновик приложения.
    Механика: заявка с фото и координатами → карта → донаты в бюджет, пока
    контрагенты присылают КП → цель бюджета = минимальная цена КП → выбор
    подрядчика → аванс на материалы по обоснованию (голосуют донатеры) →
@@ -10,7 +10,7 @@
   /* ============================================================ i18n */
   var I18N = {
     ru: {
-      tabHome: "Главная", tabMap: "Карта", tabProjects: "Проекты", tabWallet: "Кошелёк", tabProfile: "Профиль",
+      newest: "Сначала новые", funding: "Ближе к цели", tabHome: "Обзор", tabMap: "Карта", tabProjects: "Проекты", tabWallet: "Кошелёк", tabProfile: "Профиль",
       findProject: "Найти проект",
       questsNearby: "Квесты рядом", projectsNearby: "Проекты рядом", nearbyProjects: "Проекты рядом",
       all: "Все", projects: "Проекты", quests: "Квесты",
@@ -55,7 +55,7 @@
       stage3: "Работа идёт", stage3d: "после выбора подрядчика",
       stage4: "Приёмка", stage4d: "подтвердить и заплатить",
       stage5: "Готово", stage5d: "результат публичный",
-      chainNote: "Каждый шаг виден в блокчейне. Деньги уходят подрядчику только после приёмки. Аванс — только по решению донатеров.",
+      chainNote: "В песочнице все шаги записываются только в этом браузере. Эскроу и выплаты симулируются; блокчейн не подключён.",
       demoPick: "Выбрать подрядчика (демо)", demoWorkDone: "Работы завершены (демо)", demoPay: "Подтвердить и оплатить (демо)",
       budgetReady: "Бюджет собран — можно заказывать",
       works: "работ",
@@ -100,7 +100,7 @@
       emptyList: "Ничего не нашлось."
     },
     en: {
-      tabHome: "Home", tabMap: "Map", tabProjects: "Projects", tabWallet: "Wallet", tabProfile: "Profile",
+      newest: "Newest first", funding: "Closest to goal", tabHome: "Overview", tabMap: "Map", tabProjects: "Projects", tabWallet: "Wallet", tabProfile: "Profile",
       findProject: "Find a project",
       questsNearby: "Quests nearby", projectsNearby: "Projects nearby", nearbyProjects: "Nearby projects",
       all: "All", projects: "Projects", quests: "Quests",
@@ -144,7 +144,7 @@
       stage3: "Work in progress", stage3d: "after the contractor is chosen",
       stage4: "Verification", stage4d: "confirm and pay",
       stage5: "Completed", stage5d: "the result is public",
-      chainNote: "Each step is visible on the blockchain. Funds are released only after confirmation. An advance needs the donors’ vote.",
+      chainNote: "Sandbox: steps are stored only in this browser. Escrow and payouts are simulated; no blockchain is connected.",
       demoPick: "Pick contractor (demo)", demoWorkDone: "Work is done (demo)", demoPay: "Confirm and pay (demo)",
       budgetReady: "Budget ready — ready to order",
       works: "jobs",
@@ -372,12 +372,16 @@
       var raw = localStorage.getItem(LS);
       if (!raw) return null;
       var d = JSON.parse(raw);
-      if (!d || d.v !== 1 || !d.projects) return null;
+      if (!d || d.v !== 1 || !Array.isArray(d.projects) || !Array.isArray(d.quests) || !d.user || !Array.isArray(d.user.home) || !Array.isArray(d.user.skills) || !Number.isFinite(d.seq)) return null;
+      if (!d.projects.every(function (p) { return p && Number.isFinite(p.id) && p.title && Array.isArray(p.donations) && Array.isArray(p.offers) && Array.isArray(p.chat) && Array.isArray(p.coords); })) return null;
+      if (d.lang !== "ru" && d.lang !== "en") d.lang = "ru";
       return d;
     } catch (e) { return null; }
   }
   function save() {
-    try { localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {}
+    try { localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {
+      toast(state.lang === "en" ? "Unable to save. Export your data from Profile." : "Не удалось сохранить данные. Сделайте экспорт в профиле.");
+    }
   }
 
   /* ============================================================ helpers */
@@ -574,7 +578,7 @@
   }
 
   /* ============================================================ views */
-  var qsort = "forYou", plist = "all", wtab = "active", searchQ = "";
+  var qsort = "forYou", plist = "all", wtab = "active", searchQ = "", catalogQ = "", catalogOrder = "near";
 
   function sortedProjects(list) {
     var arr = (list || state.projects).slice();
@@ -601,6 +605,8 @@
   }
 
   function renderHome() {
+    var total = state.projects.reduce(function (sum, p) { return sum + collectedOf(p); }, 0);
+    $("#communityStats").innerHTML = '<div><b>' + state.projects.length + '</b><span>' + T("projects") + '</span></div><div><b>' + eur(total) + '</b><span>' + (state.lang === "en" ? "in project budgets" : "в бюджетах проектов") + '</span></div>';
     $("#homeQuests").innerHTML = sortedQuests().map(function (q) { return questCard(q, false); }).join("");
     $("#homeProjects").innerHTML = sortedProjects().slice(0, 3)
       .map(function (p) { return projectCard(p, false); }).join("");
@@ -620,12 +626,19 @@
   }
 
   function renderProjects() {
+    var query = catalogQ.trim().toLowerCase();
+    function matches(p) { return !query || (loc(p.title) + " " + loc(p.desc) + " " + loc(p.near)).toLowerCase().includes(query); }
+    var projects = sortedProjects().filter(matches);
+    if (catalogOrder === "new") projects.sort(function (a,b) { return b.created - a.created; });
+    if (catalogOrder === "funding") projects.sort(function (a,b) { return collectedOf(b) / (targetOf(b) || 1) - collectedOf(a) / (targetOf(a) || 1); });
+    var quests = sortedQuests().filter(matches);
+    if (catalogOrder === "new") quests.sort(function (a,b) { return b.created - a.created; });
     var out = "";
     if (plist === "all" || plist === "projects") {
-      out += sortedProjects().map(function (p) { return projectCard(p, false); }).join("");
+      out += projects.map(function (p) { return projectCard(p, false); }).join("");
     }
     if (plist === "all" || plist === "quests") {
-      out += sortedQuests().map(function (q) { return questCard(q, true); }).join("");
+      out += quests.map(function (q) { return questCard(q, true); }).join("");
     }
     $("#projList").innerHTML = out || '<p class="empty">' + T("emptyList") + "</p>";
   }
@@ -674,6 +687,8 @@
 
   function renderProfile() {
     var u = state.user;
+    $("#profileName").textContent = u.name || T("you");
+    if (document.activeElement !== $("#profileNameInput")) $("#profileNameInput").value = u.name;
     var mine = myProjectsList();
     var contribs = state.projects.reduce(function (s, p) {
       return s + (p.donations || []).filter(function (d) { return d.you; }).length;
@@ -957,12 +972,15 @@
   function openProject(id) {
     detailId = Number(id);
     renderDetail();
+    if (!routing) history.pushState(null, "", "#/project/" + detailId);
+    $("#detail").focus();
   }
   function closeDetail() {
     var el = $("#detail");
     el.classList.remove("is-on");
     detailId = null;
-    setTimeout(function () { el.hidden = true; }, 240);
+    if (!routing) history.pushState(null, "", "#/" + ($(".view.is-on").id.replace("view-", "")));
+    setTimeout(function () { if (detailId == null) el.hidden = true; }, 240);
   }
 
   /* ============================================================ map */
@@ -1036,13 +1054,15 @@
   /* ============================================================ modals */
   function openModal(sel) {
     var m = $(sel);
+    m._returnFocus = document.activeElement;
     m.hidden = false;
-    requestAnimationFrame(function () { m.classList.add("is-on"); });
+    requestAnimationFrame(function () { m.classList.add("is-on"); var first = m.querySelector("input, button"); if (first) first.focus(); });
   }
   function closeModal(m) {
     m = m || $(".modal.is-on");
     if (!m) return;
     m.classList.remove("is-on");
+    if (m._returnFocus && m._returnFocus.isConnected) m._returnFocus.focus();
     setTimeout(function () {
       if (!m.classList.contains("is-on")) m.hidden = true;
     }, 220);
@@ -1074,7 +1094,8 @@
       if (amt < 1) return;
     }
     var name = $("#dName").value.trim();
-    p.donations.push({ you: !name, name: name, amount: amt, ts: Date.now() });
+    if (!Number.isFinite(amt) || amt > 1000000) { toast(state.lang === "en" ? "Enter an amount from 1 to 1,000,000" : "Введите сумму от 1 до 1 000 000"); return; }
+    p.donations.push({ you: true, name: name || state.user.name, amount: amt, ts: Date.now() });
     save();
     closeModal($("#mDonate"));
     toast(T("t_donated").replace("AMOUNT", amt));
@@ -1097,9 +1118,11 @@
     var p = byId(offerFor);
     if (!p) return;
     var name = $("#oName").value.trim();
-    var price = Math.max(1, Math.round(Number($("#oPrice").value) || 0));
-    var days = Math.max(1, Math.round(Number($("#oDays").value) || 1));
-    if (!name || !price) return;
+    var price = Math.round(Number($("#oPrice").value));
+    var days = Math.round(Number($("#oDays").value));
+    if (!name) { $("#oName").focus(); return; }
+    if (!Number.isFinite(price) || price < 1 || price > 1000000) { $("#oPrice").focus(); return; }
+    if (!Number.isFinite(days) || days < 1 || days > 3650) { $("#oDays").focus(); return; }
     var wasMin = targetOf(p);
     p.offers.push({
       id: state.seq++, you: true, name: name, rating: 4.8, reviews: 24,
@@ -1265,6 +1288,9 @@
     wallet: { ru: "кошелёк", en: "wallet" }, profile: { ru: "профиль", en: "profile" }
   };
   function showView(v) {
+    if (!SUBS[v]) v = "home";
+    if (!routing) history.pushState(null, "", "#/" + v);
+    $$(".tab").forEach(function (t) { if (t.getAttribute("data-view") === v) t.setAttribute("aria-current", "page"); else t.removeAttribute("aria-current"); });
     $$(".view").forEach(function (s) { s.classList.toggle("is-on", s.id === "view-" + v); });
     $$(".tab").forEach(function (t) { t.classList.toggle("is-on", t.getAttribute("data-view") === v); });
     var sub = SUBS[v];
@@ -1313,7 +1339,7 @@
       var t = e.target;
 
       var nav = t.closest && t.closest("[data-nav]");
-      if (nav) { showView(nav.getAttribute("data-nav")); return; }
+      if (nav) { e.preventDefault(); showView(nav.getAttribute("data-nav")); return; }
 
       var tab = t.closest && t.closest(".tab");
       if (tab) { showView(tab.getAttribute("data-view")); return; }
@@ -1505,6 +1531,7 @@
 
     /* profile */
     $("#btnReset").addEventListener("click", function () {
+      if (!window.confirm(state.lang === "en" ? "Reset all local data? Export a backup first." : "Сбросить все локальные данные? Сначала сохраните экспорт.")) return;
       try { localStorage.removeItem(LS); } catch (e) {}
       var lang = state.lang;
       state = seedData(); state.lang = lang; save();
@@ -1513,14 +1540,32 @@
     });
 
     document.addEventListener("keydown", function (e) {
+      if (e.key === "Tab") {
+        var dialog = $(".modal.is-on") || (!$("#detail").hidden ? $("#detail") : null);
+        if (dialog) {
+          var focusables = $$("button, input, select, textarea, a[href]", dialog).filter(function (el) { return !el.disabled && el.getClientRects().length; });
+          var first = focusables[0], last = focusables[focusables.length - 1];
+          if (first && e.shiftKey && (document.activeElement === first || document.activeElement === dialog)) { e.preventDefault(); last.focus(); }
+          else if (last && !e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
       if (e.key === "Escape") {
-        if (detailId != null && !$("#detail").hidden) closeDetail();
-        else closeModal();
+        if ($(".modal.is-on")) closeModal();
+        else if (detailId != null && !$("#detail").hidden) closeDetail();
       }
     });
   }
 
   /* ============================================================ boot */
+  var routing = false;
+  function restoreRoute() {
+    routing = true;
+    var route = location.hash.slice(2).split("/");
+    if (detailId != null) closeDetail();
+    if (route[0] === "project" && byId(Number(route[1]))) { showView("projects"); openProject(Number(route[1])); }
+    else showView(SUBS[route[0]] ? route[0] : "home");
+    routing = false;
+  }
   function boot() {
     state = load() || seedData();
     save();
@@ -1528,7 +1573,15 @@
     wireNewForm();
     wire();
     setLang(state.lang, false);
-    showView("home");
+    restoreRoute();
+    window.addEventListener("popstate", restoreRoute);
+    $("#catalogSearch").addEventListener("input", function (e) { catalogQ = e.target.value; renderProjects(); });
+    $("#catalogSort").addEventListener("change", function (e) { catalogOrder = e.target.value; renderProjects(); });
+    $("#profileForm").addEventListener("submit", function (e) { e.preventDefault(); var name = $("#profileNameInput").value.trim(); if (!name) return; state.user.name = name; save(); renderProfile(); toast(state.lang === "en" ? "Profile saved" : "Профиль сохранён"); });
+    $("#btnExport").addEventListener("click", function () {
+      var url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: "application/json" }));
+      var a = document.createElement("a"); a.href = url; a.download = "21city-backup-" + new Date().toISOString().slice(0,10) + ".json"; a.click(); setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
     setTimeout(function () {
       toast(state.lang === "en"
         ? "Demo: everything is stored in this browser"

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>21.city — городские проекты и квесты рядом</title>
-<meta name="description" content="21.city — мокап приложения: сообщаем о городских проблемах с фото и координатами, видим их на карте, пополняем бюджет проекта донатами, пока идут коммерческие предложения. Цель бюджета — минимальная цена КП. Эскроу платит подрядчику после приёмки.">
+<meta name="description" content="21.city — локальный черновик: сообщаем о городских проблемах с фото и координатами, видим их на карте, пополняем бюджет проекта донатами, пока идут коммерческие предложения. Цель бюджета — минимальная цена КП. Эскроу платит подрядчику после приёмки.">
 <meta name="theme-color" content="#FAF2DE">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="assets/img/favicon.png" type="image/png">
@@ -28,22 +28,11 @@
 <link rel="preload" href="assets/fonts/gaegu-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="city.css">
+<link rel="stylesheet" href="workspace.css">
 </head>
 
 <body>
 <a class="skip" href="#screen"><span lang="ru">Перейти к содержанию</span><span lang="en">Skip to content</span></a>
-
-<!-- desktop backdrop: the app is a phone on a sheet of paper -->
-<div class="backdrop" aria-hidden="true">
-  <div class="backdrop__num">21</div>
-  <p class="backdrop__note backdrop__note--1" lang="ru">мокап приложения · данные живут в этом браузере</p>
-  <p class="backdrop__note backdrop__note--1" lang="en">app mockup · the data lives in this browser</p>
-  <p class="backdrop__note backdrop__note--2" lang="ru">цель бюджета — минимальная цена коммерческого предложения</p>
-  <p class="backdrop__note backdrop__note--2" lang="en">the budget target is the lowest commercial offer</p>
-  <p class="backdrop__note backdrop__note--3" lang="ru">донаты идут, пока ищутся подрядчики · эскроу платит после приёмки</p>
-  <p class="backdrop__note backdrop__note--3" lang="en">donations flow while contractors bid · escrow pays after acceptance</p>
-  <p class="backdrop__note backdrop__note--4"><a href="landing.html">лендинг заявки →</a><a href="landing.html?lang=en" lang="en">grant landing →</a></p>
-</div>
 
 <div class="device" id="device">
 
@@ -56,18 +45,19 @@
     </div>
   </header>
 
+  <div class="sandbox-banner"><span class="status-dot"></span><span lang="ru">Песочница · деньги и эскроу — симуляция. Данные только в этом браузере.</span><span lang="en">Sandbox · payments and escrow are simulated. Data stays in this browser.</span></div>
   <main class="screen" id="screen">
 
     <!-- ================================================== home -->
     <section class="view view--home is-on" id="view-home" aria-label="Главная">
       <div class="hero">
-        <p class="kicker"><span lang="ru">мокап приложения · 21.city</span><span lang="en">app mockup · 21.city</span></p>
+        <p class="kicker"><span lang="ru">ГОРОД НАЧИНАЕТСЯ С НАС · 21.CITY</span><span lang="en">A BETTER CITY STARTS WITH US · 21.CITY</span></p>
         <div class="hero__row">
           <h1 class="hero__h">
-            <span lang="ru">Реальная помощь.<br>Реальные люди.<br>Реальный результат.</span>
-            <span lang="en">Real help.<br>Real people.<br>Real impact.</span>
+            <span lang="ru">Маленькие действия.<br>Большие перемены.<br><em>Вместе.</em></span>
+            <span lang="en">Small actions.<br>Real change.<br><em>Together.</em></span>
           </h1>
-          <span class="hero__num" aria-hidden="true">21</span>
+          <img class="hero-art" src="assets/img/community-garden.png" alt="" width="640" height="420">
         </div>
         <p class="hero__sub">
           <span lang="ru">Задачи, услуги и городские проекты рядом с домом — для крепкого района.</span>
@@ -79,6 +69,7 @@
         </div>
       </div>
 
+      <div class="community-strip"><div><span class="eyebrow" lang="ru">ВАШ РАЙОН, ВАШ ВКЛАД</span><span class="eyebrow" lang="en">YOUR NEIGHBOURHOOD, YOUR IMPACT</span><p lang="ru">От первой идеи — до общего результата.</p><p lang="en">From a first idea to a shared achievement.</p></div><div id="communityStats" class="community-stats"></div></div>
       <div class="block">
         <div class="block__head">
           <h2 data-i18n="questsNearby">Квесты рядом</h2>
@@ -130,6 +121,7 @@
         <h1 class="page-h" data-i18n="projectsTitle">Проекты и квесты</h1>
         <p class="page-sub" data-i18n="projectsSub">Городские проблемы с фото и координатами — и задания соседей</p>
       </div>
+      <div class="project-tools"><label class="catalog-search"><span lang="ru">Поиск по проектам и квестам</span><span lang="en">Search projects and quests</span><input type="search" id="catalogSearch" autocomplete="off"></label><label class="catalog-sort"><span lang="ru">Порядок</span><span lang="en">Sort</span><select id="catalogSort"><option value="near" data-i18n="nearby">Рядом</option><option value="new" data-i18n="newest">Сначала новые</option><option value="funding" data-i18n="funding">Ближе к цели</option></select></label><button class="btn btn--primary" type="button" data-open-new="1"><span lang="ru">+ Создать проект</span><span lang="en">+ New project</span></button></div>
       <div class="chips" id="projChips">
         <button class="chip chip--btn is-on" type="button" data-plist="all" data-i18n="all">Все</button>
         <button class="chip chip--btn" type="button" data-plist="projects" data-i18n="projects">Проекты</button>
@@ -165,10 +157,11 @@
       <div class="card card--me">
         <span class="me__ava" aria-hidden="true">В</span>
         <div>
-          <h1 class="me__name" data-i18n="you">Вы</h1>
+          <h1 class="me__name" id="profileName">Вы</h1>
           <p class="me__joined" id="meJoined"></p>
         </div>
       </div>
+      <form id="profileForm" class="profile-editor"><label class="field"><span lang="ru">Ваше имя</span><span lang="en">Your name</span><input id="profileNameInput" type="text" maxlength="40" required></label><button class="btn" type="submit"><span lang="ru">Сохранить профиль</span><span lang="en">Save profile</span></button></form>
       <div class="stats3" id="profileStats"></div>
       <p class="hand-quote">
         <span lang="ru">вместе — лучше.</span>
@@ -190,18 +183,20 @@
           <span lang="ru">О проекте · лендинг</span><span lang="en">About · landing</span>
         </a>
         <a class="menu__row" href="https://github.com/horaanlika-droid/21movement-">GitHub ↗</a>
+        <button class="menu__row" type="button" id="btnExport"><span lang="ru">Экспорт данных · JSON ↓</span><span lang="en">Export data · JSON ↓</span></button>
         <button class="menu__row menu__row--danger" type="button" id="btnReset" data-i18n="resetDemo">Сбросить демо-данные</button>
       </div>
+      <aside class="mascot-note"><img src="assets/img/mascot-sprout.png" width="120" height="120" alt=""><div><h3 lang="ru">Знакомьтесь, Росток</h3><h3 lang="en">Meet Sprout</h3><p lang="ru">Большие перемены растут из маленькой заботы. Начните с того, что рядом.</p><p lang="en">Big changes grow from small acts of care. Start close to home.</p></div></aside>
       <p class="foot-note">
-        <span lang="ru">Мокап. Фото — сгенерированные плейсхолдеры. Всё хранится локально в вашем браузере, никаких серверов и токенов.</span>
-        <span lang="en">A mockup. Photos are generated placeholders. Everything is stored locally in your browser — no servers, no token.</span>
+        <span lang="ru">Локальный черновик. Фото — сгенерированные плейсхолдеры. Всё хранится локально в вашем браузере, никаких серверов и токенов.</span>
+        <span lang="en">Local draft. Photos are generated placeholders. Everything is stored locally in your browser — no servers, no token.</span>
       </p>
     </section>
 
   </main>
 
   <!-- project detail overlay -->
-  <section class="detail" id="detail" hidden aria-label="Проект">
+  <section class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-label="Проект" tabindex="-1">
     <div class="detail__in" id="detailIn"></div>
   </section>
 
@@ -347,8 +342,8 @@
         <li><b data-i18n="how5t">5 · Готово</b><span data-i18n="how5d">Чек остаётся публичным: каждый шаг виден, деньги ушли на работу.</span></li>
       </ol>
       <p class="sheet__micro">
-        <span lang="ru">В этом мокапе нет блокчейна и платежей: данные живут в localStorage вашего браузера.</span>
-        <span lang="en">This mockup has no blockchain and no payments: the data lives in your browser’s localStorage.</span>
+        <span lang="ru">В этом черновике нет блокчейна и платежей: данные живут в localStorage вашего браузера.</span>
+        <span lang="en">This draft has no blockchain and no payments: the data lives in your browser’s localStorage.</span>
       </p>
       <button class="btn btn--wide" type="button" data-close="1" data-i18n="gotIt">Понятно</button>
     </div>
