@@ -24,18 +24,30 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      # enablement: true turns Pages on for the repo if it is off.
-      # If the token is not allowed to do that, enable it once by hand:
-      # Settings → Pages → Build and deployment → GitHub Actions.
-      - uses: actions/configure-pages@v5
+      # Ask GitHub to switch Pages on for this repo (enablement: true). The
+      # workflow token is allowed to do that only on some repositories, so a
+      # failure here is not an error in the site: it means Pages is off and has
+      # to be enabled once by hand —
+      #   Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+      # The run still goes green and leaves that instruction as a warning.
+      - id: pages
+        uses: actions/configure-pages@v6
+        continue-on-error: true
         with:
           enablement: true
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Pages is off
+        if: steps.pages.outcome != 'success'
+        run: |
+          echo "::warning title=Pages is off::Settings → Pages → Build and deployment → Source: GitHub Actions, then re-run this workflow (Actions → pages → Re-run jobs). Nothing is wrong with docs/."
+
+      - uses: actions/upload-pages-artifact@v5
+        if: steps.pages.outcome == 'success'
         with:
           path: docs
 
       - id: deployment
-        uses: actions/deploy-pages@v4
+        if: steps.pages.outcome == 'success'
+        uses: actions/deploy-pages@v5

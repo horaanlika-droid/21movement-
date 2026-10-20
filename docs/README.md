@@ -17,8 +17,14 @@ Two ways; both need Pages switched on once in **Settings → Pages**.
 
 **A. GitHub Actions (recommended).** The workflow
 [`.github/workflows/pages.yml`](../.github/workflows/pages.yml) deploys `docs/`
-on every push to `main`. It asks Pages to enable itself (`enablement: true`); if
-the token is not allowed to, set **Source: GitHub Actions** by hand once.
+on every push to `main` and can be started from **Actions → pages → Run workflow**.
+
+Pages itself has to be switched on once: **Settings → Pages → Build and
+deployment → Source: GitHub Actions**. The workflow tries to do that for you
+(`enablement: true`), but the workflow token is not always allowed to — when it
+is not, the run stays green and leaves a warning with this exact instruction.
+After switching it on, re-run the workflow; the site appears at
+`https://<owner>.github.io/21movement-/`.
 
 **B. Branch folder.** Settings → Pages → *Deploy from a branch* → branch
 `main`, folder `/docs`. No workflow involved.
