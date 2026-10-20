@@ -67,9 +67,8 @@ python3 -m http.server 8080
 | `index.html` | The app shell: five tabs (Home, Map, Projects, Wallet, Profile), the project detail overlay and the modals. |
 | `city.css` | The app’s design tokens and layout — the same paper/ink/sticker language as the landing. Base component styles; the responsive workspace overrides live in `workspace.css`. |
 | `workspace.css` | Responsive desktop workspace, mobile navigation, lavender / ivory theme. |
-| `assets/img/community-garden.png` | AI-generated neighbourhood illustration with neighbours and the previous Sprout character; not yet updated to Smile. |
-| `assets/img/mascot-smile.png` · `mascot-smile-512.webp` | **Смайл / Smile** — классический смайл в цветах Ethereum: лавандовый круг с рукописным контуром. Предыдущий маскот `mascot-sprout.png` (Росток) сохранён в истории. |
-| `assets/img/favicon.png` | Favicon — уменьшенный Смайл (64×64). |
+| `assets/img/community-garden.png` | AI-generated neighbourhood illustration with neighbours — no mascot character. |
+| `assets/img/favicon.png` | Favicon — рукописная «21» на фирменном фиолетовом (180×180, она же apple-touch-icon). |
 | `tests/app.test.cjs` | Eight integration tests running the real app script in jsdom. |
 | `city.js` | All app logic: state (localStorage), i18n, cards, the map, donations, offers, the timeline, the wizard. |
 | `landing.html` + `style.css` + `app.js` | The grant landing: language switch and scroll reveal. |
@@ -97,9 +96,9 @@ both, and seeded data carries `{ru, en}` pairs.
 - Визуальное направление: светлый фон, свободное пространство, тонкие рамки,
   лавандовые акценты и доброжелательные иллюстрации, вдохновлённые ethereum.org.
   Это собственные иллюстрации, не официальные персонажи Ethereum.
-- Сгенерированы иллюстрация района с жителями и маскот **Смайл / Smile**:
-  классический кружок-улыбка в палитре Ethereum (лавандовый #EEE8FC / фиолетовый #6852BD, рукописный контур).
-  Смайл — отдельным стикером на главной и в профиле; иллюстрация района пока содержит прежнего Ростка. Исходный Росток сохранён как `mascot-sprout.png`.
+- Сгенерирована иллюстрация района с жителями. Маскота в проекте нет вообще:
+  Смайл и прежний Росток удалены из разметки, стилей и файлов, иллюстрация района
+  перегенерирована без персонажа, а фасикон и OG-карточка несут только знак «21».
 - Каталог: текстовый поиск по проектам и квестам, фильтры типов, сортировка
   проектов по расстоянию, новизне и доле собранного бюджета, пустое состояние.
   У квестов сортировка по наполнению бюджета не применяется.
@@ -176,8 +175,8 @@ npm run check # синтаксис city.js и app.js: проходит
 6. **Завершить доступность**: семантические кнопки открытия карточек, возврат
    фокуса из панели проекта, недоступный фон диалогов, локализованные aria-label,
    обработка недоступных тайлов карты, ошибок геолокации и пустых состояний.
-7. **Иллюстрации**: подготовить оптимизированные WebP/AVIF из текущих PNG;
-   заменить Ростка в иллюстрации района на выбранный Смайл. Новых персонажей добавлять под реальные
+7. **Иллюстрации**: подготовить оптимизированные WebP/AVIF из текущих PNG.
+   Маскот не возвращается — иллюстрация района уже без персонажа; новые иллюстрации добавлять под реальные
    состояния (пустой каталог, успешная приёмка), а не как декор без функции.
 
 **Готовность следующего этапа:** два разных пользователя видят одну заявку;
