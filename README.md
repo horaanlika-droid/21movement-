@@ -19,6 +19,7 @@ templates — lets anyone print their own.
 
 The grant application lives in [`grant/`](grant/README.md):
 
-- [`grant/build/21-grant-deck.pdf`](grant/build/21-grant-deck.pdf) — 22-slide deck in the ethereum.org visual language; **no total ask** — the split is fixed (45% quest and project rewards in escrow, 15% consented walls and artists, 15% PR and kit, 10% verification, 6% safety, 5% infra, 4% reserve), code $0
+- [`grant/build/21-grant-deck.pdf`](grant/build/21-grant-deck.pdf) — 22-slide deck in the ethereum.org visual language; the ask is a **floor of €7,500** for six months in one city, with the code hours at 250 ₽/h (€2,500); above the floor the split is fixed at 45% quest and project rewards in escrow, 15% consented walls and artists, 15% PR and kit, 10% verification, 6% safety, 5% infra, 4% reserve
 - [`grant/application.md`](grant/application.md) — the same content as copy-paste text (EN + RU)
 - [`grant/preview/`](grant/preview) — page previews
+- [`docs/`](docs/README.md) — the landing-page mockup published on GitHub Pages

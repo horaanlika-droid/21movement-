@@ -3,8 +3,9 @@
 22 slides, 1280 x 720 pt, all text in code. Run `python3 build.py --preview`
 from this folder to rebuild the PDF and the PNG previews.
 
-No total ask appears anywhere in this deck on purpose: the budget is written as
-shares of whatever round funds it.
+The ask is a floor, not a wish: €7,500 for six months in one city, with the
+code hours in the budget at the author's own wage. Above the floor the split is
+written as shares of whatever round funds it.
 """
 import os
 import sys
@@ -17,7 +18,8 @@ import theme as T
 import uikit as U
 from theme import (CORAL, CORAL_SOFT, H, INK, INK_SOFT, L, LINE, LINE_SOFT, M,
                    MED, MONO, MONO_MED, MUT, MUT_DIM, PAPER, PAPER_2, PINK,
-                   PINK_SOFT, R, SEMI, SERIF, SERIF_IT, SHADOW, SKY, SKY_SOFT,
+                   HAND, HAND_B, PINK_SOFT, R, SEMI, SERIF, SERIF_IT, SHADOW, SKY,
+                   SKY_SOFT,
                    TEAL, TEAL_SOFT, VIOLET, VIOLET_DEEP, VIOLET_SOFT, W, WHITE, YELLOW,
                    YELLOW_SOFT, alpha, card, chip, diamond, doodle_arrow, footer,
                    hline, illustration, label, logotype, marker, page, para,
@@ -68,8 +70,8 @@ def s01(c, idx):
     sparkle(c, 636, 372, 5.5, PINK)
     label(c, M, 200, "Ethereum ecosystem grant \u00b7 application", VIOLET, 8.6, 1.9)
 
-    text(c, M, 350, "21", MED, 168, INK, -9)
-    squiggle(c, M + 6, 370, 184, TEAL, 3.0, 2.6, 4)
+    text(c, M, 360, "21", HAND_B, 176, INK, -4)
+    squiggle(c, M + 6, 372, 170, TEAL, 3.0, 2.6, 4)
 
     text(c, M + 212, 262, "The number is the PR.", SERIF_IT, 30, VIOLET, -0.3)
     text(c, M + 212, 302, "The quest is the product.", SERIF_IT, 30, VIOLET, -0.3)
@@ -81,9 +83,9 @@ def s01(c, idx):
          "arrive, the work happens, escrow pays.", R, 12.2, 18.6, MUT)
 
     stat3(c, M, 484, 576, 104, [
-        ("The ask", "No total", "the round sets the size"),
-        ("The split", "Same ratios", "small grant, fewer quests"),
-        ("For code", "$0", "we build it ourselves"),
+        ("The floor", "\u20ac7,500", "the smallest round that moves"),
+        ("Above it", "Same split", "45 / 15 / 15, at any size"),
+        ("For code", "250 \u20b9/h", "my wage, 960 hours"),
     ])
 
     x = M
@@ -827,7 +829,7 @@ def s14(c, idx):
     squiggle(c, M + 20, 612, 300, TEAL, 2.0, 1.8, 5)
 
     card(c, 684, 232, 524, 150, fill=WHITE, stroke=LINE, r=16, shadow=True)
-    label(c, 706, 256, "One large agency, three jobs", VIOLET, 7.0, 1.4)
+    label(c, 706, 256, "One large agency, three jobs \u00b7 above the floor", VIOLET, 7.0, 1.4)
     jobs = [
         ("01", "Buy reach by the unit",
          "20 creators per city, paid per published placement. Invoices public."),
@@ -861,7 +863,9 @@ def s14(c, idx):
          "testimonials. Every creator discloses the fee.", R, 8.0, 12, MUT)
     text(c, 706, 594, "The number travels without us. That is the point.",
          MED, 8.4, INK)
-    chip(c, 706, 604, "NO LOGO \u00b7 NO SLOGAN", INK, PAPER, alpha(INK, 0.14),
+    bx = chip(c, 706, 604, "NO LOGO \u00b7 NO SLOGAN", INK, PAPER,
+              alpha(INK, 0.14), 5.6, 16, 8) + 8
+    chip(c, 706 + bx, 604, "AT THE FLOOR: NO AGENCY", VIOLET, VIOLET_SOFT, None,
          5.6, 16, 8)
     foot(c, idx, "The PR machine")
 
@@ -872,8 +876,8 @@ def s15(c, idx):
     T.head(c, "14 \u2014 The kit, and how it travels",
            "Nobody needs our permission to paint it.",
            "A stencil, a sticker sheet, a six-line README, published under MIT and "
-           "printed locally. That is the whole distribution strategy \u2014 with a "
-           "large agency's campaign behind it.", width=620, subw=530, y=104, size=34, leading=39)
+           "printed locally. That is the whole distribution strategy \u2014 with the "
+           "campaign behind it.", width=620, subw=530, y=104, size=34, leading=39)
 
     label(c, M, 258, "In the kit", VIOLET, 7.0, 1.5)
     kit = ["An A4 stencil: two strokes, one cut, any colour.",
@@ -891,7 +895,8 @@ def s15(c, idx):
 
     card(c, M, 474, 540, 146, fill=WHITE, stroke=LINE, r=16, shadow=True)
     label(c, M + 20, 498, "Three waves", VIOLET, 7.2, 1.4)
-    waves = [("Wave 1 \u00b7 month 1", "one large agency on retainer, 20 creators, 3 cities."),
+    waves = [("Wave 1 \u00b7 month 1", "three creators paid per placement; an agency "
+                                         "and 20 creators above the floor."),
              ("Wave 2 \u00b7 months 2\u20134", "city permissions make walls legal; every "
                                               "settled quest posts its own before/after."),
              ("Wave 3 \u00b7 months 4\u20136", "groups we have never met print the "
@@ -917,97 +922,110 @@ def s15(c, idx):
     foot(c, idx, "The kit")
 
 
-# ============================================================ 16  budget shares
+# ============================================================ 16  the floor
 def s16(c, idx):
     page(c)
-    T.head(c, "15 \u2014 Budget, without a number",
-           "Shares, not sums.",
-           "The round knows its own budget better than we do. We fix the ratios "
-           "instead: whatever arrives is split the same way, so a smaller grant buys "
-           "fewer quests \u2014 not cheaper ones.", width=700, subw=580, y=104,
-           size=38, leading=42)
+    T.head(c, "15 \u2014 The floor",
+           "The floor, in units.",
+           "\u20ac7,500 is the smallest round that moves: six months, one city, one "
+           "person full-time. Every line is a unit price \u00d7 a quantity, and the "
+           "table adds up exactly.",
+           width=680, subw=600, y=104, size=38, leading=42)
 
-    label(c, M, 270, "The split, fixed", VIOLET, 7.0, 1.5)
-    chip(c, 232, 262, "NO TOTAL ASK", WHITE, VIOLET, None, 7.2, 24, 11, rot=-2)
-    text(c, W - M, 284, "100%, divided once, published before the first euro moves",
-         R, 9.0, MUT, 0, "right")
+    # left — the number itself, in a hand
+    label(c, M, 236, "The floor \u00b7 six months, one city", VIOLET, 7.2, 1.5)
+    text(c, M, 318, "\u20ac", SEMI, 52, VIOLET, -1)
+    text(c, M + 34, 318, "7,500", HAND_B, 118, INK, -2)
+    squiggle(c, M + 4, 330, 250, TEAL, 2.6, 2.4, 5)
+    text(c, M, 352, "my wage, not a market rate", HAND, 20, VIOLET, 0.2)
 
-    items = [
-        ("Quest + project rewards in escrow", 45, VIOLET,
-         "one reward = one finished piece"),
-        ("Consented walls, artists, materials", 15, TEAL,
-         "fees, paint, lifts, consent"),
-        ("PR campaign and the kit", 15, YELLOW,
-         "one large agency, 20 creators, print, film"),
-        ("Verification and field ops", 10, CORAL,
-         "attestors, reviewers, spot audits"),
-        ("Safety, legal, insurance", 6, SKY,
-         "contracts, DPIA, liability"),
-        ("Ops and infrastructure", 5, PINK,
-         "hosting, indexer, RPC"),
-        ("Reserve", 4, MUT,
-         "the week something breaks"),
+    # left — the split that returns above the floor
+    card(c, M, 386, 552, 244, fill=WHITE, stroke=LINE, r=16, shadow=True,
+         shadow_dy=6)
+    label(c, M + 22, 410, "Above the floor \u00b7 same split at any size",
+          VIOLET, 7.0, 1.4)
+    rows = [("45%", "quest and project rewards in escrow"),
+            ("15%", "consented walls, artists, materials"),
+            ("15%", "PR and the kit"),
+            ("10%", "verification and field ops"),
+            ("6%", "safety, legal, insurance"),
+            ("5%", "ops and infrastructure"),
+            ("4%", "reserve")]
+    yy = 436
+    for pct, what in rows:
+        text(c, M + 22, yy, pct, MONO_MED, 8.6, VIOLET, 0.4)
+        text(c, M + 70, yy, what, R, 9.0, INK_SOFT)
+        yy += 20
+    para(c, M + 22, 578, 508,
+         "My hours do not take a share: they stay at cost. A smaller round ships "
+         "fewer quests and walls \u2014 never cheaper ones.",
+         R, 8.4, 12, MUT)
+
+    # right — the arithmetic
+    x0, x1, x2 = 672, 980, 1208
+    label(c, x0, 236, "Line", MUT_DIM, 7.0, 1.4)
+    label(c, x1, 236, "Unit", MUT_DIM, 7.0, 1.4)
+    label(c, x2, 236, "\u20ac", MUT_DIM, 7.0, 1.4, "right")
+    hline(c, x0, 248, x2, alpha(INK, 0.15))
+
+    budget = [
+        ("Code \u2014 protocol, PWA, contract, kit", "250 \u20b9/h \u00d7 960 h",
+         "2,500", True),
+        ("Quest rewards in escrow", "\u20ac30 \u00d7 60", "1,800", False),
+        ("Consented walls \u2014 fee, paint, lift", "\u20ac300 \u00d7 3", "900",
+         False),
+        ("Verification and attestors", "60 checks + panel", "400", False),
+        ("PR \u2014 creators, per placement", "\u20ac100 \u00d7 3", "300", False),
+        ("Kit \u2014 stencil, stickers, chalk", "\u20ac0.50 \u00d7 500", "250",
+         False),
+        ("Safety, legal, insurance", "at cost", "400", False),
+        ("Infrastructure", "\u20ac25 \u00d7 6", "150", False),
+        ("Reserve", "10.7%", "800", False),
     ]
-    total = sum(i[1] for i in items)
-    assert total == 100
+    y = 268
+    for name, unit, total, is_code in budget:
+        if is_code:
+            rect(c, 660, y - 8, 560, 26, fill=VIOLET_SOFT, r=6)
+            chip(c, 1112, y - 8, "AT COST", VIOLET, WHITE, None, 5.0, 14, 6)
+        text(c, x0 + 12, y, name, R, 9.0, INK)
+        text(c, x1, y, unit, MONO, 7.2, MUT)
+        text(c, x2 - 12, y, total, MONO_MED, 8.8, INK, 0.2, "right")
+        hline(c, x0, y + 10, x2, LINE_SOFT, 0.6)
+        y += 30
 
-    bx, bw, by = M, W - 2 * M, 306
-    xx = bx
-    for name, amt, col, _ in items:
-        wseg = bw * amt / total
-        rect(c, xx, by, wseg - 3, 24, fill=col, r=4)
-        xx += wseg
-    text(c, M, by + 40, "Code is not in this budget: the team writes it. No token, no "
-                        "ads for the number, no paid placement on the board.",
-         R, 9.2, MUT)
-
-    y = 372
-    hline(c, M, y, W - M, alpha(INK, 0.15))
-    label(c, M, y - 10, "Line", MUT_DIM, 7.0, 1.4)
-    label(c, 566, y - 10, "What it buys", MUT_DIM, 7.0, 1.4)
-    label(c, 1000, y - 10, "Share", MUT_DIM, 7.0, 1.4, "right")
-    y += 18
-    for name, amt, col, what in items:
-        rect(c, M, y + 13, 8, 8, fill=col, r=2.5)
-        text(c, M + 20, y + 20, name, R, 9.4, INK)
-        text(c, 566, y + 20, what, R, 8.6, MUT)
-        U.progress(c, 900, y + 15, 62, amt / 45, 5, col)
-        text(c, 1000, y + 20, f"{amt}%", MONO, 8.4, INK, 0.3, "right")
-        hline(c, M, y + 26, 1000, LINE_SOFT, 0.6)
-        y += 26
-
-    hline(c, M, y + 4, 1000, alpha(INK, 0.15))
-    label(c, M, y + 24, "Total", MUT_DIM, 7.0, 1.5)
-    text(c, 1000, y + 26, "100%", MED, 11, INK, 0, "right")
-    text(c, M, y + 54, "If the round is smaller, we cut quests, projects and walls "
-                       "\u2014 never the escrow, never the kit.", R, 9.4, VIOLET)
-    text(c, W - M, y + 54, "the split is the ask", MONO, 7.0, MUT_DIM, 0.3, "right")
-    foot(c, idx, "Budget")
+    hline(c, x0, y + 2, x2, alpha(INK, 0.15))
+    text(c, x0 + 12, y + 26, "The floor", MED, 11, INK)
+    text(c, x2 - 12, y + 30, "\u20ac7,500", HAND_B, 28, INK, 0, "right")
+    para(c, 660, y + 52, 548,
+         "At the floor there is no agency retainer: three creators, paid per "
+         "published placement. Above it, wave 1 is an agency and 20 creators a city.",
+         R, 8.2, 12, MUT)
+    foot(c, idx, "The floor")
 
 
 # ============================================================ 17  grant shapes
 def s17(c, idx):
     page(c)
     T.head(c, "16 \u2014 What a round buys",
-           "Three shapes. Same rules.",
-           "We don't name a sum because we can't set your budget. These are the three "
-           "shapes the programme takes, priced in scope \u2014 not in promises.",
+           "One floor, then scope.",
+           "The unit prices set the floor; the round sets the ceiling. These are the "
+           "three shapes the programme takes, priced in scope \u2014 not in promises.",
            width=800, subw=620, y=104, size=34, leading=39)
 
     sizes = [
-        ("01", "If the round is small", "One city, one board", VIOLET, [
-            "60 quests + 1 project page (a street)",
-            "3 consented walls with paid artists",
-            "Kit v1 published under MIT",
-            "10 askers recruited by hand, not by ads",
-            "No kiosk, no PR agency, no film crew"]),
-        ("02", "The likely shape", "Three cities, a real record", TEAL, [
+        ("01", "The floor \u00b7 \u20ac7,500", "One city, one board", VIOLET, [
+            "60 quests, 3 consented walls",
+            "A street project page + kiosk pilot",
+            "Kit v1 under MIT",
+            "3 creators, no agency retainer",
+            "10 askers recruited by hand"]),
+        ("02", "About \u20ac30,000", "Three cities, a real record", TEAL, [
             "250 quests, 9 consented walls",
             "2 projects: a street, a construction site",
-            "PR wave 1: one large agency, 20 creators",
+            "Agency wave 1: 20 creators a city",
             "Verification panel + kiosk pilot",
             "Kit v1 in two languages"]),
-        ("03", "If the round is full", "Nine cities, the whole campaign", CORAL, [
+        ("03", "About \u20ac100,000", "Nine cities, the whole campaign", CORAL, [
             "900 quests, 21 consented walls",
             "3 large projects, paid by milestone",
             "Kiosks in three cities",
@@ -1030,11 +1048,11 @@ def s17(c, idx):
              alpha(INK, 0.14), 6.0, 18, 7)
 
     card(c, M, 536, W - 2 * M, 82, fill=WHITE, stroke=LINE, r=16, shadow=True)
-    label(c, M + 22, 558, "The floor", VIOLET, 7.2, 1.4)
-    text(c, M + 22, 584, "Below the smallest shape we ship the kit, one city and the "
-                         "escrow contract \u2014 and say publicly that is what "
-                         "happened.", R, 9.2, MUT)
-    text(c, W - M - 22, 584, "no number, by design", MONO, 7.4, MUT_DIM, 0.3, "right")
+    label(c, M + 22, 558, "The floor is arithmetic", VIOLET, 7.2, 1.4)
+    text(c, M + 22, 584, "Every line is a unit price \u00d7 a quantity. Below it we "
+                         "ship the kit, one city and the escrow contract \u2014 and "
+                         "say publicly that is what happened.", R, 9.2, MUT)
+    text(c, W - M - 22, 584, "a floor, not a wish", MONO, 7.4, MUT_DIM, 0.3, "right")
     foot(c, idx, "What a round buys")
 
 
@@ -1103,22 +1121,26 @@ def s18(c, idx):
 def s19(c, idx):
     page(c)
     T.head(c, "18 \u2014 Team",
-           "Three people, and a phone full of strangers.",
-           "Small by design. The grant pays for quests and walls first; the team "
-           "writes the code.", width=800, subw=600, y=104, size=34, leading=39)
+           "One person, and a phone full of strangers.",
+           "At the floor it is me, full-time, plus a paid curator and paid creators "
+           "per city. The other two roles are the plan for a larger round \u2014 not "
+           "people claimed as signed.", width=820, subw=640, y=104, size=34, leading=39)
 
     people = [
-        ("Protocol & product", "contracts \u00b7 app \u00b7 escrow", VIOLET,
-         "Solidity and Foundry, the PWA capture flow, the kiosk build. Owns escrow, "
-         "the registry and the public task page.", "[name]  \u00b7  [github]"),
+        ("Protocol & product", "contracts \u00b7 escrow \u00b7 app", VIOLET,
+         "Former active graffiti artist: a wall network across a dozen countries. "
+         "Writes the Solidity contracts, the PWA capture flow and the kiosk build.",
+         "[name]  \u00b7  [github]", "full time \u00b7 6 months"),
         ("Programme lead", "cities \u00b7 walls \u00b7 permissions", TEAL,
          "Runs the consented walls, the open calls and the consent paperwork with a "
-         "paid curator in each city.", "[name]  \u00b7  [linkedin]"),
+         "paid curator in each city.", "[name]  \u00b7  [linkedin]",
+         "at a larger round"),
         ("Field ops & trust", "attestors \u00b7 disputes \u00b7 safety", CORAL,
          "Recruits attestors, runs the dispute panel, and enforces the safety rules "
-         "when a quest goes wrong in public.", "[name]  \u00b7  [linkedin]"),
+         "when a quest goes wrong in public.", "[name]  \u00b7  [linkedin]",
+         "at a larger round"),
     ]
-    for i, (role, key, col, desc, link) in enumerate(people):
+    for i, (role, key, col, desc, link, note) in enumerate(people):
         x = M + i * 384
         card(c, x, 208, 368, 190, fill=WHITE, stroke=LINE, r=16, shadow=True,
              shadow_dy=6)
@@ -1129,16 +1151,15 @@ def s19(c, idx):
         para(c, x + 22, 292, 324, desc, R, 9.0, 13.4, MUT)
         hline(c, x + 22, 350, x + 346, LINE_SOFT, 0.8)
         text(c, x + 22, 372, link, MONO, 7.4, MUT, 0.3)
-        text(c, x + 346, 372, "full time \u00b7 6 months", MONO, 6.4, MUT_DIM, 0.3,
-             "right")
+        text(c, x + 346, 372, note, MONO, 6.4, MUT_DIM, 0.3, "right")
 
     card(c, M, 422, 552, 116, fill=WHITE, stroke=LINE, r=16, shadow=True)
-    label(c, M + 22, 446, "PR partner \u00b7 one large agency, one retainer", VIOLET, 7.0, 1.4)
+    label(c, M + 22, 446, "PR partner \u00b7 above the floor, one retainer", VIOLET, 7.0, 1.4)
     text(c, M + 22, 470, "Creators, not ad inventory", MED, 10.4, INK)
     para(c, M + 22, 488, 508,
-         "A large agency places 20 creators per city on the number, and we pay for "
-         "reach the same way we pay for paint \u2014 by the unit, with the invoice "
-         "published.", R, 8.6, 12.6, MUT)
+         "A large agency places 20 creators per city on the number; we pay for reach "
+         "the way we pay for paint \u2014 by the unit, invoice published. At the "
+         "floor this card is empty: three creators, per placement.", R, 8.6, 12.6, MUT)
 
     card(c, 648, 422, 560, 116, fill=TEAL_SOFT, stroke=alpha(TEAL, 0.4), r=16,
          shadow=True)
@@ -1176,10 +1197,10 @@ def s20(c, idx):
     sparkle(c, 1180, 174, 4.5, VIOLET)
 
     metrics = [
-        ("900", "quests completed through escrow", "escrow events", VIOLET),
+        ("60", "quests completed through escrow", "escrow events", VIOLET),
         ("7 days", "median from ask to confirmed", "timestamps", TEAL),
-        ("60%", "askers who post a second quest", "repeat asks", YELLOW),
-        ("21", "consented walls painted and registered", "consent registry", CORAL),
+        ("40%", "askers who post a second quest", "repeat asks", YELLOW),
+        ("21", "walls in the registry \u2014 3 paid by us", "consent registry", CORAL),
         ("0", "euros paid outside escrow", "reconciliation", SKY),
         ("5", "device classes tested every week", "release checklist", PINK),
     ]
@@ -1203,8 +1224,9 @@ def s20(c, idx):
         x = M + 24 + i * 276
         text(c, x, 574, v, MED, 11, INK)
         text(c, x, 594, k, R, 8.2, MUT_DIM)
-    text(c, M + 24, 616, "Every number is a target for month six, not a result. The "
-                         "methodology ships with the report.", R, 8.0, MUT_DIM)
+    text(c, M + 24, 616, "Floor targets; a larger round scales the same metrics to "
+                         "250 and 900 quests, 9 and 21 paid walls. Targets for month "
+                         "six, not results.", R, 8.0, MUT_DIM)
     foot(c, idx, "Metrics")
 
 
@@ -1273,18 +1295,19 @@ def s22(c, idx):
     squiggle(c, M + 4, 338, 320, TEAL, 2.8, 2.4, 6)
 
     para(c, M, 372, 500,
-         "We are not naming a sum: a round knows its own budget better than we do. "
-         "Whatever arrives is split the same way \u2014 quest and project rewards "
-         "first, consented walls second, the kit always.", R, 11.6, 17.6, MUT)
+         "The floor is \u20ac7,500: six months, one city, one person, sixty quests, "
+         "three walls. Whatever arrives above it is split the same way \u2014 quest "
+         "and project rewards first, consented walls second, the kit always.",
+         R, 11.6, 17.6, MUT)
 
     card(c, M, 486, 500, 96, fill=WHITE, stroke=LINE, r=16, shadow=True, shadow_dy=6)
     text(c, M + 22, 520, "21.city", MED, 15, INK, 0.2)
     text(c, M + 22, 542, "hello@21.city  \u00b7  github.com/horaanlika-droid/21movement-",
          MONO, 7.4, MUT, 0.3)
-    text(c, M + 22, 564, "Open source \u00b7 MIT \u00b7 no token \u00b7 no total ask",
+    text(c, M + 22, 564, "Open source \u00b7 MIT \u00b7 no token \u00b7 a floor, not a wish",
          MONO, 7.0, MUT_DIM, 0.4)
 
-    text(c, M, 620, "Paint the number. Then post the task.", MED, 11, MUT_DIM, 0.2)
+    text(c, M, 620, "Paint the number. Then post the task.", HAND, 13, MUT_DIM, 0.2)
     text(c, W - M, 646, f"{idx:02d} / {TOTAL}", MONO, 8.0, MUT_DIM, 0.8, "right")
     chip(c, 596, 606, "STENCIL \u00b7 STICKER \u00b7 CHALK", INK, PAPER,
          alpha(INK, 0.14), 6.4, 20, 8, rot=-2)
