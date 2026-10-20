@@ -137,7 +137,7 @@ def s03(c, idx):
         ("06", "Verify", "Evidence + quorum\nof attestations"),
         ("07", "Settle", "Tranche released\nto the contractor"),
     ]
-    x0, y0 = M, 330
+    x0, y0 = M, 292
     colw = (W - 2 * M) / 7
     # connecting rail
     hline(c, x0 + colw / 2, y0 + 30, W - M - colw / 2, LINE, 1)
@@ -151,7 +151,7 @@ def s03(c, idx):
              align="center")
 
     # principle strip
-    y = 512
+    y = 470
     hline(c, M, y, W - M, LINE_SOFT)
     principles = [
         ("Non-custodial", "21 never holds funds. A per-task escrow contract does."),
@@ -163,6 +163,14 @@ def s03(c, idx):
         x = M + i * ((W - 2 * M) / 4)
         text(c, x, y + 34, k, MED, 11.6, TXT)
         para(c, x, y + 52, (W - 2 * M) / 4 - 34, v, R, 9.4, 13.5, MUT)
+
+    # operators
+    U.card(c, M, 590, W - 2 * M, 56, fill=PANEL_2, stroke=LINE_SOFT, r=8)
+    label(c, M + 18, 612, "Same registry, many front doors", VIO, 7.4, 1.4)
+    text(c, M + 18, 632,
+         "A city can run its own branded instance, a funder can open a round, a "
+         "contractor can use a mobile-only client \u2014 all writing to one task registry.",
+         R, 9.2, MUT)
     foot(c, idx, "The protocol")
 
 
@@ -416,12 +424,12 @@ def s08(c, idx):
                                       "Two digits, painted by hand, pointing back to "
                                       "a working protocol."),
     ]
-    y = 250
+    y = 240
     for i, (k, v) in enumerate(blocks):
         label(c, M, y, f"0{i + 1}", VIO, 8, 1.4)
         text(c, M + 26, y + 2, k, MED, 12.5, TXT)
         para(c, M + 26, y + 22, 470, v, R, 9.8, 14.5, MUT)
-        y += 96
+        y += 106
 
     photo(c, A + "/artist-mural.jpg", 636, 214, 568, 300, r=12,
           overlay=INK, overlay_alpha=0.08)
@@ -481,7 +489,7 @@ def s09(c, idx):
         text(c, sx + 148, sy + 31, hexv, MONO, 7.2, MUT_DIM, 0.4)
 
     # ---- type scale
-    ty_ = 474
+    ty_ = 460
     label(c, px, ty_, "Type scale", MUT_DIM, 7.4, 1.5)
     text(c, px, ty_ + 34, "Display 56 / 60", MED, 26, TXT, -0.4)
     text(c, px + 250, ty_ + 34, "Title 30 / 36", MED, 15, TXT)
@@ -489,8 +497,8 @@ def s09(c, idx):
     text(c, px + 250, ty_ + 76, "LABEL 8.5 / MONO / 1.5", MONO_MED, 8, VIO, 1.4)
 
     # ---- components
-    y = 566
-    hline(c, M, y - 22, W - M, LINE_SOFT)
+    y = 544
+    hline(c, M, y - 24, W - M, LINE_SOFT)
     label(c, M, y, "Components", MUT_DIM, 7.4, 1.5)
     bx = M
     bx += U.chip(c, bx, y + 14, "REPORT AN ISSUE", T.INK, VIO, None, 8, 30, 15) + 10
@@ -500,11 +508,11 @@ def s09(c, idx):
     bx += U.chip(c, bx, y + 18, "PENDING \u00b7 12s", TXT, None, alpha(VIO, 0.45), 7.2, 22, 9) + 10
     bx += U.chip(c, bx, y + 18, "INSUFFICIENT FUNDS", ALERT, None, alpha(ALERT, 0.4), 7.2, 22, 9) + 10
 
-    label(c, M, y + 66, "Lifecycle", MUT_DIM, 7.4, 1.5)
-    text(c, M, y + 86,
+    label(c, M, y + 64, "Lifecycle", MUT_DIM, 7.4, 1.5)
+    text(c, M, y + 84,
          "draft \u2192 proposals \u2192 voting \u2192 funding \u2192 in progress \u2192 "
          "verification \u2192 settled", MONO, 8.2, MUT, 0.2)
-    text(c, W - M, y + 86, "one colour, one word, one next action per state",
+    text(c, W - M, y + 84, "one colour, one word, one next action per state",
          R, 8.6, MUT_DIM, 0, "right")
     foot(c, idx, "Design system")
 
@@ -893,20 +901,21 @@ def s17(c, idx):
            "close-out, with the methodology published alongside them.")
 
     metrics = [
-        ("3", "city partners under a signed pilot agreement"),
-        ("60", "tasks published, verified and settled"),
-        ("\u20ac45k", "value moved through escrow"),
-        ("25", "contractors paid, median payout < 24h"),
-        ("21", "commissioned murals registered on-chain"),
-        ("500", "unique participants with proof-of-personhood"),
+        ("3", "city partners under a signed pilot agreement", "signed pilot MOUs"),
+        ("60", "tasks published, verified and settled", "registry events"),
+        ("\u20ac45k", "value moved through escrow", "escrow contract balance"),
+        ("25", "contractors paid, median payout < 24h", "payout timestamps"),
+        ("21", "commissioned murals registered on-chain", "proof-of-place entries"),
+        ("500", "unique participants with proof-of-personhood", "eligible voter snapshot"),
     ]
-    for i, (big, small) in enumerate(metrics):
+    for i, (big, small, src) in enumerate(metrics):
         col, row = i % 3, i // 3
         x = M + col * 376
         y = 226 + row * 150
         U.card(c, x, y, 352, 128, fill=PANEL, stroke=LINE, r=10)
         text(c, x + 22, y + 54, big, MED, 32, TXT, -1)
-        para(c, x + 22, y + 78, 300, small, R, 9.4, 13, MUT)
+        para(c, x + 22, y + 80, 300, small, R, 9.4, 13, MUT)
+        text(c, x + 22, y + 112, "source: " + src, MONO, 6.8, MUT_DIM, 0.3)
 
     # guardrail metrics
     U.card(c, M, 528, W - 2 * M, 92, fill=PANEL_2, stroke=LINE_SOFT, r=10)
@@ -940,31 +949,37 @@ def s18(c, idx):
     ]
     for i, (k, v) in enumerate(reasons):
         x = M + (i % 2) * 568
-        y = 236 + (i // 2) * 118
+        y = 262 + (i // 2) * 96
         text(c, x, y, f"0{i + 1}", MONO_MED, 8.4, VIO, 1.2)
         text(c, x + 30, y, k, MED, 12.6, TXT)
         para(c, x + 30, y + 22, 470, v, R, 9.6, 14, MUT)
 
     # what we do not do
-    U.card(c, M, 476, 660, 144, fill=PANEL_2, stroke=LINE_SOFT, r=10)
-    label(c, M + 20, 500, "What 21 deliberately does not do", MUT_DIM, 7.4, 1.4)
+    U.card(c, M, 452, 660, 160, fill=PANEL_2, stroke=LINE_SOFT, r=10)
+    label(c, M + 20, 478, "What 21 deliberately does not do", MUT_DIM, 7.4, 1.4)
     no = ["No token sale and no speculative asset",
           "No custody of user funds at any point",
           "No paid placement of projects or contractors",
           "No growth metrics that are not on-chain verifiable"]
-    yy = 526
+    yy = 506
     for n in no:
         text(c, M + 20, yy, "\u00d7", MONO, 9, alpha(ALERT, 0.8))
         text(c, M + 36, yy, n, R, 9.4, MUT)
-        yy += 22
+        yy += 24
 
     # ecosystem ask
-    U.card(c, 752, 476, 452, 144, fill=PANEL, stroke=alpha(VIO, 0.3), r=10)
-    label(c, 772, 500, "Where the grant fits", VIO, 7.4, 1.4)
-    para(c, 772, 524, 412,
-         "21 is public-goods infrastructure: an open registry and escrow any city, "
-         "DAO or funding round can build on. The grant funds the protocol and the "
-         "first three proofs, not a company's growth.", R, 9.4, 14, MUT)
+    U.card(c, 752, 452, 452, 160, fill=PANEL, stroke=alpha(VIO, 0.3), r=10)
+    label(c, 772, 478, "Where the grant fits", VIO, 7.4, 1.4)
+    fits = ["21 is public-goods infrastructure: an open registry and escrow any "
+            "city, DAO or funding round can build on.",
+            "Public-goods rounds can fund tasks directly through the same escrow "
+            "\u2014 no new rails, no new audit surface.",
+            "The grant funds the protocol and the first three proofs, not a "
+            "company's growth."]
+    yy = 504
+    for f in fits:
+        U.dot(c, 776, yy - 3, 1.8, VIO)
+        yy = para(c, 788, yy, 388, f, R, 8.8, 12.5, MUT) + 8
     foot(c, idx, "Why Ethereum")
 
 
