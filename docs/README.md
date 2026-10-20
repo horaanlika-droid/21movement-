@@ -1,87 +1,84 @@
-# 21.city — the mockup
+# 21.city — the app and the mockup
 
-The landing page for the grant application: the number as the campaign, the
-exchange underneath it, and the budget written from the bottom up.
+Two things live in `docs/` and are published on GitHub Pages:
 
-It is a static site — no build step, no framework, no dependency. Open
-`index.html` or serve the folder.
+- [`docs/index.html`](index.html) — **the app** (bilingual RU/EN): a civic-projects
+  mockup in the ethereum.org visual language. Someone photographs a broken
+  sidewalk with coordinates; neighbours see it on the map, add to the project
+  budget with donations while commercial offers (КП) come in from contractors;
+  **the budget target is the lowest offer**; the requester accepts an offer, the
+  work happens, escrow pays after acceptance, the receipt stays public.
+- [`docs/landing.html`](landing.html) — the grant-application landing (the old
+  `index.html`): the number as the campaign, the exchange underneath it, and the
+  budget written from the bottom up.
+
+It is a static site — no build step, no framework. The app keeps its state in
+`localStorage`; the only runtime libraries are self-hosted
+([Leaflet](assets/vendor/leaflet) for the map). Open `docs/index.html` or serve
+the folder:
 
 ```bash
 python3 -m http.server 8080 --directory docs
 # http://localhost:8080
 ```
 
-## Publishing on GitHub Pages
+## The mechanics implemented
 
-Two ways; both need Pages switched on once in **Settings → Pages**.
-
-**A. GitHub Actions (recommended).** The workflow
-[`.github/workflows/pages.yml`](../.github/workflows/pages.yml) deploys `docs/`
-on every push to `main` and can be started from **Actions → pages → Run workflow**.
-
-Pages itself has to be switched on once: **Settings → Pages → Build and
-deployment → Source: GitHub Actions**. The workflow tries to do that for you
-(`enablement: true`), but the workflow token is not always allowed to — when it
-is not, the run stays green and leaves a warning with this exact instruction.
-After switching it on, re-run the workflow; the site appears at
-`https://<owner>.github.io/21movement-/`.
-
-**B. Branch folder.** Settings → Pages → *Deploy from a branch* → branch
-`main`, folder `/docs`. No workflow involved.
-
-The site ends up at `https://<owner>.github.io/21movement-/`.
+1. **Community support** — a report (photo + coordinates from geolocation or a
+   map tap) appears on the map; neighbours nearby see the distance, mark “bothers
+   me too” and donate into the project budget. The requester seeds the first €25.
+2. **Finding contractors** — while donations accumulate, contractors submit
+   commercial offers (price, days, rating). The **budget target is recalculated
+   to the minimum offer price** the moment it arrives; before any offers the
+   author’s estimate is the provisional target.
+3. **Work** — an offer is accepted (chat with the contractor, before/after). The
+   contractor can **request an advance for materials and work — with a
+   justification**; the project’s donors vote to give it or not (a majority of
+   the contributed amount releases the advance from escrow; non-donors are
+   asked to donate first).
+4. **Verification** — neighbours confirm the result; escrow pays the rest.
+5. **Completed** — the receipt is public.
 
 ## How the page is put together
 
 | Path | What it is |
 |---|---|
-| `index.html` | The page. Both languages are in the markup, not in a JSON file. |
-| `style.css` | Design tokens, layout, the hand-drawn details. |
-| `app.js` | Language switch and the scroll reveal. Nothing else. |
-| `assets/fonts/` | Self-hosted, subset `woff2`: Geist (400–700), Geist Mono, Gaegu (the child's hand, digits), Pangolin (the handwritten notes, Latin + Cyrillic). |
-| `assets/img/` | `cover-21`, `artist-wall`, `project-block` — the graffiti art, kept large; `favicon.png`; `og.jpg` for link previews. |
+| `index.html` | The app shell: five tabs (Home, Map, Projects, Wallet, Profile), the project detail overlay and the modals. |
+| `city.css` | The app’s design tokens and layout — the same paper/ink/sticker language as the landing. On desktop the app sits in a phone-shaped column on a sheet of paper. |
+| `city.js` | All app logic: state (localStorage), i18n, cards, the map, donations, offers, the timeline, the wizard. |
+| `landing.html` + `style.css` + `app.js` | The grant landing, unchanged in spirit: language switch and scroll reveal. |
+| `assets/vendor/leaflet/` | Self-hosted Leaflet 1.9.4 (BSD-2-Clause) so the app has zero external runtime dependencies. Map tiles: CARTO Voyager over OpenStreetMap data. |
+| `assets/img/projects/` | Generated placeholder photos for the seeded projects (resized copies of `grant/photos/`). |
+| `assets/fonts/` | Self-hosted, subset `woff2`: Geist, Geist Mono, Gaegu (the child’s hand for numbers), Pangolin (handwritten notes, Latin + Cyrillic). |
 
-**Language.** `index.html` holds `<span lang="ru">…</span><span lang="en">…</span>`
-side by side. `html[data-lang]` and one CSS rule pick one; the script only flips
-the attribute and remembers the choice. With JS off, Russian is shown and the
-page still works.
+**Language.** The shell holds both languages in the markup
+(`<span lang="ru">…</span><span lang="en">…</span>`); dynamic strings live in an
+i18n dictionary in `city.js` (`I18N`). The RU/EN pill in the header switches
+both, and seeded data carries `{ru, en}` pairs.
 
-**Handwriting.** Two faces, two jobs:
+**Seeds.** Five projects around 59.9398, 30.3157 and four quests, matching the
+reference mockups. “Reset demo data” in the profile returns everything to the
+seed. User photos are downscaled to ~900 px and stored as data URLs in
+`localStorage`.
 
-- **Gaegu** (Korean handwriting, childlike) is used for every number: the huge
-  `21`, the section numerals `1–5`, the figures in the budget and the dates.
-  Digits are the same in both languages, so the page keeps one voice when it
-  switches.
-- **Pangolin** (hand-lettered, Cyrillic + Latin) is used for written notes,
-  captions and the pull quotes. Gaegu has no Cyrillic and no `€`, so it cannot
-  carry the Russian copy.
+## Publishing on GitHub Pages
 
-The big graffiti `21` stays as art (`cover-21.webp`, `artist-wall.webp`) — the
-handwriting is the page's own writing around it, not a replacement for it.
+The site is served by **Deploy from a branch** (branch `main`, folder `/(root)`):
+the root [`index.html`](../index.html) immediately redirects to `docs/`, which
+opens the app. Nothing needs to be switched on beyond Pages itself
+(Settings → Pages → Deploy from a branch, main, /(root)).
 
-**Editing.** Copy is in `index.html`; colours, spacing and type are tokens at the
-top of `style.css`. Keep both languages in sync when you change a sentence —
-there is no fallback.
+The [workflow](../.github/workflows/pages.yml) is the alternative path: if you
+flip Settings → Pages → Source to **GitHub Actions**, it deploys `docs/` on every
+push to `main`. While branch deploys are on, the workflow detects it, stays
+green and skips the deploy with a warning instead of fighting the branch
+deployment.
 
-## The numbers on the page
-
-The page names a **floor**, not a wish: €7,500 for six months in one city, with
-the code time in the budget at 250 ₽ an hour (the rate the author earns cooking,
-960 hours → €2,500 at €1 = 96 ₽). Every other line is a unit price × quantity,
-and the table adds up exactly to €7,500. Above that floor the original split
-(45/15/15/10/6/5/4) applies again.
-
-Edit the table, the stacked bar and the milestone amounts together — they are
-three views of the same arithmetic, and the bar widths are inline percentages.
+Either way the app ends up at `https://<owner>.github.io/21movement-/`.
 
 ## Honesty
 
-The illustrations and photographs are generated placeholders and are labelled as
-such in the footer. The page claims no signed city, partner or artist. No token,
-no paid placement, no paid paint without the owner's consent.
-
-## Fonts
-
-All four families are under the SIL Open Font License and are subset to the
-characters this page uses; the licence texts are in
-[`assets/fonts/README.md`](assets/fonts/README.md).
+The illustrations and photographs are generated placeholders. The app claims no
+signed city, partner or artist; the numbers are demo arithmetic, not promises.
+No token, no paid placement, no paid paint without the owner’s consent. There is
+no server: every “donation” and “offer” lives only in your browser.
