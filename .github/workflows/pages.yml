@@ -42,7 +42,7 @@ jobs:
       - name: Pages is off
         if: steps.pages.outcome != 'success'
         run: |
-          echo "::warning title=Pages is off::Settings → Pages → Build and deployment → Source: GitHub Actions, then re-run this workflow (Actions → pages → Re-run jobs). Nothing is wrong with docs/."
+          echo "::warning title=Actions deploy skipped::The site is already served by the branch deployment — the root index.html redirects to docs/, nothing is wrong with docs/. To deploy from this workflow instead: Settings → Pages → Build and deployment → Source: GitHub Actions, then re-run this workflow (Actions → pages → Re-run jobs)."
 
       - uses: actions/upload-pages-artifact@v5
         if: steps.pages.outcome == 'success'
