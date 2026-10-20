@@ -24,7 +24,7 @@ in 9 cities, each paid on time, each wall registered on Ethereum.
 ## Website / repo
 
 - Website: `https://21.city` (in development)
-- Repository: `https://github.com/21anlika-droid/21movement-`
+- Repository: `https://github.com/horaanlika-droid/21movement-`
 
 ## The ask, in one paragraph
 

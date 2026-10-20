@@ -129,7 +129,7 @@ def s02(c, idx):
 # ============================================================ 03  the upgrade
 def s03(c, idx):
     page(c)
-    T.head(c, "02 \u2014 The upgrade",
+    T.head(c, "02 \u2014 The upgrade \u00b7 v21",
            "Not another app. An upgrade\nfor the street corner.",
            "Cities already have crews, budgets and rules. 21 replaces the missing "
            "layer between a report and a paid invoice \u2014 and makes the result visible.",
@@ -182,6 +182,12 @@ def s04(c, idx):
         ("06", "Verify", "Signed capture, geofence, attestations, 72 h to object.", PINK),
         ("07", "Settle", "Escrow releases the tranche to the contractor.", VIOLET),
     ]
+    chip(c, 570, 190, "RULES PINNED BEFORE MONEY", VIOLET, WHITE, None, 7.6, 26,
+         12, rot=-3, shadow=True)
+    doodle_arrow(c, 648, 226, 642, 288, VIOLET, 1.4, 0.22)
+    sparkle(c, 546, 226, 7, YELLOW)
+    sparkle(c, 770, 244, 4.5, PINK)
+
     x0, rail_y = M + 10, 318
     colw = (W - 2 * M - 20) / 7
     band_w = W - 2 * M - 20
@@ -220,6 +226,11 @@ def s05(c, idx):
            "A contractor needs a phone and a price list. No tender documents, no "
            "90-day invoice cycle, no relationship with city hall required.",
            width=700, subw=520, y=106, size=36, leading=41)
+
+    # a small sticker illustration keeps the page human next to the numbers
+    illustration(c, ART + "/contractor-duo.png", 962, 58, 246)
+    chip(c, 962, 44, "ANYONE WITH A PHONE", WHITE, INK, alpha(INK, 0.16),
+         6.4, 20, 8, rot=-2)
 
     bids = [
         ("Groenwerk BV", "Bench repair \u00b7 Amsterdam", "\u20ac412", "9 days",
@@ -340,23 +351,24 @@ def s07(c, idx):
 
     tiles = [
         ("Lijn bench", PHOTOS + "/plaza.jpg", "Cast concrete base, FSC oak top",
-         "30 yr base \u00b7 12 yr top", "\u20ac420"),
+         "30 yr base \u00b7 12 yr top", "\u20ac420", 0.82),
         ("Lus rack", PHOTOS + "/bike-rack.jpg", "Powder-coated steel loops",
-         "20 yr \u00b7 6 bikes", "\u20ac950"),
+         "20 yr \u00b7 6 bikes", "\u20ac950", 0.58),
         ("Sedum shelter", PHOTOS + "/shelter.jpg", "Steel + glass, sedum roof, 340 Wp",
-         "25 yr \u00b7 off-grid", "\u20ac6,400"),
+         "25 yr \u00b7 off-grid", "\u20ac6,400", 0.42),
     ]
-    for i, (name, p, spec, life, price) in enumerate(tiles):
+    for i, (name, p, spec, life, price, _focus) in enumerate(tiles):
         x = M + i * 384
         card(c, x, 202, 368, 258, fill=WHITE, stroke=LINE, r=16, shadow=True,
              shadow_dy=6)
-        photo(c, p, x + 8, 210, 352, 146, r=10)
+        photo(c, p, x + 8, 210, 352, 146, r=10, focus=tiles[i][5])
         text(c, x + 20, 382, name, MED, 12.4, INK)
         text(c, x + 348, 382, price, MED, 12.4, VIOLET, 0, "right")
         text(c, x + 20, 400, spec, R, 8.4, MUT)
         text(c, x + 20, 418, life, MONO, 7.2, MUT_DIM, 0.2)
         chip(c, x + 20, 428, "SPEC SHEET \u00b7 V21", INK, PAPER, alpha(INK, 0.14),
              6.2, 18, 7)
+        text(c, x + 348, 442, "3 BIDS \u00b7 1 WINNER", MONO, 6.2, VIOLET, 0.4, "right")
 
     # spec table
     y = 496
@@ -380,6 +392,9 @@ def s07(c, idx):
         text(c, 1208, y + 12, repair, MONO, 7.8, MUT_DIM, 0.2, "right")
         hline(c, M, y + 19, W - M, LINE_SOFT, 0.7)
         y += 25
+    text(c, M, 656,
+         "Every spec sheet is a live bid template: three contractors quote line by "
+         "line, the street picks one, escrow pays on delivery.", R, 8.4, MUT_DIM)
     foot(c, idx, "The kit")
 
 
@@ -614,6 +629,12 @@ def s12(c, idx):
         ("Contractor", "Bids, contracts, evidence, payouts", "workspace"),
         ("Completed", "Before / after and the payment record", "done"),
     ]
+    chip(c, 944, 140, "PHOTO FIRST, FORM LATER", TEAL, WHITE, None, 7.6, 26, 12,
+         rot=3, shadow=True)
+    doodle_arrow(c, 1080, 176, 1108, 204, TEAL, 1.4, 0.18)
+    sparkle(c, 942, 176, 6.5, YELLOW)
+    sparkle(c, 1178, 132, 4.5, PINK)
+
     cw, ch = 360, 176
     for i, (title, desc, kind) in enumerate(frames):
         col, row = i % 3, i // 3
@@ -693,6 +714,13 @@ def s13(c, idx):
     rect(c, px + 16, py + ph - 58, pw - 32, 34, fill=VIOLET, r=12)
     text(c, px + pw / 2, py + ph - 36, "Publish task", MED, 10, WHITE, 0.2, "center")
     text(c, px + pw / 2, py + ph - 14, "1 of 3 steps", MONO, 5.8, MUT_DIM, 0.2, "center")
+
+    # the joke of the slide: one button, and a sticker that says so
+    chip(c, 722, 556, "ONE BIG BUTTON", VIOLET, WHITE, None, 7.4, 26, 12, rot=-4,
+         shadow=True)
+    doodle_arrow(c, 888, 574, 940, 574, VIOLET, 1.5, 0.12)
+    sparkle(c, 900, 540, 7, YELLOW)
+    sparkle(c, 706, 518, 4.5, PINK)
     foot(c, idx, "Interface")
 
 
@@ -719,6 +747,17 @@ def s14(c, idx):
     text(c, M + 300, 250, "over 6 months", MED, 13, MUT)
     text(c, M + 300, 268, "21 artists \u00b7 21 walls \u00b7 9 cities", R, 9.4, MUT)
     chip(c, M + 300, 282, "CODE: $0", VIOLET, VIOLET_SOFT, None, 7, 22, 9, rot=-2)
+    chip(c, 604, 262, "THE MONEY GOES TO PEOPLE", VIOLET, WHITE, None, 8.2, 30,
+         14, rot=-3.5, shadow=True)
+    doodle_arrow(c, 620, 346, 652, 320, VIOLET, 1.4, 0.18)
+    sparkle(c, 596, 240, 8, YELLOW)
+    sparkle(c, 806, 300, 5, TEAL)
+
+    card(c, 902, 92, 306, 136, fill=WHITE, stroke=LINE, r=14, shadow=True,
+         shadow_dy=5)
+    photo(c, PHOTOS + "/crew.jpg", 908, 98, 294, 106, r=9, focus=0.22)
+    text(c, 912, 218, "CREW PAID IN 5 DAYS \u00b7 AMSTERDAM", MONO, 6.2, MUT_DIM, 0.6)
+    tape(c, 1052, 92, 62, 17, -4, alpha(YELLOW, 0.75))
 
     # stacked bar
     bx, bw, by = M, W - 2 * M, 330
@@ -761,6 +800,11 @@ def s15(c, idx):
            "No milestone is closed on a slide. Each one ships something a reviewer "
            "can visit, photograph or open.", width=760, subw=560, y=106, size=34,
            leading=39)
+
+    chip(c, 908, 150, "PAID WHEN IT EXISTS", VIOLET, WHITE, None, 7.8, 26, 12,
+         rot=3, shadow=True)
+    sparkle(c, 884, 132, 6.5, YELLOW)
+    sparkle(c, 1156, 196, 4.5, TEAL)
 
     rows = [
         ("M1", "Month 1", "Open call + 21 contracts",
@@ -877,6 +921,11 @@ def s17(c, idx):
            "close-out, with the raw registry export next to them.", width=820,
            subw=620, y=106, size=36, leading=41)
 
+    chip(c, 936, 140, "RECEIPTS, NOT VIBES", PINK, WHITE, None, 7.8, 28, 13,
+         rot=-3, shadow=True)
+    sparkle(c, 906, 176, 6, YELLOW)
+    sparkle(c, 1180, 176, 4.5, VIOLET)
+
     metrics = [
         ("21", "walls commissioned and documented", "proof-of-place entries", VIOLET),
         ("21", "artists paid, median 5 days", "payout timestamps", TEAL),
@@ -968,6 +1017,10 @@ def s19(c, idx):
            "optional and capped; the public instance stays free for residents.",
            width=780, subw=620, y=106, size=34, leading=39)
 
+    illustration(c, ART + "/artist-kit.png", 902, 74, 306)
+    chip(c, 1114, 216, "THE KIT \u00b7 MIT", VIOLET, WHITE, None, 6.8, 22, 9,
+         rot=4, shadow=True)
+
     cols = [
         ("01", "Sustainable by design", VIOLET,
          ["Optional 1.5% fee on released escrow, capped and opt-in per city",
@@ -1027,7 +1080,7 @@ def s20(c, idx):
 
     card(c, M, 514, 420, 96, fill=WHITE, stroke=LINE, r=16, shadow=True, shadow_dy=6)
     text(c, M + 22, 548, "21.city", MED, 15, INK, 0.2)
-    text(c, M + 22, 570, "hello@21.city  \u00b7  github.com/21-movement", MONO, 7.6,
+    text(c, M + 22, 570, "hello@21.city  \u00b7  github.com/horaanlika-droid/21movement-", MONO, 7.6,
          MUT, 0.3)
     text(c, M + 22, 592, "Open source \u00b7 MIT \u00b7 no token", MONO, 7.0, MUT_DIM, 0.4)
 

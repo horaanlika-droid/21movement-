@@ -404,12 +404,17 @@ def doodle_arrow(c, x1, y1, x2, y2, color=INK, lw=1.4, curve=0.18):
 
 
 # ---------------------------------------------------------------- images
-def photo(c, path, x, y, w, h, r=12, border=None, bw=5, shadow=False):
-    """Cover-cropped photo with rounded corners, optional white border/shadow."""
+def photo(c, path, x, y, w, h, r=12, border=None, bw=5, shadow=False,
+          focus=0.5):
+    """Cover-cropped photo with rounded corners, optional white border/shadow.
+
+    `focus` selects the visible band of a portrait image: 0 = top, 1 = bottom.
+    """
     from PIL import Image
     iw, ih = Image.open(path).size
     s = max(w / iw, h / ih)
     dw, dh = iw * s, ih * s
+    focus = min(1.0, max(0.0, focus))
     if border is not None:
         rect(c, x - bw, y - bw, w + bw * 2, h + bw * 2, fill=border,
              r=r + bw if r else 0)
@@ -422,8 +427,8 @@ def photo(c, path, x, y, w, h, r=12, border=None, bw=5, shadow=False):
     else:
         p.rect(x, ty(y) - h, w, h)
     c.clipPath(p, stroke=0, fill=0)
-    c.drawImage(path, x + (w - dw) / 2, ty(y) - h + (h - dh) / 2, dw, dh,
-                mask="auto")
+    c.drawImage(path, x + (w - dw) / 2,
+                ty(y) - h + (h - dh) * (1 - focus), dw, dh, mask="auto")
     c.restoreState()
 
 

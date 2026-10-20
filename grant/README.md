@@ -8,6 +8,8 @@ ink-outlined "sticker" cards, pastel accents, flat editorial illustration and a
 serif accent face — instead of the previous dark investor template. Photography
 is deliberately phone-shaped and amateur: vertical, overcast, slightly crooked,
 so a reviewer reads it as "a resident took this" rather than "a stock shoot".
+The street-furniture photos show contemporary benches, racks and shelters in
+modern neighbourhoods, not postcard streets.
 
 ## What the deck asks for
 
@@ -23,13 +25,14 @@ budget — the team writes it.
 | `build/21-grant-deck.pdf` | **The deliverable.** 20 pages, 1280×720 pt, embedded fonts. |
 | `application.md` | The same content as copy-paste text for a grant form (EN + short RU version). |
 | `preview/p01…p20.png` | Rendered page previews (1.5× scale) for quick review in a browser. |
-| `art/` | Four flat illustrations in the ethereum.org style (cover, city upgrade, artist wall, contractors). |
-| `photos/` | Six phone-style photographs (bench before/after, bike rack, shelter, plaza, crew). |
+| `art/` | Five flat illustrations in the ethereum.org style (cover, city upgrade, artist wall, contractors, artist kit). |
+| `photos/` | Six phone-style photographs (bench before/after, modern bike rack, solar shelter, contemporary plaza, crew). |
 | `tools/` | The generator: `theme.py` (design system), `uikit.py` (UI kit), `build.py` (slides). |
 
-All art is AI-generated placeholder material. Replace it with real commissions
-and real photographs before submitting — the `art/` and `photos/` filenames are
-the only contract between the deck and the image files.
+All illustrations and photographs are AI-generated placeholder material.
+Replace them with real commissions and real photographs before submitting — the
+`art/` and `photos/` filenames are the only contract between the deck and the
+image files.
 
 ## Rebuilding
 
@@ -50,6 +53,22 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
   The illustration background is `#FAF2DE`, identical to `theme.PAPER`, which is
   why images can be dropped on the page without a frame.
 - **Slides** `s12`–`s20` also live in `application.md`; keep the two in sync.
+
+## Notes on the visual pass
+
+- **Illustrations** are flat, ink-outlined and pastel, drawn on `#FAF2DE`, so they
+  drop onto the page with no frame. `artist-kit.png` illustrates what an open
+  kit actually is; `contractor-duo.png` puts two bidders next to the bid sheet.
+- **Photographs** are vertical, overcast and slightly crooked, with wet paving
+  and autumn leaves — the look of a phone snapshot in a modern neighbourhood,
+  not a postcard. The street furniture in them is contemporary: oak-and-concrete
+  benches, powder-coated loop racks, a sedum-roofed solar shelter.
+- **The interface** leans into ethereum.org's playfulness: rotated sticker
+  chips, hand-drawn arrows, sparkles and one very large button. Every one of
+  them carries a sentence, never decoration for its own sake.
+- **Contractor bids** are visible in three places now: the bid sheet (`s05`),
+  the itemised quote (`s05`), and a `3 BIDS · 1 WINNER` label on every item in
+  the street-furniture kit (`s07`).
 
 ## Slide map
 

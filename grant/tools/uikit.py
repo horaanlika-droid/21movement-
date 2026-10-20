@@ -108,7 +108,7 @@ def window_content(c, x, y, w, h, kind):
         text(c, x + 16, y + h - 17, "\u20ac362 raised \u00b7 41 people", MONO, 5.2, MUT, 0.2)
     elif kind == "project":
         photo(c, T.PHOTOS + "/bench-fixed.jpg", x, y, w * 0.46, h,
-              r=0)
+              r=0, focus=0.45)
         px = x + w * 0.46 + 9
         text(c, px, y + 16, "Bench, Oosterpark", MED, 7.6, INK)
         label(c, px, y + 27, "Amsterdam \u00b7 14 mar", MUT_DIM, 4.8, 0.7)
@@ -162,15 +162,16 @@ def window_content(c, x, y, w, h, kind):
         rect(c, x + 17 + (w - 27) / 2, y + 121, (w - 27) / 2, 16, fill=VIOLET, r=4)
         text(c, x + 17 + (w - 27) * 0.75, y + 132, "Claim \u20ac210", MED, 5.0, WHITE, 0.2, "center")
     elif kind == "done":
-        photo(c, T.PHOTOS + "/bench-fixed.jpg", x, y, w, 58, r=0)
+        photo(c, T.PHOTOS + "/bench-fixed.jpg", x, y, w, 58, r=0, focus=0.42)
         chip(c, x + 8, y + 7, "VERIFIED", TEAL, WHITE, None, 5.0, 13, 6)
         text(c, x + 10, y + 78, "Completed in 9 days", MED, 7.6, INK)
         text(c, x + 10, y + 89, "\u20ac420 released \u00b7 Groenwerk BV", T.R, 5.2, MUT)
         text(c, x + 10, y + 103, "BEFORE", MONO, 4.6, MUT_DIM, 0.6)
         text(c, x + 10 + (w - 20) / 2 + 6, y + 103, "AFTER", MONO, 4.6, MUT_DIM, 0.6)
-        photo(c, T.PHOTOS + "/bench-broken.jpg", x + 10, y + 107, (w - 26) / 2, 36, r=3)
+        photo(c, T.PHOTOS + "/bench-broken.jpg", x + 10, y + 107, (w - 26) / 2, 36,
+              r=3, focus=0.55)
         photo(c, T.PHOTOS + "/bench-fixed.jpg", x + 16 + (w - 26) / 2, y + 107,
-              (w - 26) / 2, 36, r=3)
+              (w - 26) / 2, 36, r=3, focus=0.55)
 
 
 # ------------------------------------------------------------------ map
