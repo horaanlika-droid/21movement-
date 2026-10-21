@@ -20,6 +20,10 @@
     "en": "Scale"
   },
   {
+    "ru": "Философия",
+    "en": "Philosophy"
+  },
+  {
     "ru": "Деньги",
     "en": "Money"
   },
@@ -366,6 +370,74 @@
   {
     "ru": "QR на заборе ведёт на страницу проекта: сроки, этапы, что оплачено.",
     "en": "A QR on the hoarding opens the project page: timeline, milestones, what has been paid."
+  },
+  {
+    "ru": "философия",
+    "en": "philosophy"
+  },
+  {
+    "ru": "Шесть принципов, взятых у Ethereum.",
+    "en": "Six principles borrowed from Ethereum."
+  },
+  {
+    "ru": "Ethereum — это не «крипта», а способ договариваться без начальника: правила опубликованы до денег, их нельзя переписать задним числом в свою пользу, и они одинаковы для министерства и для подростка с трафаретом. 21 берёт эту форму, а не спекуляцию: без токена, без пресейла, без процента с того, кто чинит скамейку.",
+    "en": "Ethereum is not “crypto”. It is a way of agreeing without a boss: the rules are published before the money, they cannot be rewritten afterwards in somebody’s favour, and they are the same for a ministry and for a teenager with a stencil. 21 takes that shape and not the speculation — no token, no presale, no cut from the person fixing the bench."
+  },
+  {
+    "ru": "Достоверная нейтральность",
+    "en": "Credible neutrality"
+  },
+  {
+    "ru": "Правила написаны до того, как пришли деньги, и не дают преимущества никому — включая нас. Нет платных мест в выдаче, нет алгоритма раздачи заказов, нет менеджера, который решает, кто получит работу.",
+    "en": "The rules are written before the money arrives and favour nobody, including us. No paid placement, no dispatch algorithm, no manager deciding who gets the work."
+  },
+  {
+    "ru": "Без разрешения",
+    "en": "Permissionless"
+  },
+  {
+    "ru": "Нарисовать число, опубликовать просьбу, прислать отклик, пополнить бюджет или проверить результат может кто угодно — без согласования, подписки и порога. Набор трафаретов под MIT, у числа нет владельца.",
+    "en": "Anyone can paint the number, publish an ask, send an offer, add to a budget or verify a result — no approval, no subscription, no minimum. The kit is MIT and the mark has no owner."
+  },
+  {
+    "ru": "Минимум доверия",
+    "en": "Minimal trust"
+  },
+  {
+    "ru": "Не нужно верить платформе или обещанию незнакомого человека. Награда зафиксирована до начала работы, аванс даёт большинство по сумме взносов, выплата — только после подтверждения обеих сторон.",
+    "en": "You do not have to believe a platform or a stranger’s promise. The reward is fixed before the work starts, an advance needs a majority of the money contributed, and payment follows only after both sides confirm."
+  },
+  {
+    "ru": "Проверяй, а не верь",
+    "en": "Verify, don’t trust"
+  },
+  {
+    "ru": "Каждый шаг оставляет публичный след: просьба, отклики, выбор, фото «до и после», чек. Сосед проверяет, стоит ли скамейка; донор видит, куда ушёл каждый евро.",
+    "en": "Every step leaves a public trace: the ask, the offers, the choice, the before and after photos, the receipt. A neighbour checks whether the bench still stands; a donor sees where each euro went."
+  },
+  {
+    "ru": "Общее благо",
+    "en": "Public goods"
+  },
+  {
+    "ru": "Число, набор, чеки и код открыты. Ценность остаётся у того, кто сделал работу: без токена, без пресейла, без процента с исполнителя. Деньги приходят из грантов и согласованных стен, а не из налога на мелкую работу.",
+    "en": "The number, the kit, the receipts and the code are open. The value stays with the person who did the work: no token, no presale, no cut from the provider. Money comes from grants and consented walls, not from taxing small work."
+  },
+  {
+    "ru": "Нет владельца",
+    "en": "No owner"
+  },
+  {
+    "ru": "Директор не отменит закрытый квест, компания не держит деньги. От владения отказываются постепенно: код остаётся MIT, и если 21 исчезнет, запись и набор останутся.",
+    "en": "No CEO cancels a settled quest and no company holds the funds. Ownership is renounced progressively: the code stays MIT, and if 21 disappears the record and the kit remain."
+  },
+  {
+    "ru": "Честно о черновике",
+    "en": "Honest about the draft"
+  },
+  {
+    "ru": "Опубликованное приложение — локальный черновик: в нём нет блокчейна, ключей и движения денег, данные живут в localStorage одного браузера. Принципы выше описывают то, как правила записаны уже сейчас — в интерфейсе и в тестах, а не работающую сеть. Ethereum добавляет позже одно: эти правила перестают зависеть от нас.",
+    "en": "The published app is a local draft: no blockchain, no keys, no money moved, and the data lives in one browser’s localStorage. The principles above describe how the rules are already written — in the interface and in the tests — not a live network. Ethereum adds one thing later: the rules stop depending on us."
   },
   {
     "ru": "деньги",

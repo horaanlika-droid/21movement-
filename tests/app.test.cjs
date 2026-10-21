@@ -127,3 +127,59 @@ test('landing page switches between the six languages', async t => {
   assert.match(w.document.title, /숫자가 PR/);
   w.window.close();
 });
+test('the how-it-works sheet carries the six Ethereum principles in every language', async t => {
+  const a = await app(); t.after(() => a.dom.window.close());
+  a.click('[data-how="1"]');
+  assert.equal(a.w.document.querySelectorAll('#mHow .prin li').length, 6);
+  const neutral = {
+    ru: 'Достоверная нейтральность', en: 'Credible neutrality', es: 'Neutralidad creíble',
+    zh: '可信的中立', ja: '信頼できる中立性', ko: '신뢰할 수 있는 중립성'
+  };
+  for (const [code, title] of Object.entries(neutral)) {
+    a.click(`[data-set-lang="${code}"]`);
+    // principles come from the dictionary, so all six languages are real, not fallbacks
+    assert.equal(a.$('#mHow [data-i18n="prin1t"]').textContent, title);
+    for (let i = 1; i <= 6; i++) {
+      assert.ok(a.$(`#mHow [data-i18n="prin${i}d"]`).textContent.length > 12, `prin${i}d · ${code}`);
+    }
+  }
+  // honesty: the draft states it has no blockchain right next to the principles
+  a.click('[data-set-lang="en"]');
+  assert.match(a.$('#mHow [data-i18n="prinNote"]').textContent, /no blockchain/i);
+  a.click('[data-set-lang="ru"]');
+  assert.match(a.$('#mHow [data-i18n="prinNote"]').textContent, /без блокчейна/i);
+});
+test('landing explains the Ethereum philosophy in six languages and links it in the nav', async t => {
+  const landing = fs.readFileSync('landing.html', 'utf8');
+  assert.match(landing, /<section class="section" id="philosophy">/);
+  assert.match(landing, /<a href="#philosophy">/);
+  const script2 = fs.readFileSync('app.js', 'utf8');
+  const dom = new JSDOM(landing, { url: 'http://localhost/landing.html', runScripts: 'outside-only' });
+  const w = dom.window; w.eval(script2);
+  const section = w.document.getElementById('philosophy');
+  assert.equal(section.querySelectorAll('article.card').length, 6);
+  const expect = {
+    ru: 'Шесть принципов, взятых у Ethereum.',
+    en: 'Six principles borrowed from Ethereum.',
+    es: 'Seis principios tomados de Ethereum.',
+    zh: '从 Ethereum 借来的六条原则。',
+    ja: 'Ethereum から借りた 6 つの原則。',
+    ko: 'Ethereum에서 가져온 여섯 가지 원칙.'
+  };
+  for (const [code, heading] of Object.entries(expect)) {
+    w.document.querySelector(`[data-set-lang="${code}"]`).click();
+    assert.equal(w.document.documentElement.getAttribute('data-lang'), code);
+    // jsdom does not apply CSS, so the hidden languages stay in textContent:
+    // read the span that the language rule would leave visible.
+    assert.equal(section.querySelector(`h2 span[lang="${code}"]`).textContent, heading);
+    for (const card of section.querySelectorAll('article.card')) {
+      assert.equal(card.querySelectorAll('h3 span[lang]').length, 6);
+      assert.ok(card.querySelector(`p span[lang="${code}"]`).textContent.length > 12, code);
+    }
+  }
+  // the honesty note sits with the principles and says the draft has no chain
+  const note = [...section.querySelectorAll('.card p')].pop();
+  assert.match(note.querySelector('span[lang="ru"]').textContent, /нет блокчейна/);
+  assert.match(note.querySelector('span[lang="en"]').textContent, /no blockchain/i);
+  w.window.close();
+});
