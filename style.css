@@ -89,9 +89,9 @@
   --pink: #ff51bc;
   --pink-soft: #fce2f1;
 
-  --sans: "Geist", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --hand: "Pangolin", "Comic Sans MS", cursive;
+  --sans: "Geist", -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC", "Hiragino Sans", "Yu Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans JP", "Noto Sans KR", Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, "PingFang SC", "Microsoft YaHei", "Noto Sans Mono CJK SC", monospace;
+  --hand: "Pangolin", "Comic Sans MS", "PingFang SC", "Hiragino Sans", "Malgun Gothic", "Noto Sans CJK SC", cursive;
   --num: "Gaegu", "Pangolin", cursive;
 
   --wrap: 1180px;
@@ -136,9 +136,13 @@ h1, h2, h3, h4, p, figure, blockquote, ul, ol, dl, dd { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 ::selection { background: var(--yellow); color: var(--ink); }
 
-/* language switch: two real copies in the markup, no JS needed */
-html[data-lang="ru"] [lang="en"],
-html[data-lang="en"] [lang="ru"] { display: none !important; }
+/* language switch: six real copies in the markup, no JS needed */
+html[data-lang="ru"] [lang]:not([lang="ru"]),
+html[data-lang="en"] [lang]:not([lang="en"]),
+html[data-lang="es"] [lang]:not([lang="es"]),
+html[data-lang="zh"] [lang]:not([lang="zh"]),
+html[data-lang="ja"] [lang]:not([lang="ja"]),
+html[data-lang="ko"] [lang]:not([lang="ko"]) { display: none !important; }
 
 .skip {
   position: absolute; left: 16px; top: -60px; z-index: 100;
@@ -300,6 +304,56 @@ h3 { font-size: 19px; line-height: 1.25; font-weight: 600; }
   color: var(--mut);
 }
 .lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+/* language menu: six languages, one dropdown */
+.langmenu { position: relative; }
+.langmenu__btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--mut);
+}
+.langmenu__btn::-webkit-details-marker { display: none; }
+.langmenu__btn svg { width: 15px; height: 15px; }
+.langmenu[open] .langmenu__btn { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.langmenu__list {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 90;
+  min-width: 168px;
+  display: grid;
+  gap: 2px;
+  padding: 6px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(23, 22, 27, 0.14);
+}
+.langmenu__list button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.langmenu__list button:hover { background: var(--violet-soft); color: var(--violet-deep); }
+.langmenu__list button[aria-pressed="true"] { background: var(--violet-soft); color: var(--violet-deep); font-weight: 600; }
 
 /* -------------------------------------------------------------- hero */
 .hero {

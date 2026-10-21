@@ -97,7 +97,30 @@
       estLabel: "оценка", noOffersYet: "Пока нет КП — бюджет считается по оценке автора.",
       awaitingOffers: "ждём КП", chosen: "выбрано",
       emptyWallet: "Пока нет взносов. Найдите проект рядом и поддержите его.",
-      emptyList: "Ничего не нашлось."
+      emptyList: "Ничего не нашлось.",
+      badAmount: "Введите сумму от 1 до 1 000 000",
+      bothersMeToo: "мне тоже мешает",
+      budgetMicro: "Донат идёт в бюджет проекта и тратится на работу, а не на комиссии платформы.",
+      confirmReset: "Сбросить все локальные данные? Сначала сохраните экспорт.",
+      dAgo: " дн назад",
+      docTitle: "21.city — городские проекты и квесты рядом",
+      hAgo: " ч назад",
+      inBudgetsStat: "в бюджетах проектов",
+      justNow: "только что",
+      kmUnit: " км",
+      mUnit: " м",
+      onTheMap: " на карте",
+      profileSaved: "Профиль сохранён",
+      saveError: "Не удалось сохранить данные. Сделайте экспорт в профиле.",
+      searchPh: "Проект, задача, место…",
+      statContribs: "взносов",
+      statProjects: "проекта",
+      statQuests: "квестов",
+      t_demo: "Демо: все данные хранятся в этом браузере",
+      unitDays: "дн",
+      unitHours: "ч",
+      youDonated: "Вы внесли ",
+      bandText: "Пять шагов: от фото проблемы до публичного чека. Соседи пополняют бюджет, подрядчики присылают предложения, эскроу платит после приёмки.",
     },
     en: {
       newest: "Newest first", funding: "Closest to goal", tabHome: "Overview", tabMap: "Map", tabProjects: "Projects", tabWallet: "Wallet", tabProfile: "Profile",
@@ -186,42 +209,846 @@
       estLabel: "estimate", noOffersYet: "No offers yet — the budget follows the author’s estimate.",
       awaitingOffers: "awaiting offers", chosen: "chosen",
       emptyWallet: "No contributions yet. Find a project nearby and support it.",
-      emptyList: "Nothing found."
+      emptyList: "Nothing found.",
+      badAmount: "Enter an amount from 1 to 1,000,000",
+      bothersMeToo: "bothers me too",
+      budgetMicro: "Your donation goes to the work, not to platform fees.",
+      confirmReset: "Reset all local data? Export a backup first.",
+      dAgo: " d ago",
+      docTitle: "21.city — civic projects and quests nearby",
+      hAgo: " h ago",
+      inBudgetsStat: "in project budgets",
+      justNow: "just now",
+      kmUnit: " km",
+      mUnit: " m",
+      onTheMap: " on the map",
+      profileSaved: "Profile saved",
+      saveError: "Unable to save. Export your data from Profile.",
+      searchPh: "Search projects, tasks, location…",
+      statContribs: "contributions",
+      statProjects: "projects",
+      statQuests: "quests",
+      t_demo: "Demo: everything is stored in this browser",
+      unitDays: "days",
+      unitHours: "h",
+      youDonated: "You donated ",
+      shortfall: "short of the lowest offer",
+      canTopUp: "— the budget can still be topped up while work is going",
+      bandText: "Five steps: from a photo of the problem to a public receipt. Neighbours fund the budget, contractors send offers, escrow pays after acceptance.",
+    },
+    es: {
+      newest: "Primero los nuevos",
+      funding: "Más cerca del objetivo",
+      tabHome: "Resumen",
+      tabMap: "Mapa",
+      tabProjects: "Proyectos",
+      tabWallet: "Monedero",
+      tabProfile: "Perfil",
+      findProject: "Buscar proyecto",
+      questsNearby: "Misiones cercanas",
+      projectsNearby: "Proyectos cercanos",
+      nearbyProjects: "Proyectos cercanos",
+      all: "Todos",
+      projects: "Proyectos",
+      quests: "Misiones",
+      forYou: "Para ti",
+      popular: "Populares",
+      nearby: "Cerca",
+      projectsTitle: "Proyectos y misiones",
+      projectsSub: "Problemas urbanos con fotos y coordenadas — y tareas de los vecinos",
+      walletTitle: "Monedero",
+      walletSub: "Tus aportes a los presupuestos de proyectos urbanos",
+      inBudgets: "En presupuestos de proyectos",
+      active: "Activos",
+      contributed: "Mis aportes",
+      completed: "Completados",
+      you: "Tú",
+      myProjects: "Mis proyectos",
+      myQuests: "Mis misiones",
+      wallet: "Monedero",
+      howWorks: "Cómo funciona",
+      resetDemo: "Restablecer los datos de demo",
+      addToBudget: "Añadir al presupuesto",
+      donate: "Donar",
+      other: "Otra",
+      yourAmount: "Tu importe, €",
+      yourName: "Nombre (cómo mostrarlo)",
+      submitOffer: "Enviar una oferta",
+      sendOffer: "Enviar oferta",
+      contractor: "Contratista / empresa",
+      price: "Precio, €",
+      days: "Plazo, días",
+      postNeed: "Informar de un problema",
+      whatHappened: "Qué ha pasado",
+      desc: "Detalles",
+      category: "Categoría",
+      publish: "Publicar",
+      place: "Lugar",
+      gotIt: "Entendido",
+      locate: "Dónde estoy",
+      newProblem: "Informar de un problema",
+      open: "Abierto",
+      viewOnMap: "Ver en el mapa",
+      details: "Detalles",
+      offersShort: "ofertas",
+      donationsShort: "donaciones",
+      addBudgetShort: "+ Al presupuesto",
+      budgetTitle: "Presupuesto del proyecto",
+      of: "de",
+      targetMin: "Objetivo: la oferta más baja",
+      targetEst: "Estimación del autor: todavía no hay ofertas",
+      donors: "Han aportado",
+      offersTitle: "Ofertas comerciales",
+      minPrice: "precio mínimo",
+      shortfall: "faltan para la oferta más baja",
+      canTopUp: "— el presupuesto se puede completar mientras hay obra",
+      accept: "Aceptar",
+      chatTitle: "Chat del proyecto",
+      chatPlaceholder: "Mensaje…",
+      send: "Enviar",
+      advanceTitle: "Anticipo para materiales y trabajo",
+      requestAdvance: "Solicitar anticipo",
+      sendRequest: "Enviar solicitud",
+      advAmount: "Importe del anticipo, €",
+      advReason: "Justificación",
+      advBy: "solicitó un anticipo",
+      giveAdvance: "Dar el anticipo",
+      declineAdvance: "Rechazar",
+      advVotersOnly: "Solo votan los donantes de este proyecto",
+      advToVote: "Dona cualquier cantidad para votar",
+      advFor: "a favor",
+      advAgainst: "en contra",
+      yourVote: "Tu voto",
+      advOpenA: "Han votado",
+      advOpenB: "de lo recaudado",
+      advRule: "se necesita la mayoría del importe aportado",
+      advApproved: "Anticipo aprobado",
+      advRejected: "Anticipo rechazado por los donantes",
+      advPaidNote: "pagado al contratista desde el escrow",
+      advRestNote: "queda en el escrow hasta la recepción",
+      advReRequest: "Solicitar de nuevo",
+      advDemoNote: "El contratista puede pedir un anticipo, con su justificación",
+      timelineTitle: "Cómo va el proyecto",
+      now: "ahora",
+      stage1: "Apoyo de la comunidad",
+      stage1d: "los vecinos suman al presupuesto con donaciones",
+      stage2: "Buscar contratistas",
+      stage2d: "ofertas abiertas; el objetivo es el precio más bajo",
+      stage3: "Obra en curso",
+      stage3d: "después de elegir contratista",
+      stage4: "Verificación",
+      stage4d: "confirmar y pagar",
+      stage5: "Completado",
+      stage5d: "el resultado es público",
+      chainNote: "Sandbox: los pasos se guardan solo en este navegador. El escrow y los pagos están simulados; no hay blockchain conectada.",
+      demoPick: "Elegir contratista (demo)",
+      demoWorkDone: "Obra terminada (demo)",
+      demoPay: "Confirmar y pagar (demo)",
+      budgetReady: "Presupuesto completo: ya se puede encargar",
+      works: "trabajos",
+      respond: "Responder",
+      responded: "Respuesta enviada",
+      publishLive: "¡Solicitud publicada!",
+      publishLiveD: "Ahora los vecinos la ven en el mapa y pueden ofrecer ayuda y ofertas.",
+      seedDonate: "Añadir 25 € al presupuesto",
+      later: "Más tarde",
+      becomeContractor: "Hazte contratista",
+      becomeContractorD: "Ayuda a tu barrio con tus habilidades. Gana por el trabajo que haces de verdad.",
+      contractorOn: "Eres contratista",
+      myOffers: "Mis ofertas",
+      offersSent: "Ofertas enviadas",
+      tasksDone: "Completados",
+      earned: "Ganado",
+      pickOnMap: "Toca el mapa para marcar el lugar",
+      how1t: "1 · Apoyo de la comunidad",
+      how1d: "Alguien fotografía la acera rota de su portal. Los vecinos cercanos ven el problema en el mapa y suman al presupuesto del proyecto con donaciones.",
+      how2t: "2 · Buscar contratistas",
+      how2d: "Mientras se acumulan las donaciones, llegan ofertas comerciales. El objetivo del presupuesto es la oferta más baja.",
+      how3t: "3 · Obra",
+      how3d: "Con el presupuesto listo se elige la mejor oferta y empieza el contratista. Un anticipo para materiales necesita justificación y el voto de los donantes.",
+      how4t: "4 · Verificación",
+      how4d: "Los vecinos confirman el resultado — el escrow paga al contratista.",
+      how5t: "5 · Completado",
+      how5d: "El recibo se queda público: cada paso se ve, el dinero fue a la obra.",
+      t_donated: "€+AMOUNT al presupuesto del proyecto. Ayudará a atraer ofertas y acelerar la obra.",
+      t_offer_new_min: "Objetivo recalculado: €AMOUNT, la oferta más baja.",
+      t_offer_added: "Oferta enviada. Todo el mundo la ve en la licitación del proyecto.",
+      t_accepted: "Oferta aceptada. Empieza la obra.",
+      t_work_done: "Obra terminada. Falta la verificación.",
+      t_paid: "El escrow pagó al contratista. El recibo es público.",
+      t_adv_requested: "La solicitud de anticipo se envió a los donantes del proyecto.",
+      t_adv_approved: "Los donantes aprobaron el anticipo: se paga desde el escrow.",
+      t_adv_rejected: "Los donantes rechazaron el anticipo.",
+      t_adv_vote_y: "Voto registrado: a favor del anticipo.",
+      t_adv_vote_n: "Voto registrado: en contra del anticipo.",
+      t_vote: "Marcado: a ti también te molesta.",
+      t_unvote: "Marca retirada.",
+      t_geo: "Actualizado: mostramos los proyectos cerca de ti.",
+      t_geo_err: "No se pudo obtener tu ubicación.",
+      t_published: "Proyecto publicado. Ya está en el mapa.",
+      t_quest: "Respuesta enviada (demo).",
+      t_contractor: "Ahora puedes enviar ofertas a los proyectos del barrio.",
+      t_reset: "Datos de demo restablecidos.",
+      joinedAgo: "en el proyecto",
+      m: "meses",
+      back: "Atrás",
+      project: "Proyecto",
+      estLabel: "estimación",
+      noOffersYet: "Aún no hay ofertas: el presupuesto sigue la estimación del autor.",
+      awaitingOffers: "esperando ofertas",
+      chosen: "elegido",
+      emptyWallet: "Todavía no hay aportes. Find a proyecto cercano y apóyalo.",
+      emptyList: "No se ha encontrado nada.",
+      inBudgetsStat: "en presupuestos de proyectos",
+      onTheMap: " en el mapa",
+      youDonated: "Has aportado ",
+      statQuests: "misiones",
+      statProjects: "proyectos",
+      statContribs: "aportes",
+      unitDays: "días",
+      unitHours: "h",
+      mUnit: " m",
+      kmUnit: " km",
+      justNow: "ahora mismo",
+      hAgo: " h atrás",
+      dAgo: " d atrás",
+      docTitle: "21.city — proyectos urbanos y misiones cerca",
+      searchPh: "Proyecto, tarea, lugar…",
+      budgetMicro: "Tu donación va al presupuesto del proyecto y se gasta en la obra, no en comisiones de la plataforma.",
+      badAmount: "Introduce un importe entre 1 y 1 000 000",
+      confirmReset: "¿Restablecer todos los datos locales? Exporta una copia antes.",
+      profileSaved: "Perfil guardado",
+      t_demo: "Demo: todos los datos se guardan en este navegador",
+      saveError: "No se pudieron guardar los datos. Exporta desde el perfil.",
+      bothersMeToo: "a mí también me molesta",
+      bandText: "Cinco pasos: de la foto del problema al recibo público. Los vecinos financian el presupuesto, los contratistas envían ofertas y el escrow paga tras la aceptación.",
+    },
+    zh: {
+      newest: "最新优先",
+      funding: "最接近目标",
+      tabHome: "概览",
+      tabMap: "地图",
+      tabProjects: "项目",
+      tabWallet: "钱包",
+      tabProfile: "个人资料",
+      findProject: "找项目",
+      questsNearby: "附近的任務",
+      projectsNearby: "附近的项目",
+      nearbyProjects: "附近的项目",
+      all: "全部",
+      projects: "项目",
+      quests: "任务",
+      forYou: "为你推荐",
+      popular: "热门",
+      nearby: "附近",
+      projectsTitle: "项目与任务",
+      projectsSub: "带照片和坐标的城市问题 —— 以及邻居们的任务",
+      walletTitle: "钱包",
+      walletSub: "你对城市项目预算的投入",
+      inBudgets: "项目预算中",
+      active: "进行中",
+      contributed: "我的投入",
+      completed: "已完成",
+      you: "你",
+      myProjects: "我的项目",
+      myQuests: "我的任务",
+      wallet: "钱包",
+      howWorks: "运作方式",
+      resetDemo: "重置演示数据",
+      addToBudget: "加入预算",
+      donate: "捐赠",
+      other: "其他",
+      yourAmount: "你的金额，€",
+      yourName: "昵称（展示用）",
+      submitOffer: "提交报价",
+      sendOffer: "发送报价",
+      contractor: "承包方 / 公司",
+      price: "价格，€",
+      days: "工期，天数",
+      postNeed: "报告问题",
+      whatHappened: "发生了什么",
+      desc: "详情",
+      category: "类别",
+      publish: "发布",
+      place: "地点",
+      gotIt: "明白了",
+      locate: "我在哪",
+      newProblem: "报告问题",
+      open: "开放中",
+      viewOnMap: "在地图上查看",
+      details: "详情",
+      offersShort: "报价",
+      donationsShort: "捐款",
+      addBudgetShort: "+ 加入预算",
+      budgetTitle: "项目预算",
+      of: "/",
+      targetMin: "目标 — 最低报价",
+      targetEst: "作者估价 —— 尚未收到报价",
+      donors: "参与者",
+      offersTitle: "商业报价",
+      minPrice: "最低价",
+      shortfall: "距离最低报价还差",
+      canTopUp: "—— 施工期间仍可继续补充预算",
+      accept: "接受",
+      chatTitle: "项目聊天",
+      chatPlaceholder: "消息…",
+      send: "发送",
+      advanceTitle: "材料与施工预付款",
+      requestAdvance: "申请预付款",
+      sendRequest: "发送申请",
+      advAmount: "预付款金额，€",
+      advReason: "理由说明",
+      advBy: "申请了预付款",
+      giveAdvance: "同意预付款",
+      declineAdvance: "拒绝",
+      advVotersOnly: "仅本项目的捐助者可投票",
+      advToVote: "捐款任意金额即可投票",
+      advFor: "赞成",
+      advAgainst: "反对",
+      yourVote: "你的投票",
+      advOpenA: "已投票",
+      advOpenB: "/ 已募集",
+      advRule: "需要按捐款金额的多数",
+      advApproved: "预付款已批准",
+      advRejected: "预付款被捐助者否决",
+      advPaidNote: "已从托管支付给承包方",
+      advRestNote: "验收前仍在托管中",
+      advReRequest: "重新申请",
+      advDemoNote: "承包方可以申请预付款 —— 需附理由说明",
+      timelineTitle: "项目进展",
+      now: "现在",
+      stage1: "社区支持",
+      stage1d: "邻居们用捐款补充预算",
+      stage2: "寻找承包方",
+      stage2d: "报价开放，目标为最低价",
+      stage3: "施工中",
+      stage3d: "选定承包方后",
+      stage4: "验收",
+      stage4d: "确认并付款",
+      stage5: "完成",
+      stage5d: "结果公开",
+      chainNote: "沙盒：所有步骤只保存在此浏览器中。托管与支付均为模拟，未接入区块链。",
+      demoPick: "选择承包方（演示）",
+      demoWorkDone: "施工完成（演示）",
+      demoPay: "确认并付款（演示）",
+      budgetReady: "预算已凑齐 —— 可以下单",
+      works: "单",
+      respond: "回应",
+      responded: "回应已发送",
+      publishLive: "申请已发布！",
+      publishLiveD: "邻居们现在能在地图上看到它，并可以提供帮助和报价。",
+      seedDonate: "往预算里加 €25",
+      later: "稍后",
+      becomeContractor: "成为承包方",
+      becomeContractorD: "用你的技能帮助街区，靠真实的工作获得报酬。",
+      contractorOn: "你是承包方",
+      myOffers: "我的报价",
+      offersSent: "已发送报价",
+      tasksDone: "已完成",
+      earned: "已赚取",
+      pickOnMap: "点击地图以标记位置",
+      how1t: "1 · 社区支持",
+      how1d: "有人拍下家门口裂开的人行道。附近的邻居在地图上看到问题，用捐款为项目预算添砖加瓦。",
+      how2t: "2 · 寻找承包方",
+      how2d: "在捐款积累的同时，商业报价陆续到来。预算目标是最低报价。",
+      how3t: "3 · 施工",
+      how3d: "预算就绪后选出最佳报价，承包方开工。材料预付款需要理由说明，并由捐助者投票。",
+      how4t: "4 · 验收",
+      how4d: "邻居们确认结果 —— 托管付款给承包方。",
+      how5t: "5 · 完成",
+      how5d: "收据保持公开：每一步都看得见，钱花在了工程上。",
+      t_donated: "€+AMOUNT 已加入项目预算。这有助于招来报价、加快施工。",
+      t_offer_new_min: "预算目标已重算：€AMOUNT —— 最低报价。",
+      t_offer_added: "报价已发送，项目招标中所有人都能看到。",
+      t_accepted: "报价已接受，开工。",
+      t_work_done: "施工完成，等待验收。",
+      t_paid: "托管已支付给承包方，收据公开。",
+      t_adv_requested: "预付款申请已发送给项目捐助者。",
+      t_adv_approved: "捐助者已批准预付款 —— 已从托管支付。",
+      t_adv_rejected: "捐助者否决了预付款。",
+      t_adv_vote_y: "投票已记录：赞成预付款。",
+      t_adv_vote_n: "投票已记录：反对预付款。",
+      t_vote: "已标记：这个问题也困扰你。",
+      t_unvote: "已取消标记。",
+      t_geo: "已更新：显示你附近的项目。",
+      t_geo_err: "无法获取你的位置。",
+      t_published: "项目已发布，已出现在地图上。",
+      t_quest: "回应已发送（演示）。",
+      t_contractor: "现在你可以在街区项目上提交报价了。",
+      t_reset: "演示数据已重置。",
+      joinedAgo: "已加入项目",
+      m: "个月",
+      back: "返回",
+      project: "项目",
+      estLabel: "估价",
+      noOffersYet: "还没有报价 —— 预算按作者估价计算。",
+      awaitingOffers: "等待报价",
+      chosen: "已选定",
+      emptyWallet: "还没有投入。找找附近的项目，支持它。",
+      emptyList: "没有找到任何内容。",
+      inBudgetsStat: "项目预算中",
+      onTheMap: " 个在地图上",
+      youDonated: "您已投入 ",
+      statQuests: "个任务",
+      statProjects: "个项目",
+      statContribs: "次投入",
+      unitDays: "天",
+      unitHours: "小时",
+      mUnit: " 米",
+      kmUnit: " 公里",
+      justNow: "刚刚",
+      hAgo: " 小时前",
+      dAgo: " 天前",
+      docTitle: "21.city —— 附近的城市项目与任务",
+      searchPh: "项目、任务、地点…",
+      budgetMicro: "捐款进入项目预算，花在工程上，而不是平台手续费。",
+      badAmount: "请输入 1 到 1,000,000 之间的金额",
+      confirmReset: "重置所有本地数据？请先导出备份。",
+      profileSaved: "资料已保存",
+      t_demo: "演示：所有数据都保存在这个浏览器里",
+      saveError: "无法保存数据，请在个人资料中导出。",
+      bothersMeToo: "我也受影响",
+      bandText: "五个步骤：从拍下问题到公开收据。邻居们出资，承包方给出报价，验收后托管付款。",
+    },
+    ja: {
+      newest: "新しい順",
+      funding: "目標に近い順",
+      tabHome: "概要",
+      tabMap: "地図",
+      tabProjects: "プロジェクト",
+      tabWallet: "ウォレット",
+      tabProfile: "プロフィール",
+      findProject: "プロジェクトを探す",
+      questsNearby: "近くのクエスト",
+      projectsNearby: "近くのプロジェクト",
+      nearbyProjects: "近くのプロジェクト",
+      all: "すべて",
+      projects: "プロジェクト",
+      quests: "クエスト",
+      forYou: "あなたへのおすすめ",
+      popular: "人気",
+      nearby: "近く",
+      projectsTitle: "プロジェクトとクエスト",
+      projectsSub: "写真と座標付きの街の問題 — そして隣人のクエスト",
+      walletTitle: "ウォレット",
+      walletSub: "街のプロジェクトの予算へのあなたの寄付",
+      inBudgets: "プロジェクトの予算へ",
+      active: "進行中",
+      contributed: "私の寄付",
+      completed: "完了",
+      you: "あなた",
+      myProjects: "自分のプロジェクト",
+      myQuests: "自分のクエスト",
+      wallet: "ウォレット",
+      howWorks: "しくみ",
+      resetDemo: "デモデータをリセット",
+      addToBudget: "予算に加える",
+      donate: "寄付する",
+      other: "その他",
+      yourAmount: "金額, €",
+      yourName: "表示する名前",
+      submitOffer: "見積もりを出す",
+      sendOffer: "見積もりを送る",
+      contractor: "施工者 / 会社",
+      price: "価格, €",
+      days: "工期, 日数",
+      postNeed: "問題を報告する",
+      whatHappened: "何が起きましたか",
+      desc: "詳細",
+      category: "カテゴリー",
+      publish: "公開する",
+      place: "場所",
+      gotIt: "了解",
+      locate: "現在地",
+      newProblem: "問題を報告する",
+      open: "募集中",
+      viewOnMap: "地図で見る",
+      details: "詳細",
+      offersShort: "見積",
+      donationsShort: "寄付",
+      addBudgetShort: "+ 予算に",
+      budgetTitle: "プロジェクトの予算",
+      of: "/",
+      targetMin: "目標 — 最安の見積り",
+      targetEst: "投稿者の見積もり — まだ見積りがありません",
+      donors: "参加者",
+      offersTitle: "民間見積もり",
+      minPrice: "最安値",
+      shortfall: "最安値まであと",
+      canTopUp: "— 作業中は予算を追加できます",
+      accept: "採用",
+      chatTitle: "プロジェクトのチャット",
+      chatPlaceholder: "メッセージ…",
+      send: "送信",
+      advanceTitle: "資材・工事の前払い",
+      requestAdvance: "前払いを申請",
+      sendRequest: "申請を送る",
+      advAmount: "前払い金額, €",
+      advReason: "理由",
+      advBy: "前払いを申請しました",
+      giveAdvance: "前払いを出す",
+      declineAdvance: "見送る",
+      advVotersOnly: "投票できるのはこのプロジェクトの寄付者だけ",
+      advToVote: "いくらでも寄付すれば投票できます",
+      advFor: "賛成",
+      advAgainst: "反対",
+      yourVote: "あなたの投票",
+      advOpenA: "投票済み",
+      advOpenB: "/ 集めた額",
+      advRule: "寄付金額の過半数の賛成が必要です",
+      advApproved: "前払いが承認されました",
+      advRejected: "寄付者に否認されました",
+      advPaidNote: "エスクロから施工者に支払済み",
+      advRestNote: "検収までエスクロに残ります",
+      advReRequest: "もう一度申請する",
+      advDemoNote: "施工者は前払いを申請できます（理由の提示が必要）",
+      timelineTitle: "プロジェクトの進捗",
+      now: "現在",
+      stage1: "コミュニティのサポート",
+      stage1d: "隣人が寄付で予算を積み上げます",
+      stage2: "施工者を探す",
+      stage2d: "見積もりを公開中、目標は最安値",
+      stage3: "作業中",
+      stage3d: "施工者選定後",
+      stage4: "検収",
+      stage4d: "確認して支払う",
+      stage5: "完了",
+      stage5d: "結果は公開",
+      chainNote: "サンドボックス：記録はこのブラウザ内にのみ保存されます。エスクロと支払いはシミュレーションで、暗号資産は接続されていません。",
+      demoPick: "施工者を選ぶ（デモ）",
+      demoWorkDone: "作業完了（デモ）",
+      demoPay: "確認して支払う（デモ）",
+      budgetReady: "予算がそろった — 依頼できます",
+      works: "件",
+      respond: "応募する",
+      responded: "応募を送信しました",
+      publishLive: "依頼を公開しました！",
+      publishLiveD: "隣人たちは地図でそれを見て、手伝いや見積もりを送れます。",
+      seedDonate: "予算に 25 € を加える",
+      later: "あとで",
+      becomeContractor: "施工者になる",
+      becomeContractorD: "あなたの腕で街を支援。実際の作業に対する報酬を受け取れます。",
+      contractorOn: "あなたは施工者です",
+      myOffers: "自分の見積もり",
+      offersSent: "送信した見積もり",
+      tasksDone: "完了した作業",
+      earned: "収益",
+      pickOnMap: "地図をタップして場所を指定",
+      how1t: "1 · コミュニティのサポート",
+      how1d: "ある人が家の前の壊れた歩道を撮ります。近くの隣人たちは地図で問題を見て、寄付でプロジェクトの予算を積み上げます。",
+      how2t: "2 · 施工者を探す",
+      how2d: "寄付が集まるあいだに、民間の見積もりが届きます。予算の目標は最安値です。",
+      how3t: "3 · 作業",
+      how3d: "予算がそろったら最良の見積もりを選び、施工者が着手します。資材の前払いは理由の提示と寄付者の投票が必要です。",
+      how4t: "4 · 検収",
+      how4d: "隣人が結果を確認します — エスクロが施工者に支払います。",
+      how5t: "5 · 完了",
+      how5d: "領収書は公開のまま：すべての過程が見え、お金は工事に使われました。",
+      t_donated: "プロジェクト予算に €+AMOUNT を追加しました。見積もりを集め、作業を早める助けになります。",
+      t_offer_new_min: "予算の目標を再計算しました：€AMOUNT が最安の見積りです。",
+      t_offer_added: "見積もりを送信しました。プロジェクトの入札でみんなが見られます。",
+      t_accepted: "見積もりを採用しました。作業が始まります。",
+      t_work_done: "作業が完了しました。検収を待っています。",
+      t_paid: "エスクロから施工者に支払いました。領収書は公開です。",
+      t_adv_requested: "前払いの申請を寄付者に送りました。",
+      t_adv_approved: "寄付者が前払いを承認しました — エスクロから支払いました。",
+      t_adv_rejected: "寄付者は前払いを却下しました。",
+      t_adv_vote_y: "投票を受け付けました：前払いに賛成。",
+      t_adv_vote_n: "投票を受け付けました：前払いに反対。",
+      t_vote: "マークしました：この問題、あなたにも迷惑です。",
+      t_unvote: "マークを取り消しました。",
+      t_geo: "更新しました：近くのプロジェクトを表示します。",
+      t_geo_err: "現在地を取得できませんでした。",
+      t_published: "プロジェクトを公開しました。地図にあります。",
+      t_quest: "応募を送信しました（デモ）。",
+      t_contractor: "これからは街のプロジェクトに見積りを出せます。",
+      t_reset: "デモデータをリセットしました。",
+      joinedAgo: "参加中",
+      m: "か月",
+      back: "戻る",
+      project: "プロジェクト",
+      estLabel: "見積もり",
+      noOffersYet: "まだ見積もりはありません — 予算は投稿者の見積もりにもとづきます。",
+      awaitingOffers: "見積もり待ち",
+      chosen: "採用済み",
+      emptyWallet: "まだ寄付がありません。近くのプロジェクトを探して応援してください。",
+      emptyList: "何も見つかりませんでした。",
+      inBudgetsStat: "プロジェクトの予算へ",
+      onTheMap: " 件が地図に",
+      youDonated: "あなたの寄付 ",
+      statQuests: "クエスト",
+      statProjects: "プロジェクト",
+      statContribs: "回の寄付",
+      unitDays: "日",
+      unitHours: "時間",
+      mUnit: " メートル",
+      kmUnit: " キロメートル",
+      justNow: "たった今",
+      hAgo: " 時間前",
+      dAgo: " 日前",
+      docTitle: "21.city — 街のプロジェクトとクエスト",
+      searchPh: "プロジェクト・タスク・場所…",
+      budgetMicro: "寄付はプロジェクトの予算に入り、プラットフォーム手数料ではなく工事に使われます。",
+      badAmount: "1 から 1,000,000 までの金額を入力してください",
+      confirmReset: "ローカルデータをすべてリセットしますか？先にエクスポートしてください。",
+      profileSaved: "プロフィールを保存しました",
+      t_demo: "デモ：すべてのデータはこのブラウザ内に保存されます",
+      saveError: "データを保存できませんでした。プロフィールからエクスポートしてください。",
+      bothersMeToo: "私も迷惑しています",
+      bandText: "5 ステップ：問題の写真から公開の領収書まで。隣人が予算に出資し、施工者が見積もりを出し、検収後にエスクロが支払います。",
+    },
+    ko: {
+      newest: "최신순",
+      funding: "목표에 가까운 순",
+      tabHome: "개요",
+      tabMap: "지도",
+      tabProjects: "프로젝트",
+      tabWallet: "지갑",
+      tabProfile: "프로필",
+      findProject: "프로젝트 찾기",
+      questsNearby: "가까운 퀘스트",
+      projectsNearby: "가까운 프로젝트",
+      nearbyProjects: "가까운 프로젝트",
+      all: "전체",
+      projects: "프로젝트",
+      quests: "퀘스트",
+      forYou: "추천",
+      popular: "인기",
+      nearby: "가까운",
+      projectsTitle: "프로젝트와 퀘스트",
+      projectsSub: "사진과 좌표가 있는 도시 문제 — 그리고 이웃의 퀘스트",
+      walletTitle: "지갑",
+      walletSub: "도시 프로젝트 예산에 대한 당신의 출연",
+      inBudgets: "프로젝트 예산에",
+      active: "진행 중",
+      contributed: "나의 출연",
+      completed: "완료",
+      you: "나",
+      myProjects: "내 프로젝트",
+      myQuests: "내 퀘스트",
+      wallet: "지갑",
+      howWorks: "작동 방식",
+      resetDemo: "데모 데이터 초기화",
+      addToBudget: "예산에 더하기",
+      donate: "후원하기",
+      other: "직접 입력",
+      yourAmount: "금액, €",
+      yourName: "표시할 이름",
+      submitOffer: "견적 제출",
+      sendOffer: "견적 보내기",
+      contractor: "시공업체 / 회사",
+      price: "가격, €",
+      days: "기간, 일수",
+      postNeed: "문제 신고하기",
+      whatHappened: "무슨 일이 있었나요",
+      desc: "자세히",
+      category: "분류",
+      publish: "게시",
+      place: "장소",
+      gotIt: "알겠습니다",
+      locate: "내 위치",
+      newProblem: "문제 신고하기",
+      open: "진행 중",
+      viewOnMap: "지도에서 보기",
+      details: "자세히",
+      offersShort: "견적",
+      donationsShort: "후원",
+      addBudgetShort: "+ 예산에",
+      budgetTitle: "프로젝트 예산",
+      of: "/",
+      targetMin: "목표 — 최저 견적",
+      targetEst: "작성자 예상 — 아직 견적이 없습니다",
+      donors: "참여자",
+      offersTitle: "업체 견적",
+      minPrice: "최저가",
+      shortfall: "최저 견적까지 부족",
+      canTopUp: "— 작업 중에는 예산을 더 채울 수 있습니다",
+      accept: "수락",
+      chatTitle: "프로젝트 채팅",
+      chatPlaceholder: "메시지…",
+      send: "보내기",
+      advanceTitle: "자재·작업 선급금",
+      requestAdvance: "선급금 요청",
+      sendRequest: "요청 보내기",
+      advAmount: "선급금 금액, €",
+      advReason: "사유",
+      advBy: "선급금을 요청했습니다",
+      giveAdvance: "선급금 지급",
+      declineAdvance: "거부",
+      advVotersOnly: "이 프로젝트 후원자만 투표할 수 있습니다",
+      advToVote: "얼마든지 후원하면 투표할 수 있습니다",
+      advFor: "찬성",
+      advAgainst: "반대",
+      yourVote: "내 투표",
+      advOpenA: "투표함",
+      advOpenB: "/ 모인 금액",
+      advRule: "후원 금액의 과반수가 필요합니다",
+      advApproved: "선급금 승인",
+      advRejected: "후원자가 선급금을 거부",
+      advPaidNote: "에스크로에서 시공업체에게 지급됨",
+      advRestNote: "검수 전까지 에스크로에 보관",
+      advReRequest: "다시 요청하기",
+      advDemoNote: "시공업체는 선급금을 요청할 수 있습니다 — 사유를 함께",
+      timelineTitle: "프로젝트 진행",
+      now: "지금",
+      stage1: "커뮤니티 지원",
+      stage1d: "이웃들이 후원금으로 예산을 채웁니다",
+      stage2: "시공업체 찾기",
+      stage2d: "견적을 공개 중, 목표는 최저가",
+      stage3: "작업 중",
+      stage3d: "시공업체 선정 후",
+      stage4: "검수",
+      stage4d: "확인하고 지불",
+      stage5: "완료",
+      stage5d: "결과는 공개",
+      chainNote: "샌드박스: 단계는 이 브라우저에만 저장됩니다. 에스크로와 지급은 시뮬레이션이며, 블록체인은 연결되지 않았습니다.",
+      demoPick: "시공업체 선택 (데모)",
+      demoWorkDone: "작업 완료 (데모)",
+      demoPay: "확인 후 지급 (데모)",
+      budgetReady: "예산이 모였습니다 — 의뢰할 수 있습니다",
+      works: "건",
+      respond: "응하기",
+      responded: "응답을 보냈습니다",
+      publishLive: "요청이 게시되었습니다!",
+      publishLiveD: "이웃들이 이제 지도에서 보고 도움과 견적을 보낼 수 있습니다.",
+      seedDonate: "예산에 €25 추가",
+      later: "나중에",
+      becomeContractor: "시공업체 되기",
+      becomeContractorD: "당신의 기술로 동네를 돕고, 실제 작업에 대한 보상을 받으세요.",
+      contractorOn: "시공업체입니다",
+      myOffers: "내 견적",
+      offersSent: "보낸 견적",
+      tasksDone: "완료한 작업",
+      earned: "수입",
+      pickOnMap: "지도를 눌러 위치를 지정하세요",
+      how1t: "1 · 커뮤니티 지원",
+      how1d: "누군가 집 앞에서 금 간 보도를 사진으로 남깁니다. 가까운 이웃들이 지도에서 문제를 보고 후원금으로 프로젝트 예산을 채웁니다.",
+      how2t: "2 · 시공업체 찾기",
+      how2d: "후원이 쌓이는 동안 업체 견적이 들어옵니다. 예산 목표는 가장 낮은 견적입니다.",
+      how3t: "3 · 작업",
+      how3d: "예산이 모이면 가장 좋은 견적을 고르고 시공업체가 착수합니다. 자재 선급금은 사유와 후원자 투표가 필요합니다.",
+      how4t: "4 · 검수",
+      how4d: "이웃들이 결과를 확인합니다 — 에스크로가 시공업체에게 지급합니다.",
+      how5t: "5 · 완료",
+      how5d: "영수증은 공개로 남습니다: 모든 단계가 보이고 돈은 작업에 쓰였습니다.",
+      t_donated: "프로젝트 예산에 €+AMOUNT 이 추가되었습니다. 견적을 모으고 작업을 앞당기는 데 도움이 됩니다.",
+      t_offer_new_min: "예산 목표가 다시 계산되었습니다: €AMOUNT — 최저 견적입니다.",
+      t_offer_added: "견적을 보냈습니다. 프로젝트 입찰에서 모두에게 보입니다.",
+      t_accepted: "견적이 수락되었습니다. 작업이 시작됩니다.",
+      t_work_done: "작업이 끝났습니다. 검수를 기다립니다.",
+      t_paid: "에스크로에서 시공업체에게 지급했습니다. 영수증은 공개입니다.",
+      t_adv_requested: "선급금 요청을 후원자에게 보냈습니다.",
+      t_adv_approved: "후원자가 선급금을 승인했습니다 — 에스크로에서 지급했습니다.",
+      t_adv_rejected: "후원자가 선급금을 거부했습니다.",
+      t_adv_vote_y: "투표가 반영되었습니다: 선급금 찬성.",
+      t_adv_vote_n: "투표가 반영되었습니다: 선급금 반대.",
+      t_vote: "표시했습니다: 이 문제 저도 불편합니다.",
+      t_unvote: "표시를 취소했습니다.",
+      t_geo: "갱신했습니다: 가까운 프로젝트를 보여줍니다.",
+      t_geo_err: "위치를 가져오지 못했습니다.",
+      t_published: "프로젝트가 게시되었습니다. 지도에 있습니다.",
+      t_quest: "응답을 보냈습니다 (데모).",
+      t_contractor: "이제 동네 프로젝트에 견적을 낼 수 있습니다.",
+      t_reset: "데모 데이터를 초기화했습니다.",
+      joinedAgo: "참여 중",
+      m: "개월",
+      back: "뒤로",
+      project: "프로젝트",
+      estLabel: "예상",
+      noOffersYet: "아직 견적이 없습니다 — 예산은 작성자의 예상으로 계산합니다.",
+      awaitingOffers: "견적 대기 중",
+      chosen: "선정됨",
+      emptyWallet: "아직 출연이 없습니다. 가까운 프로젝트를 찾아 후원해 보세요.",
+      emptyList: "아무것도 찾지 못했습니다.",
+      inBudgetsStat: "프로젝트 예산에",
+      onTheMap: "건이 지도에",
+      youDonated: "후원 금액 ",
+      statQuests: "퀘스트",
+      statProjects: "프로젝트",
+      statContribs: "번 후원",
+      unitDays: "일",
+      unitHours: "시간",
+      mUnit: " m",
+      kmUnit: " km",
+      justNow: "방금",
+      hAgo: " 시간 전",
+      dAgo: " 일 전",
+      docTitle: "21.city — 가까운 도시 프로젝트와 퀘스트",
+      searchPh: "프로젝트, 작업, 장소…",
+      budgetMicro: "후원은 프로젝트 예산으로 들어가 플랫폼 수수료가 아니라 작업에 쓰입니다.",
+      badAmount: "1에서 1,000,000 사이의 금액을 입력하세요",
+      confirmReset: "로컬 데이터를 모두 초기화할까요? 먼저 내보내기를 하세요.",
+      profileSaved: "프로필을 저장했습니다",
+      t_demo: "데모: 모든 데이터는 이 브라우저에 저장됩니다",
+      saveError: "데이터를 저장하지 못했습니다. 프로필에서 내보내세요.",
+      bothersMeToo: "저도 불편합니다",
+      bandText: "다섯 단계: 문제 사진부터 공개 영수증까지. 이웃들이 예산을 채우고, 업체가 견적을 내며, 검수 후 에스크로가 지급합니다.",
     }
   };
 
+  /* ============================================================ языки */
+  /* Шесть языков в разметке и в словаре. Код BCP-47: ru, en, es, zh, ja, ko. */
+  var LANGS = [
+    { code: "ru", name: "Русский" },
+    { code: "en", name: "English" },
+    { code: "es", name: "Español" },
+    { code: "zh", name: "中文" },
+    { code: "ja", name: "日本語" },
+    { code: "ko", name: "한국어" }
+  ];
+  function isLang(l) {
+    for (var i = 0; i < LANGS.length; i++) if (LANGS[i].code === l) return true;
+    return false;
+  }
+  function guessLang() {
+    var nav = (typeof navigator !== "undefined" && (navigator.language || navigator.userLanguage)) || "";
+    var l = String(nav).toLowerCase();
+    if (/^(ru|be|uk)/.test(l)) return "ru";
+    if (/^(zh|chinese)/.test(l)) return "zh";
+    if (/^ja/.test(l)) return "ja";
+    if (/^ko/.test(l)) return "ko";
+    if (/^es/.test(l)) return "es";
+    if (/^en/.test(l)) return "en";
+    return "ru";
+  }
+
   var CATS = {
-    roads:     { ru: "Дороги",    en: "Roads",     c: "violet" },
-    park:      { ru: "Парк",      en: "Park",      c: "teal"   },
-    transport: { ru: "Остановки", en: "Stops",     c: "sky"    },
-    bikes:     { ru: "Вело",      en: "Bikes",     c: "yellow" },
-    clean:     { ru: "Уборка",    en: "Cleaning",  c: "coral"  },
-    light:     { ru: "Свет",      en: "Lighting",  c: "pink"   },
-    other:     { ru: "Другое",    en: "Other",     c: "mut"    }
+    roads:     { ru: "Дороги", en: "Roads", es: "Vías", zh: "道路", ja: "道路", ko: "도로",     c: "violet" },
+    park:      { ru: "Парк", en: "Park", es: "Parque", zh: "公园", ja: "公園", ko: "공원",      c: "teal"   },
+    transport: { ru: "Остановки", en: "Stops", es: "Paradas", zh: "站点", ja: "停留所", ko: "정류장",     c: "sky"    },
+    bikes:     { ru: "Вело", en: "Bikes", es: "Bicis", zh: "自行车", ja: "自転車", ko: "자전거",     c: "yellow" },
+    clean:     { ru: "Уборка", en: "Cleaning", es: "Limpieza", zh: "清洁", ja: "清掃", ko: "청소",  c: "coral"  },
+    light:     { ru: "Свет", en: "Lighting", es: "Alumbrado", zh: "照明", ja: "照明", ko: "조명",  c: "pink"   },
+    other:     { ru: "Другое", en: "Other", es: "Otros", zh: "其他", ja: "その他", ko: "기타",     c: "mut"    }
   };
   var QCATS = {
-    home:      { ru: "Дом и быт", en: "Home & Living", c: "yellow" },
-    education: { ru: "Учёба",     en: "Education",     c: "violet" },
-    tech:      { ru: "Техника",   en: "Tech",          c: "sky"    },
-    pets:      { ru: "Питомцы",   en: "Pets",          c: "coral"  },
-    other:     { ru: "Другое",    en: "Other",         c: "mut"    }
+    home:      { ru: "Дом и быт", en: "Home & Living", es: "Hogar y día a día", zh: "家居生活", ja: "家庭と生活", ko: "집과 생활", c: "yellow" },
+    education: { ru: "Учёба", en: "Education", es: "Estudio", zh: "学习", ja: "学習", ko: "학습",     c: "violet" },
+    tech:      { ru: "Техника", en: "Tech", es: "Tecnología", zh: "技术", ja: "技術", ko: "기술",          c: "sky"    },
+    pets:      { ru: "Питомцы", en: "Pets", es: "Mascotas", zh: "宠物", ja: "ペット", ko: "반려동물",          c: "coral"  },
+    other:     { ru: "Другое", en: "Other", es: "Otros", zh: "其他", ja: "その他", ko: "기타",         c: "mut"    }
   };
   var SKILLS = ["repair", "construction", "carpentry", "painting", "electricity", "cleaning", "garden", "other"];
   var SKILL_LBL = {
-    repair: { ru: "Ремонт", en: "Repair" }, construction: { ru: "Стройка", en: "Construction" },
-    carpentry: { ru: "Плотницкое", en: "Carpentry" }, painting: { ru: "Покраска", en: "Painting" },
-    electricity: { ru: "Электрика", en: "Electricity" }, cleaning: { ru: "Уборка", en: "Cleaning" },
-    garden: { ru: "Сад", en: "Garden" }, other: { ru: "Другое", en: "Other" }
+    repair: { ru: "Ремонт", en: "Repair", es: "Reparación", zh: "维修", ja: "修理", ko: "수리" }, construction: { ru: "Стройка", en: "Construction", es: "Construcción", zh: "施工", ja: "建築", ko: "건설" },
+    carpentry: { ru: "Плотницкое", en: "Carpentry", es: "Carpintería", zh: "木工", ja: "木工", ko: "목공" }, painting: { ru: "Покраска", en: "Painting", es: "Pintura", zh: "粉刷", ja: "塗装", ko: "도장" },
+    electricity: { ru: "Электрика", en: "Electricity", es: "Electricidad", zh: "电工", ja: "電気工事", ko: "전기" }, cleaning: { ru: "Уборка", en: "Cleaning", es: "Limpieza", zh: "清洁", ja: "清掃", ko: "청소" },
+    garden: { ru: "Сад", en: "Garden", es: "Jardín", zh: "园艺", ja: "庭仕事", ko: "정원" }, other: { ru: "Другое", en: "Other", es: "Otros", zh: "其他", ja: "その他", ko: "기타" }
   };
 
   function T(k) {
     var d = I18N[state.lang] || I18N.ru;
-    return d[k] != null ? d[k] : (I18N.ru[k] != null ? I18N.ru[k] : k);
+    if (d[k] != null) return d[k];
+    if (I18N.en[k] != null) return I18N.en[k];
+    return I18N.ru[k] != null ? I18N.ru[k] : k;
   }
   function loc(obj) {
     if (obj == null) return "";
     if (typeof obj === "string") return obj;
-    return obj[state.lang] != null ? obj[state.lang] : obj.ru;
+    if (obj[state.lang] != null) return obj[state.lang];
+    if (obj.ru != null) return obj.ru;
+    if (obj.en != null) return obj.en;
+    return "";
   }
 
   /* ============================================================ seed */
@@ -229,7 +1056,7 @@
     var now = Date.now(), D = 864e5;
     return {
       v: 1, seq: 100,
-      lang: (typeof navigator !== "undefined" && /^en/i.test(navigator.language || "")) ? "en" : "ru",
+      lang: guessLang(),
       user: {
         name: "", joined: now - 61 * D, questsDone: 7, contributionsBase: 21,
         contractor: false, skills: [], home: [59.9377, 30.3129]
@@ -238,11 +1065,15 @@
       projects: [
         {
           id: 1, cat: "roads", stage: 1, votes: 12, voted: false, created: now - 5 * D,
-          title: { ru: "Ремонт тротуара", en: "Repair the sidewalk" },
-          near: { ru: "рядом с домом", en: "near my home" },
+          title: { ru: "Ремонт тротуара", en: "Repair the sidewalk", es: "Reparar la acera", zh: "修人行道", ja: "歩道を直す", ko: "보도 고치기" },
+          near: { ru: "рядом с домом", en: "near my home", es: "cerca de casa", zh: "就在我家附近", ja: "家の近く", ko: "집 근처" },
           desc: {
             ru: "Плитка треснула и провалилась, после дождя — лужа. Пешеходы обходят по газону, коляски не проехать. Давайте починим вместе.",
-            en: "The pavement is broken and dangerous for pedestrians — an accessibility and safety issue. Let’s fix it together."
+             en: "The pavement is broken and dangerous for pedestrians — an accessibility and safety issue. Let’s fix it together.",
+             es: "Las baldosas están rajadas y hundidas; después de la lluvia queda un charco. Los peatones rodean por el césped y las sillas de ruedas no pasan. Arreglémoslo juntos.",
+             zh: "地砖裂开并塌陷，雨后积水。行人只能绕草坪走，婴儿车过不去。我们一起修好吧。",
+             ja: "タイルが割れて沈み、雨のあとは水たまりになります。歩行者は芝生を迂回し、ベビーカーも通れません。一緒に直しましょう。",
+             ko: "타일이 깨지고 꺼져서 비 오면 물이 고입니다. 보행자는 잔디를 돌아가고 유모차도 지나가기 어렵습니다. 같이 고쳐 봅시다."
           },
           coords: [59.9398, 30.3157], estimate: 500, photo: "assets/img/projects/sidewalk.webp",
           donations: [
@@ -253,23 +1084,27 @@
           ],
           offers: [
             { id: 11, name: "Дорожник Пётр", rating: 4.8, reviews: 19, jobs: 6, price: 450, days: 7,
-              msg: { ru: "Могу приехать на замер в четверг. Материалы считаю по факту, фото до и после пришлю в чат.", en: "I can come to measure on Thursday. Materials billed as used, before/after photos in the chat." } },
+              msg: { ru: "Могу приехать на замер в четверг. Материалы считаю по факту, фото до и после пришлю в чат.", en: "I can come to measure on Thursday. Materials billed as used, before/after photos in the chat.", es: "Puedo ir a medir el jueves. Los materiales se facturan según lo usado; mando fotos antes y después en el chat.", zh: "周四我可以上门量尺。材料按实际用量结算，前后照片我会发到聊天里。", ja: "木曜日に測りに伺えます。資材は実使用分で計算し、前後の写真はチャットに送ります。", ko: "목요일에 실측하러 갈 수 있습니다. 자재는 실제 사용량으로 정산하고, 전후 사진은 채팅으로 보내겠습니다." } },
             { id: 12, name: "Асфальт-СПб", rating: 4.6, reviews: 31, jobs: 14, price: 480, days: 5,
-              msg: { ru: "Работаем по тарифу, гарантия год. Начнём на следующей неделе.", en: "Fixed price, one-year warranty. We can start next week." } }
+              msg: { ru: "Работаем по тарифу, гарантия год. Начнём на следующей неделе.", en: "Fixed price, one-year warranty. We can start next week.", es: "Precio cerrado, un año de garantía. Empezamos la semana que viene.", zh: "按固定价报价，一年保修。下周开工。", ja: "定額で、保証は 1 年。来週から着手します。", ko: "정액 견적으로 보장은 1년. 다음 주부터 시작합니다." } }
           ],
           chat: [
-            { them: "Дорожник Пётр", text: { ru: "Здравствуйте! Видел проблему на карте, готов взяться.", en: "Hi! I saw the problem on the map, happy to take it." }, ts: now - 2 * D },
-            { you: true, text: { ru: "Здравствуйте! Когда сможете на замер?", en: "Hi! When can you come to measure?" }, ts: now - 2 * D + 36e5 }
+            { them: "Дорожник Пётр", text: { ru: "Здравствуйте! Видел проблему на карте, готов взяться.", en: "Hi! I saw the problem on the map, happy to take it.", es: "¡Hola! He visto el problema en el mapa, me hago cargo.", zh: "你好！我在地图上看到这个问题，我来接。", ja: "こんにちは！地図で問題を見つけました。やらせてください。", ko: "안녕하세요! 지도에서 문제를 봤습니다, 맡겠습니다." }, ts: now - 2 * D },
+            { you: true, text: { ru: "Здравствуйте! Когда сможете на замер?", en: "Hi! When can you come to measure?", es: "¡Hola! ¿Cuándo puedes venir a medir?", zh: "你好！您什么时候可以来量尺？", ja: "こんにちは！測りに来るのはいつですか？", ko: "안녕하세요! 언제 실측하러 오시나요?" }, ts: now - 2 * D + 36e5 }
           ],
           contractor: null, advance: null
         },
         {
           id: 2, cat: "bikes", stage: 1, votes: 5, voted: false, created: now - 3 * D,
-          title: { ru: "Починить велопарковку", en: "Fix the bike rack" },
-          near: { ru: "у подъезда", en: "by the entrance" },
+          title: { ru: "Починить велопарковку", en: "Fix the bike rack", es: "Arreglar el aparcamiento de bicis", zh: "修自行车停放架", ja: "駐輪場の修理", ko: "자전거 거치대 수리" },
+          near: { ru: "у подъезда", en: "by the entrance", es: "junto al portal", zh: "单元门口", ja: "エントランス横", ko: "현관 옆" },
           desc: {
             ru: "Разболтало крепления, два крюка погнуты. Велосипеды падают вместе с парковкой.",
-            en: "The fixings are loose and two hooks are bent. Bikes keep falling over with the rack."
+             en: "The fixings are loose and two hooks are bent. Bikes keep falling over with the rack.",
+             es: "Los anclajes están flojos y dos ganchos doblados. Las bicis se caen con el soporte.",
+             zh: "固定件松了，两个挂钩也弯了。自行车停放架一倒，车就跟着摔。",
+             ja: "固定が緩んで、フック 2 つが曲がっています。駐輪ごと倒れます。",
+             ko: "고정구가 느슨해지고 고리 두 개가 휘었습니다. 자전거가 거치대와 함께 쓰러집니다."
           },
           coords: [59.9421, 30.3245], estimate: 200, photo: "assets/img/projects/bikerack.webp",
           donations: [
@@ -278,17 +1113,21 @@
           ],
           offers: [
             { id: 21, name: "СварПром", rating: 4.7, reviews: 22, jobs: 9, price: 180, days: 3,
-              msg: { ru: "Сварим на месте, усилим основание. Обойдётся дешевле нового.", en: "We will weld it in place and reinforce the base. Cheaper than a new one." } }
+              msg: { ru: "Сварим на месте, усилим основание. Обойдётся дешевле нового.", en: "We will weld it in place and reinforce the base. Cheaper than a new one.", es: "Lo soldamos aquí y reforzamos la base. Sale más barato que uno nuevo.", zh: "我们上门焊接并加固底座，比换新的便宜。", ja: "現場で溶接し、土台を補強します。新品より安く済みます。", ko: "현장에서 용접하고 밑단을 보강합니다. 새 제품보다 쌉니다." } }
           ],
           chat: [], contractor: null, advance: null
         },
         {
           id: 3, cat: "clean", stage: 1, votes: 8, voted: false, created: now - 2 * D,
-          title: { ru: "Убрать сквер после зимы", en: "Clean the park" },
-          near: { ru: "сквер за школой", en: "the yard behind the school" },
+          title: { ru: "Убрать сквер после зимы", en: "Clean the park", es: "Limpiar el parque", zh: "清理冬后的街心公园", ja: "冬の後の公園を片付ける", ko: "겨울 지나고 공원 정리하기" },
+          near: { ru: "сквер за школой", en: "the yard behind the school", es: "el patio de detrás del colegio", zh: "学校后面的小公园", ja: "学校裏の広場", ko: "학교 뒤 뜰" },
           desc: {
             ru: "Ветви, мусор, песок с дорожек. Хочется сесть на лавочку и не увязнуть в грязи.",
-            en: "Branches, litter, sand all over the paths. It would be nice to sit on a bench without stepping into mud."
+             en: "Branches, litter, sand all over the paths. It would be nice to sit on a bench without stepping into mud.",
+             es: "Ramas, basura, arena por los senderos. Da gusto sentarse en un banco sin hundir los pies en el barro.",
+             zh: "树枝、垃圾、路上的沙子。真想能坐在长椅上而不会陷进泥里。",
+             ja: "枝、ゴミ、道に撒いた砂。ベンチに座って泥に埋まらないようにしたいです。",
+             ko: "나뭇가지, 쓰레기, 길에 모래가 잔뜩. 벤치에 앉아 진흙에 빠지지 않게 하고 싶습니다."
           },
           coords: [59.9321, 30.3091], estimate: 300, photo: "assets/img/projects/park.webp",
           donations: [
@@ -300,11 +1139,15 @@
         },
         {
           id: 4, cat: "transport", stage: 3, contractor: 41, votes: 21, voted: false, created: now - 8 * D,
-          title: { ru: "Навес на трамвайной остановке", en: "Solar shelter at the tram stop" },
-          near: { ru: "остановка у моста", en: "the stop by the bridge" },
+          title: { ru: "Навес на трамвайной остановке", en: "Solar shelter at the tram stop", es: "Marquesina solar en la parada del tranvía", zh: "有顶候车亭（太阳能照明）", ja: "トラム停留所のソーラーシェルター", ko: "트램 정류장太阳能 쉘터" },
+          near: { ru: "остановка у моста", en: "the stop by the bridge", es: "la parada junto al puente", zh: "桥边的车站", ja: "橋のそばの停留所", ko: "다리 옆 정류장" },
           desc: {
             ru: "Стёкол нет, сидений нет, дождь как на улице. Ставим навес со скамейкой и солнечной подсветкой.",
-            en: "No glass, no seats, rain gets in. We want a shelter with a bench and a solar light."
+             en: "No glass, no seats, rain gets in. We want a shelter with a bench and a solar light.",
+             es: "Sin vidrio, sin asientos, entra la lluvia igual. Queremos una marquesina con banco y luz solar.",
+             zh: "没有玻璃，没有座位，下雨跟淋在外面一样。要装一个带长椅和太阳能灯的顶棚。",
+             ja: "ガラスも座席もなく、雨は街中で降るのと同じ。ベンチとソーラーライトのあるシェルターを建てます。",
+             ko: "유리와 좌석이 없고 비가 밖에서 내리는 것과 같습니다. 벤치와 태양광 조명이 있는 쉘터를 세우겠습니다."
           },
           coords: [59.9475, 30.3238], estimate: 600, photo: "assets/img/projects/shelter.webp",
           donations: [
@@ -314,19 +1157,23 @@
           ],
           offers: [
             { id: 41, name: "НавесПро", rating: 4.9, reviews: 17, jobs: 5, price: 520, days: 14,
-              msg: { ru: "Поликарбонат, антивандальная скамейка, солнечная лента по краю.", en: "Polycarbonate, an anti-vandal bench, solar strip along the edge." } },
+              msg: { ru: "Поликарбонат, антивандальная скамейка, солнечная лента по краю.", en: "Polycarbonate, an anti-vandal bench, solar strip along the edge.", es: "Policarbonato, banco antivandálico y tira solar en el borde.", zh: "聚碳酸酯板材、防破坏长椅、边缘一圈太阳能灯带。", ja: "ポリカルボネート、耐破壊ベンチ、縁のソーラーストリップ。", ko: "폴리카보네이트, 파손 방지용 벤치, 가장자리의 태양광 스트립." } },
             { id: 42, name: "СтройМастер", rating: 4.5, reviews: 26, jobs: 11, price: 560, days: 10,
-              msg: { ru: "Сделаем быстрее, но дороже. Гарантия два года.", en: "Faster but pricier. Two-year warranty." } }
+              msg: { ru: "Сделаем быстрее, но дороже. Гарантия два года.", en: "Faster but pricier. Two-year warranty.", es: "Más rápido, pero más caro. Dos años de garantía.", zh: "做得更快，但更贵。两年保修。", ja: "早く済みますが、価格は高くなります。保証は 2 年。", ko: "더 빠르지만 더 비쌉니다. 보장은 2년." } }
           ],
           chat: [
-            { them: "НавесПро", text: { ru: "КП принято, начинаем в понедельник. Материалы заказываем заранее.", en: "Offer accepted, we start on Monday. Materials are ordered in advance." }, ts: now - 2 * D },
-            { them: "НавесПро", text: { ru: "Поставщику нужна предоплата 50% за поликарбонат — отправил запрос аванса с обоснованием.", en: "The supplier needs a 50% prepayment for the polycarbonate — I have sent an advance request with a justification." }, ts: now - 1 * D }
+            { them: "НавесПро", text: { ru: "КП принято, начинаем в понедельник. Материалы заказываем заранее.", en: "Offer accepted, we start on Monday. Materials are ordered in advance.", es: "Oferta aceptada, empezamos el lunes. Los materiales se piden por adelantado.", zh: "报价已接受，下周一开工。材料提前预订。", ja: "お見積りを受けました。月曜日に着手します。資材は先に手配します。", ko: "견적이 수락되었습니다. 월요일부터 시작하고 자재는 미리 주문합니다." }, ts: now - 2 * D },
+            { them: "НавесПро", text: { ru: "Поставщику нужна предоплата 50% за поликарбонат — отправил запрос аванса с обоснованием.", en: "The supplier needs a 50% prepayment for the polycarbonate — I have sent an advance request with a justification.", es: "El proveedor pide un 50% de prepago del policarbonato: he enviado la solicitud de anticipo con su justificación.", zh: "供应商要求对聚碳酸酯板材预付 50%，我已附上理由提交预付款申请。", ja: "サプライヤーはポリカルボネートに 50% の前払いを求めているので、理由付きで前払い申請を出しました。", ko: "공급업체가 폴리카보네이트 선금 50%를 요구해서 사유와 함께 선금 요청을 보냈습니다." }, ts: now - 1 * D }
           ],
           advance: {
             amount: 60, by: "НавесПро", status: "open", ts: now - 1 * D,
             reason: {
               ru: "Закупка поликарбоната и крепежа: поставщик работает по предоплате 50%. Смету приложил в чат, остаток — после приёмки.",
-              en: "Polycarbonate and fixings: the supplier requires a 50% prepayment. The itemised quote is in the chat; the rest is paid after acceptance."
+               en: "Polycarbonate and fixings: the supplier requires a 50% prepayment. The itemised quote is in the chat; the rest is paid after acceptance.",
+               es: "Compra de policarbonato y herrajes: el proveedor trabaja con un 50% de prepago. Adjunté el presupuesto en el chat; el resto se paga tras la recepción.",
+               zh: "采购聚碳酸酯板材和紧固件：供应商按 50% 预付款合作。明细已发在聊天里，余款验收后支付。",
+               ja: "ポリカルボネートと金具の仕入れ：サプライヤーは 50% 前払いで対応します。内訳はチャットに送りました。残額は検収後に支払います。",
+               ko: "폴리카보네이트와 경첩 자재 구입: 공급업체는 50% 선금 거래입니다. 내역서는 채팅에 올렸고, 잔금은 검수 후 지급합니다."
             },
             votes: [
               { name: "Игорь", amount: 40, yes: true, ts: now - 20 * 36e5 },
@@ -336,30 +1183,34 @@
         },
         {
           id: 5, cat: "park", stage: 1, votes: 9, voted: false, created: now - 6 * D,
-          title: { ru: "Посадить деревья в сквере", en: "Plant trees in the park" },
-          near: { ru: "вдоль дорожки", en: "along the path" },
+          title: { ru: "Посадить деревья в сквере", en: "Plant trees in the park", es: "Plantar árboles en el parque", zh: "在街心公园种树", ja: "公園に木を植える", ko: "공원에 나무 심기" },
+          near: { ru: "вдоль дорожки", en: "along the path", es: "a lo largo del sendero", zh: "沿着小路", ja: "小道の沿い", ko: "길가 따라" },
           desc: {
             ru: "Три липы и живая изгородь вместо вытоптанной земли. Полив — первые два сезона.",
-            en: "Three lindens and a hedge instead of the trampled ground. Watering for the first two seasons."
+             en: "Three lindens and a hedge instead of the trampled ground. Watering for the first two seasons.",
+             es: "Tres tilos y un seto vivo en lugar del suelo pisado. Riego durante las dos primeras temporadas.",
+             zh: "三棵椴树加一道绿篱，代替被踩秃的地面。前两个季节负责浇水。",
+             ja: "踏みに荒れた土地の代わりに、並木 3 本と生垣を。最初の 2 季は水遣いをします。",
+             ko: "밟혀 다해진 땅 대신 느티나무 세 그루와 울타리. 처음 두 계절은 물을 줍니다."
           },
           coords: [59.9301, 30.3241], estimate: 400, photo: "assets/img/projects/trees.webp",
           donations: [{ name: "Даша", amount: 60, ts: now - 3 * D }],
           offers: [
             { id: 51, name: "ЗелёГрад", rating: 4.8, reviews: 12, jobs: 4, price: 350, days: 7,
-              msg: { ru: "Саженцы с комом, приживаемость 90%. Приедем с поливом дважды.", en: "Root-balled saplings, 90% survival. We will come to water twice." } }
+              msg: { ru: "Саженцы с комом, приживаемость 90%. Приедем с поливом дважды.", en: "Root-balled saplings, 90% survival. We will come to water twice.", es: "Plantones con cepo, 90% de supervivencia. Iremos dos veces a regar.", zh: "带土球的苗木，成活率 90%。我们会来浇两次水。", ja: "根鉢つきの苗木、生着率 90%。水遣いに 2 度伺います。", ko: "뿌리째苗, 생존율 90%. 물주러 두 번 방문합니다." } }
           ],
           chat: [], contractor: null, advance: null
         }
       ],
       quests: [
         { id: 61, cat: "home", price: 15, hours: 2, coords: [59.935, 30.31], created: now - 1 * D, accepted: false,
-          title: { ru: "Помочь перевезти мебель", en: "Help me move furniture" } },
+          title: { ru: "Помочь перевезти мебель", en: "Help me move furniture", es: "Ayudar a mover muebles", zh: "帮忙搬家具", ja: "家具の運びを手伝ってほしい", ko: "가구 옮기는 걸 도와주세요" } },
         { id: 62, cat: "education", price: 20, hours: 1.5, coords: [59.933, 30.319], created: now - 2 * D, accepted: false,
-          title: { ru: "Репетиторство: математика, 9 класс", en: "Tutoring: math (grade 9)" } },
+          title: { ru: "Репетиторство: математика, 9 класс", en: "Tutoring: math (grade 9)", es: "Clases particulares: matemáticas (9.º)", zh: "家教：数学（九年级）", ja: "個人レッスン：数学（中3）", ko: "과외: 수학 (중3)" } },
         { id: 63, cat: "tech", price: 25, hours: 1, coords: [59.947, 30.308], created: now - 12 * 36e5, accepted: false,
-          title: { ru: "Починить ноутбук", en: "Fix my laptop" } },
+          title: { ru: "Починить ноутбук", en: "Fix my laptop", es: "Arreglar mi portátil", zh: "修笔记本电脑", ja: "ノートパソコンを直して", ko: "노트북 고치기" } },
         { id: 64, cat: "pets", price: 12, hours: 1, coords: [59.928, 30.32], created: now - 5 * 36e5, accepted: false,
-          title: { ru: "Выгулять собаку", en: "Walk my dog" } }
+          title: { ru: "Выгулять собаку", en: "Walk my dog", es: "Pasear a mi perro", zh: "遛狗", ja: "犬の散歩のお手伝い", ko: "내 개 산책시키기" } }
       ]
     };
   }
@@ -374,13 +1225,13 @@
       var d = JSON.parse(raw);
       if (!d || d.v !== 1 || !Array.isArray(d.projects) || !Array.isArray(d.quests) || !d.user || !Array.isArray(d.user.home) || !Array.isArray(d.user.skills) || !Number.isFinite(d.seq)) return null;
       if (!d.projects.every(function (p) { return p && Number.isFinite(p.id) && p.title && Array.isArray(p.donations) && Array.isArray(p.offers) && Array.isArray(p.chat) && Array.isArray(p.coords); })) return null;
-      if (d.lang !== "ru" && d.lang !== "en") d.lang = "ru";
+      if (!isLang(d.lang)) d.lang = "ru";
       return d;
     } catch (e) { return null; }
   }
   function save() {
     try { localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {
-      toast(state.lang === "en" ? "Unable to save. Export your data from Profile." : "Не удалось сохранить данные. Сделайте экспорт в профиле.");
+      toast(T("saveError"));
     }
   }
 
@@ -403,22 +1254,17 @@
   }
   function kmTxt(km) {
     if (km == null) return "";
-    if (km < 1) return Math.max(50, Math.round(km * 1000 / 10) * 10) + " м";
-    return (km < 10 ? Math.round(km * 10) / 10 : Math.round(km)) + " км";
+    if (km < 1) return Math.max(50, Math.round(km * 1000 / 10) * 10) + T("mUnit");
+    return (km < 10 ? Math.round(km * 10) / 10 : Math.round(km)) + T("kmUnit");
   }
   function coordsTxt(c) {
     return c ? c[0].toFixed(4) + ", " + c[1].toFixed(4) : "—";
   }
   function relTime(ts) {
     var d = Date.now() - ts, h = d / 36e5;
-    if (state.lang === "en") {
-      if (h < 1) return "just now";
-      if (h < 24) return Math.round(h) + " h ago";
-      return Math.round(h / 24) + " d ago";
-    }
-    if (h < 1) return "только что";
-    if (h < 24) return Math.round(h) + " ч назад";
-    return Math.round(h / 24) + " дн назад";
+    if (h < 1) return T("justNow");
+    if (h < 24) return Math.round(h) + T("hAgo");
+    return Math.round(h / 24) + T("dAgo");
   }
   function targetOf(p) {
     if (p.offers && p.offers.length) {
@@ -537,7 +1383,7 @@
             '<div class="bar' + (pct >= 100 ? " bar--full" : "") + '"><i style="width:' + pct + '%"></i></div>' +
             '<p class="pcard__tgt">' +
               (minO
-                ? T("targetMin") + ": " + esc(minO.name) + " · " + eur(minO.price) + " · " + minO.days + " " + (state.lang === "en" ? "days" : "дн")
+                ? T("targetMin") + ": " + esc(minO.name) + " · " + eur(minO.price) + " · " + minO.days + " " + (T("unitDays"))
                 : T("targetEst")) +
             "</p>" +
           "</div>" +
@@ -557,7 +1403,7 @@
       return '' +
         '<article class="qrow" data-quest="' + q.id + '">' +
           '<div class="qrow__main"><h3>' + esc(loc(q.title)) + "</h3>" +
-          '<p class="num">' + eur(q.price) + " · " + q.hours + " " + (state.lang === "en" ? "h" : "ч") +
+          '<p class="num">' + eur(q.price) + " · " + q.hours + " " + (T("unitHours")) +
             (d != null ? " · " + kmTxt(d) : "") + " · " + relTime(q.created) + "</p></div>" +
           '<div class="qrow__side"><span class="chip chip--soft chip--' + cat.c + '">' + esc(loc(cat)) + "</span>" +
           (q.accepted
@@ -569,7 +1415,7 @@
       '<article class="qcard" data-quest="' + q.id + '">' +
         '<span class="chip chip--soft chip--' + cat.c + '">' + esc(loc(cat)) + "</span>" +
         "<h3>" + esc(loc(q.title)) + "</h3>" +
-        '<p class="num">' + eur(q.price) + " · " + q.hours + " " + (state.lang === "en" ? "h" : "ч") +
+        '<p class="num">' + eur(q.price) + " · " + q.hours + " " + (T("unitHours")) +
         (d != null ? " · " + kmTxt(d) : "") + "</p>" +
         (q.accepted
           ? '<span class="chip chip--soft chip--teal">' + T("responded") + "</span>"
@@ -606,10 +1452,14 @@
 
   function renderHome() {
     var total = state.projects.reduce(function (sum, p) { return sum + collectedOf(p); }, 0);
-    $("#communityStats").innerHTML = '<div><b>' + state.projects.length + '</b><span>' + T("projects") + '</span></div><div><b>' + eur(total) + '</b><span>' + (state.lang === "en" ? "in project budgets" : "в бюджетах проектов") + '</span></div>';
+    $("#communityStats").innerHTML = '<div><b>' + state.projects.length + '</b><span>' + T("projects") + '</span></div><div><b>' + eur(total) + '</b><span>' + (T("inBudgetsStat")) + '</span></div>';
     $("#homeQuests").innerHTML = sortedQuests().map(function (q) { return questCard(q, false); }).join("");
     $("#homeProjects").innerHTML = sortedProjects().slice(0, 3)
       .map(function (p) { return projectCard(p, false); }).join("");
+  }
+
+  function emptyHtml(msg) {
+    return '<div class="empty"><img class="empty__art" src="assets/img/ill-empty.webp" alt="" loading="lazy" width="1408" height="768"><p>' + esc(msg) + "</p></div>";
   }
 
   function renderMapList() {
@@ -618,10 +1468,10 @@
       if (!q) return true;
       return (loc(p.title) + " " + loc(p.desc) + " " + loc(p.near) + " " + loc(catOf(p))).toLowerCase().indexOf(q) >= 0;
     });
-    $("#mapCount").textContent = arr.length ? arr.length + (state.lang === "en" ? " on the map" : " на карте") : "";
+    $("#mapCount").textContent = arr.length ? arr.length + (T("onTheMap")) : "";
     $("#mapList").innerHTML = arr.length
       ? arr.map(function (p) { return projectCard(p, true); }).join("")
-      : '<p class="empty">' + T("emptyList") + "</p>";
+      : emptyHtml(T("emptyList"));
     refreshMarkers(arr);
   }
 
@@ -640,7 +1490,7 @@
     if (plist === "all" || plist === "quests") {
       out += quests.map(function (q) { return questCard(q, true); }).join("");
     }
-    $("#projList").innerHTML = out || '<p class="empty">' + T("emptyList") + "</p>";
+    $("#projList").innerHTML = out || emptyHtml(T("emptyList"));
   }
 
   function myProjectsList() {
@@ -663,7 +1513,7 @@
         return '<article class="wrow" data-project="' + r.p.id + '">' +
           '<div><h3>' + esc(loc(r.p.title)) + '</h3><p class="num">' + relTime(r.d.ts) + "</p></div>" +
           '<b class="num">+' + eur(r.d.amount) + "</b></article>";
-      }).join("") : '<p class="empty">' + T("emptyWallet") + "</p>";
+      }).join("") : emptyHtml(T("emptyWallet"));
       return;
     }
     var flt = wtab === "done"
@@ -671,7 +1521,7 @@
       : mine.filter(function (p) { return p.stage < 5; });
     var out = flt.map(function (p) { return projectCard(p, false); }).join("");
     var box = $("#walletList");
-    box.innerHTML = out || '<p class="empty">' + T("emptyWallet") + "</p>";
+    box.innerHTML = out || emptyHtml(T("emptyWallet"));
     $$(".pcard", box).forEach(function (el) {
       var p = byId(el.getAttribute("data-project"));
       if (!p) return;
@@ -679,7 +1529,7 @@
       if (y) {
         var tag = document.createElement("p");
         tag.className = "pcard__youdon num";
-        tag.textContent = (state.lang === "en" ? "You donated " : "Вы внесли ") + eur(y);
+        tag.textContent = (T("youDonated")) + eur(y);
         el.appendChild(tag);
       }
     });
@@ -696,9 +1546,9 @@
     var months = Math.max(1, Math.round((Date.now() - u.joined) / (30 * 864e5)));
     $("#meJoined").textContent = T("joinedAgo") + " " + months + " " + T("m");
     $("#profileStats").innerHTML =
-      '<div class="stat3"><b class="num">' + (u.questsDone + state.quests.filter(function (q) { return q.accepted; }).length) + "</b><span>" + (state.lang === "en" ? "quests" : "квестов") + "</span></div>" +
-      '<div class="stat3"><b class="num">' + mine.length + "</b><span>" + (state.lang === "en" ? "projects" : "проекта") + "</span></div>" +
-      '<div class="stat3"><b class="num">' + (u.contributionsBase + contribs) + "</b><span>" + (state.lang === "en" ? "contributions" : "взносов") + "</span></div>";
+      '<div class="stat3"><b class="num">' + (u.questsDone + state.quests.filter(function (q) { return q.accepted; }).length) + "</b><span>" + (T("statQuests")) + "</span></div>" +
+      '<div class="stat3"><b class="num">' + mine.length + "</b><span>" + (T("statProjects")) + "</span></div>" +
+      '<div class="stat3"><b class="num">' + (u.contributionsBase + contribs) + "</b><span>" + (T("statContribs")) + "</span></div>";
     $("#meProjectsN").textContent = mine.length;
     $("#meQuestsN").textContent = u.questsDone;
     var total = mine.reduce(function (s, p) { return s + myDonated(p); }, 0);
@@ -876,7 +1726,7 @@
             '<div class="offer__head"><b>' + esc(o.name) + '</b>' +
             '<span class="num offer__rate">★ ' + o.rating + " (" + o.reviews + ") · " + o.jobs + " " + T("works") + "</span></div>" +
             '<p class="offer__msg">' + esc(loc(o.msg) || "") + "</p>" +
-            '<div class="offer__row"><span class="num offer__price">' + eur(o.price) + " · " + o.days + " " + (state.lang === "en" ? "days" : "дн") + "</span>" +
+            '<div class="offer__row"><span class="num offer__price">' + eur(o.price) + " · " + o.days + " " + (T("unitDays")) + "</span>" +
             (isMin ? '<span class="chip chip--soft chip--yellow">' + T("minPrice") + "</span>" : "") +
             '<span class="offer__acts">' +
               (p.contractor === o.id
@@ -916,7 +1766,7 @@
           '<span class="chip chip--soft chip--' + cat.c + '">' + esc(loc(cat)) + "</span>" +
           stageChip(p) +
           '<button class="chip chip--btn' + (p.voted ? " is-on" : "") + '" type="button" data-vote="' + p.id + '">' +
-            (state.lang === "en" ? "bothers me too" : "мне тоже мешает") + " +" + p.votes + "</button>" +
+            (T("bothersMeToo")) + " +" + p.votes + "</button>" +
         "</div>" +
         '<p class="det__coords num">' + coordsTxt(p.coords) +
           ' <button class="linklike linklike--mono" type="button" data-showmap="' + p.id + '">' + T("viewOnMap") + " →</button></p>" +
@@ -928,7 +1778,7 @@
             ' <span class="num">' + eur(tgt) + '</span> <span class="budget__pct num">' + pct + "%</span></p>" +
           '<div class="bar' + (pct >= 100 ? " bar--full" : "") + '"><i style="width:' + pct + '%"></i></div>' +
           '<p class="budget__tgt">' + (minO
-            ? T("targetMin") + ": <b>" + esc(minO.name) + "</b> · " + eur(minO.price) + " · " + minO.days + " " + (state.lang === "en" ? "days" : "дн")
+            ? T("targetMin") + ": <b>" + esc(minO.name) + "</b> · " + eur(minO.price) + " · " + minO.days + " " + (T("unitDays"))
             : T("targetEst")) + "</p>" +
           (donorRows ? '<p class="budget__donors"><b>' + T("donors") + ":</b> " + donorRows + "</p>" : "") +
           (p.advance && p.advance.status === "approved"
@@ -936,9 +1786,7 @@
             : "") +
           '<button class="btn btn--primary btn--wide" type="button" data-donate="' + p.id + '">' + T("addToBudget") + "</button>" +
           '<p class="budget__micro">' +
-            (state.lang === "en"
-              ? "Your donation goes to the work, not to platform fees."
-              : "Донат идёт в бюджет проекта и тратится на работу, а не на комиссии платформы.") + "</p>" +
+            T("budgetMicro") + "</p>" +
         "</div>" +
 
         advanceHtml(p) +
@@ -1016,7 +1864,7 @@
     if (meMarker) meMarker.setLatLng(p);
     else {
       meMarker = L.circleMarker(p, { radius: 8, weight: 2.5, color: "#17161b", fillColor: "#6f9bf5", fillOpacity: 1 })
-        .addTo(map).bindTooltip(state.lang === "en" ? "You" : "Вы");
+        .addTo(map).bindTooltip(T("you"));
     }
   }
   function refreshMarkers(list) {
@@ -1094,7 +1942,7 @@
       if (amt < 1) return;
     }
     var name = $("#dName").value.trim();
-    if (!Number.isFinite(amt) || amt > 1000000) { toast(state.lang === "en" ? "Enter an amount from 1 to 1,000,000" : "Введите сумму от 1 до 1 000 000"); return; }
+    if (!Number.isFinite(amt) || amt > 1000000) { toast(T("badAmount")); return; }
     p.donations.push({ you: true, name: name || state.user.name, amount: amt, ts: Date.now() });
     save();
     closeModal($("#mDonate"));
@@ -1127,7 +1975,7 @@
     p.offers.push({
       id: state.seq++, you: true, name: name, rating: 4.8, reviews: 24,
       jobs: state.user.contractor ? 6 : 0, price: price, days: days,
-      msg: { ru: "Готов выполнить работы. Фото до и после пришлю в чат.", en: "Ready to do the work. I will send before and after photos in the chat." }
+      msg: { ru: "Готов выполнить работы. Фото до и после пришлю в чат.", en: "Ready to do the work. I will send before and after photos in the chat.", es: "Listo para hacer el trabajo. Mando fotos antes y después en el chat.", zh: "我来做这件事，前后照片会发到聊天里。", ja: "作業を引き受けます。前後の写真はチャットに送ります。", ko: "작업은 제가 맡겠습니다. 전후 사진은 채팅으로 보내겠습니다." }
     });
     save();
     closeModal($("#mOffer"));
@@ -1205,8 +2053,8 @@
     var est = Math.max(1, Math.round(Number($("#nEstimate").value) || 100));
     var p = {
       id: state.seq++, cat: $("#nCat").value || "other", stage: 1, votes: 0, voted: false,
-      created: Date.now(), title: title, near: { ru: "рядом с домом", en: "near my home" },
-      desc: $("#nDesc").value.trim() || { ru: "", en: "" },
+      created: Date.now(), title: title, near: { ru: "рядом с домом", en: "near my home", es: "cerca de casa", zh: "就在我家附近", ja: "家の近く", ko: "집 근처" },
+      desc: $("#nDesc").value.trim() || { ru: "", en: "", es: "", zh: "", ja: "", ko: "" },
       coords: coords, estimate: est, photo: draftPhoto || "",
       donations: [], offers: [], chat: [], contractor: null, advance: null
     };
@@ -1283,9 +2131,9 @@
 
   /* ============================================================ nav */
   var SUBS = {
-    home: "21.city", map: { ru: "карта района", en: "the neighbourhood map" },
-    projects: { ru: "проекты и квесты", en: "projects & quests" },
-    wallet: { ru: "кошелёк", en: "wallet" }, profile: { ru: "профиль", en: "profile" }
+    home: "21.city", map: { ru: "карта района", en: "the neighbourhood map", es: "el mapa del barrio", zh: "街区地图", ja: "区の地図", ko: "동네 지도" },
+    projects: { ru: "проекты и квесты", en: "projects & quests", es: "proyectos y misiones", zh: "项目与任务", ja: "プロジェクトとクエスト", ko: "프로젝트와 퀘스트" },
+    wallet: { ru: "кошелёк", en: "wallet", es: "monedero", zh: "钱包", ja: "ウォレット", ko: "지갑" }, profile: { ru: "профиль", en: "profile", es: "perfil", zh: "个人资料", ja: "プロフィール", ko: "프로필" }
   };
   function showView(v) {
     if (!SUBS[v]) v = "home";
@@ -1304,22 +2152,25 @@
 
   /* ============================================================ lang */
   function setLang(l, saveIt) {
+    if (!isLang(l)) l = "ru";
     state.lang = l;
     var root = document.documentElement;
     root.setAttribute("lang", l);
     root.setAttribute("data-lang", l);
-    document.title = l === "en"
-      ? "21.city — civic projects and quests nearby"
-      : "21.city — городские проекты и квесты рядом";
+    document.title = T("docTitle");
     $$("[data-set-lang]").forEach(function (b) {
       b.setAttribute("aria-pressed", b.getAttribute("data-set-lang") === l ? "true" : "false");
     });
+    var code = $("#langCode");
+    if (code) code.textContent = l.toUpperCase();
     $$("[data-i18n]").forEach(function (el) {
       var k = el.getAttribute("data-i18n");
       if (I18N.ru[k] != null) el.textContent = T(k);
     });
     var ms = $("#mapSearch");
-    if (ms) ms.placeholder = l === "en" ? "Search projects, tasks, location…" : "Проект, задача, место…";
+    if (ms) ms.placeholder = T("searchPh");
+    var menu = $("#langMenu");
+    if (menu) menu.open = false;
     if (saveIt) save();
     renderAll();
   }
@@ -1531,7 +2382,7 @@
 
     /* profile */
     $("#btnReset").addEventListener("click", function () {
-      if (!window.confirm(state.lang === "en" ? "Reset all local data? Export a backup first." : "Сбросить все локальные данные? Сначала сохраните экспорт.")) return;
+      if (!window.confirm(T("confirmReset"))) return;
       try { localStorage.removeItem(LS); } catch (e) {}
       var lang = state.lang;
       state = seedData(); state.lang = lang; save();
@@ -1577,15 +2428,13 @@
     window.addEventListener("popstate", restoreRoute);
     $("#catalogSearch").addEventListener("input", function (e) { catalogQ = e.target.value; renderProjects(); });
     $("#catalogSort").addEventListener("change", function (e) { catalogOrder = e.target.value; renderProjects(); });
-    $("#profileForm").addEventListener("submit", function (e) { e.preventDefault(); var name = $("#profileNameInput").value.trim(); if (!name) return; state.user.name = name; save(); renderProfile(); toast(state.lang === "en" ? "Profile saved" : "Профиль сохранён"); });
+    $("#profileForm").addEventListener("submit", function (e) { e.preventDefault(); var name = $("#profileNameInput").value.trim(); if (!name) return; state.user.name = name; save(); renderProfile(); toast(T("profileSaved")); });
     $("#btnExport").addEventListener("click", function () {
       var url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: "application/json" }));
       var a = document.createElement("a"); a.href = url; a.download = "21city-backup-" + new Date().toISOString().slice(0,10) + ".json"; a.click(); setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
     });
     setTimeout(function () {
-      toast(state.lang === "en"
-        ? "Demo: everything is stored in this browser"
-        : "Демо: все данные хранятся в этом браузере");
+      toast(T("t_demo"));
     }, 900);
   }
 

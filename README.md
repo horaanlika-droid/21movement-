@@ -67,22 +67,30 @@ python3 -m http.server 8080
 | `index.html` | The app shell: five tabs (Home, Map, Projects, Wallet, Profile), the project detail overlay and the modals. |
 | `city.css` | The app’s design tokens and layout — the same paper/ink/sticker language as the landing. Base component styles; the responsive workspace overrides live in `workspace.css`. |
 | `workspace.css` | Responsive desktop workspace, mobile navigation, lavender / ivory theme. |
-| `assets/img/community-garden.png` | AI-generated neighbourhood illustration with neighbours — no mascot character. |
+| `assets/img/community-garden.webp` | AI-generated neighbourhood illustration with neighbours — no mascot character. |
+| `assets/img/ill-*.webp` | Eight more flat-vector illustrations (quests, map, wallet, tools, meeting, empty state, profile, how-it-works). Same ivory ground `#FAF2DE` as the app background, no text, no mascot. |
 | `assets/img/favicon.png` | Favicon — рукописная «21» на фирменном фиолетовом (180×180, она же apple-touch-icon). |
-| `tests/app.test.cjs` | Eight integration tests running the real app script in jsdom. |
+| `tests/app.test.cjs` | Ten integration tests running the real app script in jsdom. |
 | `city.js` | All app logic: state (localStorage), i18n, cards, the map, donations, offers, the timeline, the wizard. |
 | `landing.html` + `style.css` + `app.js` | The grant landing: language switch and scroll reveal. |
 | `assets/vendor/leaflet/` | Self-hosted Leaflet 1.9.4 (BSD-2-Clause) so the app has zero external runtime dependencies. Map tiles: CARTO Voyager over OpenStreetMap data. |
 | `assets/img/projects/` | Generated placeholder photos for the seeded projects (resized copies of `grant/photos/`). |
-| `assets/fonts/` | Self-hosted, subset `woff2`: Geist, Geist Mono, Gaegu (the child’s hand for numbers), Pangolin (handwritten notes, Latin + Cyrillic). |
+| `assets/fonts/` | Self-hosted, subset `woff2`: Geist, Geist Mono, Gaegu (the child’s hand for numbers), Pangolin (handwritten notes, Latin + Cyrillic). CJK falls back to the system stack (PingFang SC, Hiragino, Yu Gothic, Malgun Gothic, Noto CJK). |
+| `tools/i18n.py` + `tools/i18n/*.json` | Extraction and translation pipeline for the six languages: `python3 tools/i18n.py extract|apply|check`. |
 
-**Language.** The shell holds both languages in the markup
-(`<span lang="ru">…</span><span lang="en">…</span>`); dynamic strings live in an
-i18n dictionary in `city.js` (`I18N`). The RU/EN pill in the header switches
-both, and seeded data carries `{ru, en}` pairs.
+**Language.** Six languages: Russian, English, Spanish, Chinese, Japanese and
+Korean. The shell holds the static strings in the markup
+(`<span lang="ru">…</span><span lang="en">…</span>…`); a single CSS rule hides
+every `lang` attribute that does not match `html[data-lang]`. Dynamic strings
+live in the `I18N` dictionary in `city.js` (`ru`/`en`/`es`/`zh`/`ja`/`ko` keys,
+with `ru → en` fallback for missing entries); seeded data carries the same six
+ways. The header dropdown (`#langMenu`) switches the language, the choice is
+stored in `localStorage` and also accepted as `?lang=`. `T(key)` resolves a
+dictionary entry, `loc(obj)` a `{ru, en, es, zh, ja, ko}` pair.
 
 **Seeds.** Five projects and four quests, matching the reference mockups.
-“Reset demo data” in the profile returns everything to the seeds.
+“Reset demo data” in the profile returns everything to the seeds. The seed
+language follows the browser (`navigator.language`).
 
 
 ---
@@ -126,13 +134,14 @@ Node.js 22+ нужен только для инструментов разраб
 
 ```bash
 npm ci
-npm test       # 8 интеграционных тестов: проходят
+npm test       # 10 интеграционных тестов: проходят
 npm run check # синтаксис city.js и app.js: проходит
 ```
 
 Тесты проверяют запуск, каталог, именные взносы и сохранение, КП и минимальную
 цену, профиль и безопасный вывод имени, маршруты, публикацию и отклик на квест,
-повреждённый JSON и подтверждение сброса. Это DOM-тесты, **не проверка пикселей**.
+повреждённый JSON и подтверждение сброса, переключение всех шести языков в
+приложении и на лендинге. Это DOM-тесты, **не проверка пикселей**.
 Попытка запуска headless Chromium в этой среде заблокирована отсутствующей
 системной библиотекой `libnspr4.so`; визуальная проверка desktop/mobile остаётся
 отдельным пунктом следующей сессии. Live preview поднимается статическим сервером.
@@ -147,6 +156,48 @@ npm run check # синтаксис city.js и app.js: проходит
 и новые иллюстрации сгенерированы. Карта требует интернет-доступа к тайлам CARTO / OSM.
 Экспорт JSON есть; импорт ещё не реализован. Не используйте черновик для реальных
 сборов средств. При очистке браузера локальные данные теряются.
+
+## Сессия 21.10.2026 — иллюстрации, единый фон, шесть языков
+
+### Что сделано
+
+- **Иллюстрации.** Восемь новых плоских векторных иллюстраций: квесты, карта,
+  кошелёк, инструменты, встреча района, пустое состояние, профиль и «как это
+  работает». Все девять картинок (включая `community-garden.webp`) переведены в
+  WebP и перекрашены в один фон `#FAF2DE`, поэтому вставляются без рамок и
+  «наложения». Иллюстрации не декоративные: карта, каталог, кошелёк, профиль,
+  модалка «как это работает» и пустое состояние каталога получили свои картинки.
+  Персонажа-маскота по-прежнему нет, текста на картинках нет.
+- **Фон приложения = фон картинок.** Бумага `--paper:#faf2de`, светлая подложка
+  `--paper-2:#f2e8d2`, белые карточки `--white:#fffdf7`, фиолетовый акцент
+  `--violet:#6c24df`; фон страницы `#f1ead4`. Иллюстрации на фоне и в белых
+  карточках стоят бесшовно.
+- **Шесть языков: RU, EN, ES, ZH, JA, KO.** Переведены разметка приложения
+  (28 пар строк), лендинг (211 строк), словарь интерфейса `city.js` (184 ключа
+  на язык) и сид-данные. Переключатель в шапке — выпадающее меню с шестью
+  кнопками, язык сохраняется в `localStorage`, принимается `?lang=`, новый язык
+  подставляется в `<title>`, подсказку поиска и `html[lang]`.
+  Переводы динамических строк идут через `T(key)` с откатом `текущий → en → ru`,
+  пары сид-данных — через `loc(obj)`. Иероглифы и кана печатают системными
+  шрифтами (PingFang SC, Hiragino, Yu Gothic, Malgun Gothic, Noto CJK).
+- **Инструменты.** `tools/i18n.py extract|apply|check` переносит строки в
+  JSON-каталоги, применяет переводы и проверяет, что в ключах нет артефактов
+  и потерянных языков. `tools/i18n/city.i18n.json` — словари ES/ZH/JA/KO
+  интерфейса, `tools/i18n/city.seed.json` — переводы сид-объектов.
+- **Тесты.** Добавлены два теста: переключение шести языков в приложении
+  (включая перевод сид-карточек) и переключение языков на лендинге.
+
+### Как проверять
+
+```bash
+python3 -m http.server 8080 --bind 0.0.0.0
+npm ci && npm test && npm run check
+python3 tools/i18n.py check
+```
+
+Живой предпросмотр поднимается статическим сервером на порту 8080.
+
+---
 
 ## Задание на следующую сессию
 
@@ -175,9 +226,11 @@ npm run check # синтаксис city.js и app.js: проходит
 6. **Завершить доступность**: семантические кнопки открытия карточек, возврат
    фокуса из панели проекта, недоступный фон диалогов, локализованные aria-label,
    обработка недоступных тайлов карты, ошибок геолокации и пустых состояний.
-7. **Иллюстрации**: подготовить оптимизированные WebP/AVIF из текущих PNG.
-   Маскот не возвращается — иллюстрация района уже без персонажа; новые иллюстрации добавлять под реальные
-   состояния (пустой каталог, успешная приёмка), а не как декор без функции.
+7. **Иллюстрации**: восемь новых иллюстраций уже переведены в WebP и стоят
+   под реальными состояниями (каталог, карта, кошелёк, профиль, пустой каталог).
+   Дальше — AVIF и иллюстрация успешной приёмки. Маскот не возвращается —
+   иллюстрация района уже без персонажа; иллюстрации добавлять под реальные
+   состояния, а не как декор без функции.
 
 **Готовность следующего этапа:** два разных пользователя видят одну заявку;
 роли ограничивают действия; после перезагрузки сохраняются предложения и этап;
