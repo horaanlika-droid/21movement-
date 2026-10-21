@@ -91,3 +91,39 @@ test('corrupt JSON falls back safely; reset requires confirmation', async t => {
   a.w.confirm = () => false; a.click('#btnReset'); assert.equal(a.state().user.name, 'Keep me');
   a.w.confirm = () => true; a.click('#btnReset'); assert.equal(a.state().user.name, '');
 });
+test('switches between the six languages and keeps the dictionary in sync', async t => {
+  const a = await app(); t.after(() => a.dom.window.close());
+  const codes = ['ru', 'en', 'es', 'zh', 'ja', 'ko'];
+  for (const code of codes) {
+    a.click(`[data-set-lang="${code}"]`);
+    const root = a.w.document.documentElement;
+    assert.equal(root.getAttribute('data-lang'), code);
+    assert.equal(root.getAttribute('lang'), code);
+    assert.equal(a.$('#langCode').textContent, code.toUpperCase());
+    assert.equal(a.state().lang, code);
+    // the tab labels come from the dictionary, not from the markup
+    assert.ok(a.$('[data-i18n="tabHome"]').textContent.length > 0);
+  }
+  // seeded data is translated too
+  a.click('[data-set-lang="ja"]');
+  assert.match(a.$('#homeQuests .qcard h3').textContent, /[ぁ-んァ-ン一-龥]/);
+  assert.equal(a.$('[data-i18n="tabProjects"]').textContent, 'プロジェクト');
+  a.click('[data-set-lang="zh"]');
+  assert.equal(a.$('[data-i18n="tabProjects"]').textContent, '项目');
+  a.click('[data-set-lang="ko"]');
+  assert.equal(a.$('[data-i18n="tabProjects"]').textContent, '프로젝트');
+});
+test('landing page switches between the six languages', async t => {
+  const landing = fs.readFileSync('landing.html', 'utf8');
+  const script2 = fs.readFileSync('app.js', 'utf8');
+  const dom = new JSDOM(landing, { url: 'http://localhost/landing.html', runScripts: 'outside-only' });
+  const w = dom.window;
+  w.eval(script2);
+  for (const code of ['ru', 'en', 'es', 'zh', 'ja', 'ko']) {
+    w.document.querySelector(`[data-set-lang="${code}"]`).click();
+    assert.equal(w.document.documentElement.getAttribute('data-lang'), code);
+    assert.equal(w.document.getElementById('langCode').textContent, code.toUpperCase());
+  }
+  assert.match(w.document.title, /숫자가 PR/);
+  w.window.close();
+});

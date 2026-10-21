@@ -1,0 +1,114 @@
+[
+  {
+    "ru": "Перейти к содержанию",
+    "en": "Skip to content"
+  },
+  {
+    "ru": "Песочница · деньги и эскроу — симуляция. Данные только в этом браузере.",
+    "en": "Sandbox · payments and escrow are simulated. Data stays in this browser."
+  },
+  {
+    "ru": "ГОРОД НАЧИНАЕТСЯ С НАС · 21.CITY",
+    "en": "A BETTER CITY STARTS WITH US · 21.CITY"
+  },
+  {
+    "ru": "Маленькие действия.<br>Большие перемены.<br><em>Вместе.</em>",
+    "en": "Small actions.<br>Real change.<br><em>Together.</em>"
+  },
+  {
+    "ru": "Задачи, услуги и городские проекты рядом с домом — для крепкого района.",
+    "en": "Local tasks, services and projects for a stronger community."
+  },
+  {
+    "ru": "Сообщить о проблеме",
+    "en": "Post a need"
+  },
+  {
+    "ru": "все →",
+    "en": "all →"
+  },
+  {
+    "ru": "Поиск по проектам и квестам",
+    "en": "Search projects and quests"
+  },
+  {
+    "ru": "Порядок",
+    "en": "Sort"
+  },
+  {
+    "ru": "+ Создать проект",
+    "en": "+ New project"
+  },
+  {
+    "ru": "деньги уйдут подрядчику из эскроу только после приёмки работ",
+    "en": "escrow releases the money to the contractor only after acceptance"
+  },
+  {
+    "ru": "Ваше имя",
+    "en": "Your name"
+  },
+  {
+    "ru": "Сохранить профиль",
+    "en": "Save profile"
+  },
+  {
+    "ru": "вместе — лучше.",
+    "en": "better together."
+  },
+  {
+    "ru": "О проекте · лендинг",
+    "en": "About · landing"
+  },
+  {
+    "ru": "Экспорт данных · JSON ↓",
+    "en": "Export data · JSON ↓"
+  },
+  {
+    "ru": "Локальный черновик. Фото — сгенерированные плейсхолдеры. Всё хранится локально в вашем браузере, никаких серверов и токенов.",
+    "en": "Local draft. Photos are generated placeholders. Everything is stored locally in your browser — no servers, no token."
+  },
+  {
+    "ru": "Поддержите проект донатом. Взнос поможет найти подрядчиков и довести работу до конца.",
+    "en": "Support this project with a donation. Your contribution will help us find contractors and get the work done."
+  },
+  {
+    "ru": "Донат идёт в бюджет проекта и тратится на работу, а не на комиссии платформы.",
+    "en": "Your donation goes to the project budget and is used for the work, not for platform fees."
+  },
+  {
+    "ru": "Коммерческое предложение попадает в открытый тендер. Минимальная цена становится целью бюджета проекта.",
+    "en": "A commercial offer joins the open tender. The lowest price becomes the project’s budget target."
+  },
+  {
+    "ru": "Предоплата на материалы и работу — с обоснованием. Решение принимают донатеры проекта голосованием.",
+    "en": "A prepayment for materials and work — with a justification. The project’s donors decide by vote."
+  },
+  {
+    "ru": "Сфотографируйте проблему и укажите место. Соседи увидят её на карте и смогут пополнять бюджет, пока идут коммерческие предложения.",
+    "en": "Photograph the problem and mark the place. Neighbours will see it on the map and can add to the budget while commercial offers come in."
+  },
+  {
+    "ru": "сделать фото / выбрать файл",
+    "en": "take a photo / choose a file"
+  },
+  {
+    "ru": "Оценка автора, €",
+    "en": "Author’s estimate, €"
+  },
+  {
+    "ru": "Мои координаты",
+    "en": "My coordinates"
+  },
+  {
+    "ru": "Ткнуть на карте",
+    "en": "Pick on map"
+  },
+  {
+    "ru": "В этом черновике нет блокчейна и платежей: данные живут в localStorage вашего браузера.",
+    "en": "This draft has no blockchain and no payments: the data lives in your browser’s localStorage."
+  },
+  {
+    "ru": "Приложению нужен JavaScript. Статичный лендинг — на <a href=\"landing.html\">landing.html</a>.",
+    "en": "The app needs JavaScript. The static landing is at <a href=\"landing.html\">landing.html</a>."
+  }
+]

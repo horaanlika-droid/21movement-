@@ -32,44 +32,61 @@
 </head>
 
 <body>
-<a class="skip" href="#screen"><span lang="ru">Перейти к содержанию</span><span lang="en">Skip to content</span></a>
+<a class="skip" href="#screen"><span lang="ru">Перейти к содержанию</span><span lang="en">Skip to content</span><span lang="es">Ir al contenido</span><span lang="zh">跳到主要内容</span><span lang="ja">本文へスキップ</span><span lang="ko">본문으로 건너뛰기</span></a>
 
 <div class="device" id="device">
 
   <header class="app-head">
     <a class="logo" href="#screen" data-nav="home" aria-label="21 — на главную"><b>21</b><i aria-hidden="true"></i></a>
     <p class="app-head__sub" id="headSub">21.city</p>
-    <div class="lang" role="group" aria-label="Language / Язык">
-      <button type="button" data-set-lang="ru" aria-pressed="true" lang="ru">RU</button>
-      <button type="button" data-set-lang="en" aria-pressed="false" lang="en">EN</button>
-    </div>
+    <details class="langmenu" id="langMenu">
+      <summary class="langmenu__btn" aria-label="Language · Язык">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18-2.6-2.6-2.6-15.4 0-18Z"/></svg>
+        <span class="langmenu__code" id="langCode">RU</span>
+      </summary>
+      <div class="langmenu__list" role="group" aria-label="Language · Язык">
+        <button type="button" data-set-lang="ru" aria-pressed="true">Русский</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">English</button>
+        <button type="button" data-set-lang="es" aria-pressed="false">Español</button>
+        <button type="button" data-set-lang="zh" aria-pressed="false">中文</button>
+        <button type="button" data-set-lang="ja" aria-pressed="false">日本語</button>
+        <button type="button" data-set-lang="ko" aria-pressed="false">한국어</button>
+      </div>
+    </details>
   </header>
 
-  <div class="sandbox-banner"><span class="status-dot"></span><span lang="ru">Песочница · деньги и эскроу — симуляция. Данные только в этом браузере.</span><span lang="en">Sandbox · payments and escrow are simulated. Data stays in this browser.</span></div>
+  <div class="sandbox-banner"><span class="status-dot"></span><span lang="ru">Песочница · деньги и эскроу — симуляция. Данные только в этом браузере.</span><span lang="en">Sandbox · payments and escrow are simulated. Data stays in this browser.</span><span lang="es">Sandbox · los pagos y el escrow son simulados. Los datos se quedan en este navegador.</span><span lang="zh">沙盒 · 支付与托管均为模拟。数据只保存在这个浏览器里。</span><span lang="ja">サンドボックス · 支払いとエスクロはシミュレーションです。データはこのブラウザの中だけに残ります。</span><span lang="ko">샌드박스 · 결제와 에스크로는 시뮬레이션입니다. 데이터는 이 브라우저에만 남습니다.</span></div>
   <main class="screen" id="screen">
 
     <!-- ================================================== home -->
     <section class="view view--home is-on" id="view-home" aria-label="Главная">
       <div class="hero">
-        <p class="kicker"><span lang="ru">ГОРОД НАЧИНАЕТСЯ С НАС · 21.CITY</span><span lang="en">A BETTER CITY STARTS WITH US · 21.CITY</span></p>
+        <p class="kicker"><span lang="ru">ГОРОД НАЧИНАЕТСЯ С НАС · 21.CITY</span><span lang="en">A BETTER CITY STARTS WITH US · 21.CITY</span><span lang="es">LA CIUDAD EMPIEZA CON NOSOTROS · 21.CITY</span><span lang="zh">城市由我们开始 · 21.CITY</span><span lang="ja">街は私たちから始まる · 21.CITY</span><span lang="ko">도시는 우리에서 시작됩니다 · 21.CITY</span></p>
         <div class="hero__row">
           <h1 class="hero__h">
-            <span lang="ru">Маленькие действия.<br>Большие перемены.<br><em>Вместе.</em></span>
-            <span lang="en">Small actions.<br>Real change.<br><em>Together.</em></span>
+            <span lang="ru">Маленькие действия.<br>Большие перемены.<br><em>Вместе.</em></span><span lang="en">Small actions.<br>Real change.<br><em>Together.</em></span><span lang="es">Pequeñas acciones.<br>Grandes cambios.<br><em>Juntos.</em></span><span lang="zh">微小的行动。<br>巨大的改变。<br><em>一起。</em></span><span lang="ja">小さな行動が、<br>大きな変化に。<br><em>いっしょに。</em></span><span lang="ko">작은 행동이<br>큰 변화를.<br><em>함께.</em></span>
           </h1>
-          <img class="hero-art" src="assets/img/community-garden.png" alt="" width="640" height="420">
+          <img class="hero-art" src="assets/img/community-garden.webp" alt="" width="1376" height="768">
         </div>
         <p class="hero__sub">
-          <span lang="ru">Задачи, услуги и городские проекты рядом с домом — для крепкого района.</span>
-          <span lang="en">Local tasks, services and projects for a stronger community.</span>
+          <span lang="ru">Задачи, услуги и городские проекты рядом с домом — для крепкого района.</span><span lang="en">Local tasks, services and projects for a stronger community.</span><span lang="es">Tareas, servicios y proyectos urbanos cerca de casa — para un barrio más fuerte.</span><span lang="zh">家门口的任务、服务和城市项目 —— 让街区更结实。</span><span lang="ja">家の近くの作業・サービス、まちのプロジェクト。強い街づくりのために。</span><span lang="ko">집 근처의 작업·서비스와 도시 프로젝트 — 단단한 동네를 위해.</span>
         </p>
         <div class="hero__btns">
           <button class="btn btn--primary" type="button" data-nav="projects" data-i18n="findProject">Найти проект</button>
-          <button class="btn" type="button" data-open-new="1"><span lang="ru">Сообщить о проблеме</span><span lang="en">Post a need</span></button>
+          <button class="btn" type="button" data-open-new="1"><span lang="ru">Сообщить о проблеме</span><span lang="en">Post a need</span><span lang="es">Informar de un problema</span><span lang="zh">报告问题</span><span lang="ja">問題を報告する</span><span lang="ko">문제 신고하기</span></button>
         </div>
       </div>
 
-      <div class="community-strip"><div><span class="eyebrow" lang="ru">ВАШ РАЙОН, ВАШ ВКЛАД</span><span class="eyebrow" lang="en">YOUR NEIGHBOURHOOD, YOUR IMPACT</span><p lang="ru">От первой идеи — до общего результата.</p><p lang="en">From a first idea to a shared achievement.</p></div><div id="communityStats" class="community-stats"></div></div>
+      <div class="community-strip"><div><span class="eyebrow" lang="ru">ВАШ РАЙОН, ВАШ ВКЛАД</span><span class="eyebrow" lang="en">YOUR NEIGHBOURHOOD, YOUR IMPACT</span><p lang="ru">От первой идеи — до общего результата.</p><p lang="en">From a first idea to a shared achievement.</p></div><div id="communityStats" class="community-stats"></div><img class="strip-art" src="assets/img/ill-meeting.webp" alt="" loading="lazy" width="1408" height="768"></div>
+      <div class="band">
+        <img class="band__art" src="assets/img/ill-quests.webp" alt="" loading="lazy" width="1408" height="768">
+        <div class="band__copy">
+          <p class="kicker" data-i18n="howWorks">Как это работает</p>
+          <p class="band__text" data-i18n="bandText">Пять шагов: от фото проблемы до публичного чека. Соседи пополняют бюджет, подрядчики присылают предложения, эскроу платит после приёмки.</p>
+          <button class="btn btn--sm" type="button" data-how="1" data-i18n="details">Подробнее</button>
+        </div>
+      </div>
+
       <div class="block">
         <div class="block__head">
           <h2 data-i18n="questsNearby">Квесты рядом</h2>
@@ -85,7 +102,7 @@
       <div class="block">
         <div class="block__head">
           <h2 data-i18n="projectsNearby">Проекты рядом</h2>
-          <button class="linklike" type="button" data-nav="projects"><span lang="ru">все →</span><span lang="en">all →</span></button>
+          <button class="linklike" type="button" data-nav="projects"><span lang="ru">все →</span><span lang="en">all →</span><span lang="es">todo →</span><span lang="zh">全部 →</span><span lang="ja">すべて →</span><span lang="ko">전체 →</span></button>
         </div>
         <div class="list" id="homeProjects"></div>
       </div>
@@ -111,6 +128,9 @@
           <h2 data-i18n="nearbyProjects">Проекты рядом</h2>
           <span class="block__note" id="mapCount"></span>
         </div>
+        <figure class="artstrip">
+          <img src="assets/img/ill-map.webp" alt="" loading="lazy" width="1408" height="768">
+        </figure>
         <div class="list" id="mapList"></div>
       </div>
     </section>
@@ -121,7 +141,10 @@
         <h1 class="page-h" data-i18n="projectsTitle">Проекты и квесты</h1>
         <p class="page-sub" data-i18n="projectsSub">Городские проблемы с фото и координатами — и задания соседей</p>
       </div>
-      <div class="project-tools"><label class="catalog-search"><span lang="ru">Поиск по проектам и квестам</span><span lang="en">Search projects and quests</span><input type="search" id="catalogSearch" autocomplete="off"></label><label class="catalog-sort"><span lang="ru">Порядок</span><span lang="en">Sort</span><select id="catalogSort"><option value="near" data-i18n="nearby">Рядом</option><option value="new" data-i18n="newest">Сначала новые</option><option value="funding" data-i18n="funding">Ближе к цели</option></select></label><button class="btn btn--primary" type="button" data-open-new="1"><span lang="ru">+ Создать проект</span><span lang="en">+ New project</span></button></div>
+      <div class="project-tools"><label class="catalog-search"><span lang="ru">Поиск по проектам и квестам</span><span lang="en">Search projects and quests</span><span lang="es">Buscar proyectos y misiones</span><span lang="zh">搜索项目和任务</span><span lang="ja">プロジェクトとクエストを検索</span><span lang="ko">프로젝트와 퀘스트 검색</span><input type="search" id="catalogSearch" autocomplete="off"></label><label class="catalog-sort"><span lang="ru">Порядок</span><span lang="en">Sort</span><span lang="es">Orden</span><span lang="zh">排序</span><span lang="ja">並び順</span><span lang="ko">정렬</span><select id="catalogSort"><option value="near" data-i18n="nearby">Рядом</option><option value="new" data-i18n="newest">Сначала новые</option><option value="funding" data-i18n="funding">Ближе к цели</option></select></label><button class="btn btn--primary" type="button" data-open-new="1"><span lang="ru">+ Создать проект</span><span lang="en">+ New project</span><span lang="es">+ Crear proyecto</span><span lang="zh">+ 新建项目</span><span lang="ja">+ プロジェクトを作る</span><span lang="ko">+ 프로젝트 만들기</span></button></div>
+      <figure class="artstrip artstrip--wide">
+        <img src="assets/img/ill-tools.webp" alt="" loading="lazy" width="1408" height="768">
+      </figure>
       <div class="chips" id="projChips">
         <button class="chip chip--btn is-on" type="button" data-plist="all" data-i18n="all">Все</button>
         <button class="chip chip--btn" type="button" data-plist="projects" data-i18n="projects">Проекты</button>
@@ -137,11 +160,11 @@
         <p class="page-sub" data-i18n="walletSub">Ваши взносы в бюджеты городских проектов</p>
       </div>
       <div class="card card--balance">
+        <img class="card__art" src="assets/img/ill-wallet.webp" alt="" loading="lazy" width="1408" height="768">
         <p class="balance__label" data-i18n="inBudgets">В бюджетах проектов</p>
         <p class="balance__num"><b id="walletBalance">€0</b></p>
         <p class="balance__note">
-          <span lang="ru">деньги уйдут подрядчику из эскроу только после приёмки работ</span>
-          <span lang="en">escrow releases the money to the contractor only after acceptance</span>
+          <span lang="ru">деньги уйдут подрядчику из эскроу только после приёмки работ</span><span lang="en">escrow releases the money to the contractor only after acceptance</span><span lang="es">el escrow libera el dinero al contratista solo después de aceptar la obra</span><span lang="zh">工程验收之后，钱才会从托管中支付给承包方</span><span lang="ja">検収が終わってから、escrow のお金が施工者に支払われます。</span><span lang="ko">작업 검수가 끝난 뒤에야 에스크로의 자금이 시공업체에게 지급됩니다</span>
         </p>
       </div>
       <div class="chips" id="walletTabs">
@@ -155,17 +178,17 @@
     <!-- ================================================== profile -->
     <section class="view view--profile" id="view-profile" aria-label="Профиль">
       <div class="card card--me">
+        <img class="me__art" src="assets/img/ill-profile.webp" alt="" loading="lazy" width="1408" height="768">
         <span class="me__ava" aria-hidden="true">В</span>
         <div>
           <h1 class="me__name" id="profileName">Вы</h1>
           <p class="me__joined" id="meJoined"></p>
         </div>
       </div>
-      <form id="profileForm" class="profile-editor"><label class="field"><span lang="ru">Ваше имя</span><span lang="en">Your name</span><input id="profileNameInput" type="text" maxlength="40" required></label><button class="btn" type="submit"><span lang="ru">Сохранить профиль</span><span lang="en">Save profile</span></button></form>
+      <form id="profileForm" class="profile-editor"><label class="field"><span lang="ru">Ваше имя</span><span lang="en">Your name</span><span lang="es">Tu nombre</span><span lang="zh">你的名字</span><span lang="ja">あなたの名前</span><span lang="ko">이름</span><input id="profileNameInput" type="text" maxlength="40" required></label><button class="btn" type="submit"><span lang="ru">Сохранить профиль</span><span lang="en">Save profile</span><span lang="es">Guardar perfil</span><span lang="zh">保存资料</span><span lang="ja">プロフィールを保存</span><span lang="ko">프로필 저장</span></button></form>
       <div class="stats3" id="profileStats"></div>
       <p class="hand-quote">
-        <span lang="ru">вместе — лучше.</span>
-        <span lang="en">better together.</span>
+        <span lang="ru">вместе — лучше.</span><span lang="en">better together.</span><span lang="es">juntos, mejor.</span><span lang="zh">一起，才更好。</span><span lang="ja">いっしょに、もっと良く。</span><span lang="ko">함께면 더 좋아집니다.</span>
       </p>
       <div class="cbx" id="contractorBox"></div>
       <div class="menu">
@@ -180,15 +203,14 @@
         </button>
         <button class="menu__row" type="button" data-how="1" data-i18n="howWorks">Как это работает</button>
         <a class="menu__row" href="landing.html">
-          <span lang="ru">О проекте · лендинг</span><span lang="en">About · landing</span>
+          <span lang="ru">О проекте · лендинг</span><span lang="en">About · landing</span><span lang="es">Sobre el proyecto · landing</span><span lang="zh">关于项目 · 介绍页</span><span lang="ja">プロジェクトについて · ランディング</span><span lang="ko">프로젝트 소개 · 랜딩</span>
         </a>
         <a class="menu__row" href="https://github.com/horaanlika-droid/21movement-">GitHub ↗</a>
-        <button class="menu__row" type="button" id="btnExport"><span lang="ru">Экспорт данных · JSON ↓</span><span lang="en">Export data · JSON ↓</span></button>
+        <button class="menu__row" type="button" id="btnExport"><span lang="ru">Экспорт данных · JSON ↓</span><span lang="en">Export data · JSON ↓</span><span lang="es">Exportar datos · JSON ↓</span><span lang="zh">导出数据 · JSON ↓</span><span lang="ja">データを書き出す · JSON ↓</span><span lang="ko">데이터 내보내기 · JSON ↓</span></button>
         <button class="menu__row menu__row--danger" type="button" id="btnReset" data-i18n="resetDemo">Сбросить демо-данные</button>
       </div>
       <p class="foot-note">
-        <span lang="ru">Локальный черновик. Фото — сгенерированные плейсхолдеры. Всё хранится локально в вашем браузере, никаких серверов и токенов.</span>
-        <span lang="en">Local draft. Photos are generated placeholders. Everything is stored locally in your browser — no servers, no token.</span>
+        <span lang="ru">Локальный черновик. Фото — сгенерированные плейсхолдеры. Всё хранится локально в вашем браузере, никаких серверов и токенов.</span><span lang="en">Local draft. Photos are generated placeholders. Everything is stored locally in your browser — no servers, no token.</span><span lang="es">Borrador local. Las fotos son marcadores generados. Todo se guarda en tu navegador: sin servidores ni tokens.</span><span lang="zh">本地草稿。照片是生成的占位图。所有数据都保存在你的浏览器里，没有服务器，也没有代币。</span><span lang="ja">ローカルの試作版です。写真は生成されたプレースホルダ。すべてはブラウザ内に保存され、サーバーもトークンもありません。</span><span lang="ko">로컬 초안입니다. 사진은 생성된 자리표시자 이미지예요. 모든 데이터는 브라우저에만 저장되며, 서버도 토큰도 없습니다.</span>
       </p>
     </section>
 
@@ -206,8 +228,7 @@
       <h2 id="dTitle" data-i18n="addToBudget">Добавить в бюджет</h2>
       <p class="sheet__sub" id="dProject"></p>
       <p class="sheet__note">
-        <span lang="ru">Поддержите проект донатом. Взнос поможет найти подрядчиков и довести работу до конца.</span>
-        <span lang="en">Support this project with a donation. Your contribution will help us find contractors and get the work done.</span>
+        <span lang="ru">Поддержите проект донатом. Взнос поможет найти подрядчиков и довести работу до конца.</span><span lang="en">Support this project with a donation. Your contribution will help us find contractors and get the work done.</span><span lang="es">Apoya el proyecto con una donación. Tu aporte ayuda a encontrar contratistas y llevar el trabajo hasta el final.</span><span lang="zh">用捐款支持这个项目。你的投入能帮我们找到承包方，把工程做完。</span><span lang="ja">寄付でプロジェクトを支えてください。マッチングと工事完了に近づきます。</span><span lang="ko">후원으로 프로젝트를 뒷받침해 주세요. 시공업체를 찾고 작업을 끝내는 데 도움이 됩니다.</span>
       </p>
       <div class="amounts" id="dAmounts">
         <button class="amt" type="button" data-amt="10">10</button>
@@ -227,8 +248,7 @@
       </label>
       <button class="btn btn--primary btn--wide" type="button" id="dGo" data-i18n="donate">Пожертвовать</button>
       <p class="sheet__micro">
-        <span lang="ru">Донат идёт в бюджет проекта и тратится на работу, а не на комиссии платформы.</span>
-        <span lang="en">Your donation goes to the project budget and is used for the work, not for platform fees.</span>
+        <span lang="ru">Донат идёт в бюджет проекта и тратится на работу, а не на комиссии платформы.</span><span lang="en">Your donation goes to the project budget and is used for the work, not for platform fees.</span><span lang="es">La donación va al presupuesto del proyecto y se gasta en la obra, no en comisiones de la plataforma.</span><span lang="zh">捐款进入项目预算，花在工程上，而不是平台的手续费。</span><span lang="ja">寄付はプロジェクトの予算に入り、プラットフォーム手数料ではなく工事に使われます。</span><span lang="ko">후원은 프로젝트 예산으로 들어가 플랫폼 수수료가 아니라 실제 작업에 쓰입니다.</span>
       </p>
     </div>
   </div>
@@ -240,8 +260,7 @@
       <h2 id="oTitle" data-i18n="submitOffer">Подать КП</h2>
       <p class="sheet__sub" id="oProject"></p>
       <p class="sheet__note">
-        <span lang="ru">Коммерческое предложение попадает в открытый тендер. Минимальная цена становится целью бюджета проекта.</span>
-        <span lang="en">A commercial offer joins the open tender. The lowest price becomes the project’s budget target.</span>
+        <span lang="ru">Коммерческое предложение попадает в открытый тендер. Минимальная цена становится целью бюджета проекта.</span><span lang="en">A commercial offer joins the open tender. The lowest price becomes the project’s budget target.</span><span lang="es">La oferta entra en una licitación abierta. El precio más bajo se convierte en la meta del presupuesto.</span><span lang="zh">商业报价进入公开招标。最低价成为项目预算的目标。</span><span lang="ja">民間見積もオープンな入札に並び、最低価格が予算の目標になります。</span><span lang="ko">업체 견적은 공개 입찰에 올라갑니다. 가장 낮은 금액이 프로젝트 예산의 목표가 됩니다.</span>
       </p>
       <label class="field">
         <span data-i18n="contractor">Подрядчик / компания</span>
@@ -267,8 +286,7 @@
       <button class="sheet__x" type="button" data-close="1" aria-label="Закрыть">✕</button>
       <h2 id="aTitle" data-i18n="requestAdvance">Запросить аванс</h2>
       <p class="sheet__note">
-        <span lang="ru">Предоплата на материалы и работу — с обоснованием. Решение принимают донатеры проекта голосованием.</span>
-        <span lang="en">A prepayment for materials and work — with a justification. The project’s donors decide by vote.</span>
+        <span lang="ru">Предоплата на материалы и работу — с обоснованием. Решение принимают донатеры проекта голосованием.</span><span lang="en">A prepayment for materials and work — with a justification. The project’s donors decide by vote.</span><span lang="es">El anticipo para materiales y trabajo, con su justificación. Decide el donante del proyecto con su voto.</span><span lang="zh">材料与施工的预付款需要说明理由，由项目捐助者投票决定。</span><span lang="ja">資材や工事のための前払いは理由の提示とともに、寄付者が投票で決めます。</span><span lang="ko">자재와 작업 선급금은 사유를 함께 적어 두고, 후원자들이 투표로 결정합니다.</span>
       </p>
       <label class="field">
         <span data-i18n="advAmount">Сумма аванса, €</span>
@@ -288,15 +306,13 @@
       <button class="sheet__x" type="button" data-close="1" aria-label="Закрыть">✕</button>
       <h2 id="nTitle" data-i18n="postNeed">Сообщить о проблеме</h2>
       <p class="sheet__note">
-        <span lang="ru">Сфотографируйте проблему и укажите место. Соседи увидят её на карте и смогут пополнять бюджет, пока идут коммерческие предложения.</span>
-        <span lang="en">Photograph the problem and mark the place. Neighbours will see it on the map and can add to the budget while commercial offers come in.</span>
+        <span lang="ru">Сфотографируйте проблему и укажите место. Соседи увидят её на карте и смогут пополнять бюджет, пока идут коммерческие предложения.</span><span lang="en">Photograph the problem and mark the place. Neighbours will see it on the map and can add to the budget while commercial offers come in.</span><span lang="es">Fotografía el problema y marca el lugar. Los vecinos lo verán en el mapa y podrán añadir al presupuesto mientras llegan ofertas.</span><span lang="zh">拍下问题并标出地点。邻居们会在地图上看到它，并在报价陆续到来时为项目预算添砖加瓦。</span><span lang="ja">問題を撮影して場所を指定してください。隣の人は地図でそれを見て、見積もりが入る間に予算を積み上げてくれます。</span><span lang="ko">문제를 사진으로 남기고 위치를 표시해 주세요. 이웃들이 지도에서 보고, 견적이 들어오는 동안 예산을 채워 줍니다.</span>
       </p>
       <label class="photobox" id="nPhotoBox">
         <input type="file" id="nPhoto" accept="image/*" hidden>
         <span class="photobox__hint">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
-          <span lang="ru">сделать фото / выбрать файл</span>
-          <span lang="en">take a photo / choose a file</span>
+          <span lang="ru">сделать фото / выбрать файл</span><span lang="en">take a photo / choose a file</span><span lang="es">haz una foto / elige un archivo</span><span lang="zh">拍照 / 选择文件</span><span lang="ja">写真を撮る / ファイルを選ぶ</span><span lang="ko">사진 찍기 / 파일 선택</span>
         </span>
         <img id="nPreview" alt="" hidden>
       </label>
@@ -313,14 +329,14 @@
         <select id="nCat"></select>
       </label>
       <label class="field">
-        <span><span lang="ru">Оценка автора, €</span><span lang="en">Author’s estimate, €</span></span>
+        <span><span lang="ru">Оценка автора, €</span><span lang="en">Author’s estimate, €</span><span lang="es">Estimación del autor, €</span><span lang="zh">作者估价，€</span><span lang="ja">投稿者の見積もり, €</span><span lang="ko">작성자 예상 금액, €</span></span>
         <input type="number" id="nEstimate" min="1" step="1" inputmode="numeric" placeholder="300">
       </label>
       <div class="field field--coords">
         <span data-i18n="place">Место</span>
         <div class="coords__btns">
-          <button class="btn btn--sm" type="button" id="nGeo"><span lang="ru">Мои координаты</span><span lang="en">My coordinates</span></button>
-          <button class="btn btn--sm" type="button" id="nPick"><span lang="ru">Ткнуть на карте</span><span lang="en">Pick on map</span></button>
+          <button class="btn btn--sm" type="button" id="nGeo"><span lang="ru">Мои координаты</span><span lang="en">My coordinates</span><span lang="es">Mis coordenadas</span><span lang="zh">我的坐标</span><span lang="ja">自分の座標</span><span lang="ko">내 좌표</span></button>
+          <button class="btn btn--sm" type="button" id="nPick"><span lang="ru">Ткнуть на карте</span><span lang="en">Pick on map</span><span lang="es">Toca el mapa</span><span lang="zh">在地图上点选</span><span lang="ja">地図をタップ</span><span lang="ko">지도에서 지점 지정</span></button>
         </div>
         <output class="coords__out num" id="nCoords">—</output>
       </div>
@@ -333,6 +349,9 @@
     <div class="sheet">
       <button class="sheet__x" type="button" data-close="1" aria-label="Закрыть">✕</button>
       <h2 id="hTitle" data-i18n="howWorks">Как это работает</h2>
+      <figure class="sheet__art">
+        <img src="assets/img/ill-steps.webp" alt="" loading="lazy" width="1408" height="768">
+      </figure>
       <ol class="how">
         <li><b data-i18n="how1t">1 · Поддержка сообщества</b><span data-i18n="how1d">Кто-то фотографирует сломанный асфальт у дома. Соседи рядом видят проблему на карте и пополняют бюджет проекта донатами.</span></li>
         <li><b data-i18n="how2t">2 · Поиск подрядчиков</b><span data-i18n="how2d">Пока собираются донаты, контрагенты присылают коммерческие предложения. Цель бюджета — минимальная цена КП.</span></li>
@@ -341,8 +360,7 @@
         <li><b data-i18n="how5t">5 · Готово</b><span data-i18n="how5d">Чек остаётся публичным: каждый шаг виден, деньги ушли на работу.</span></li>
       </ol>
       <p class="sheet__micro">
-        <span lang="ru">В этом черновике нет блокчейна и платежей: данные живут в localStorage вашего браузера.</span>
-        <span lang="en">This draft has no blockchain and no payments: the data lives in your browser’s localStorage.</span>
+        <span lang="ru">В этом черновике нет блокчейна и платежей: данные живут в localStorage вашего браузера.</span><span lang="en">This draft has no blockchain and no payments: the data lives in your browser’s localStorage.</span><span lang="es">Este borrador no tiene blockchain ni pagos: los datos viven en el localStorage de tu navegador.</span><span lang="zh">这个草稿没有区块链，也没有支付：数据保存在你浏览器的 localStorage 里。</span><span lang="ja">この試作版にはブロックチェーンも決済もありません。データはブラウザの localStorage に保存されます。</span><span lang="ko">이 초안에는 블록체인과 결제가 없습니다. 데이터는 브라우저의 localStorage에 저장됩니다.</span>
       </p>
       <button class="btn btn--wide" type="button" data-close="1" data-i18n="gotIt">Понятно</button>
     </div>
@@ -376,8 +394,7 @@
 </div>
 
 <noscript><p style="text-align:center;padding:24px;font-family:sans-serif">
-  <span lang="ru">Приложению нужен JavaScript. Статичный лендинг — на <a href="landing.html">landing.html</a>.</span>
-  <span lang="en">The app needs JavaScript. The static landing is at <a href="landing.html">landing.html</a>.</span>
+  <span lang="ru">Приложению нужен JavaScript. Статичный лендинг — на <a href="landing.html">landing.html</a>.</span><span lang="en">The app needs JavaScript. The static landing is at <a href="landing.html">landing.html</a>.</span><span lang="es">La app necesita JavaScript. La landing estática está en <a href="landing.html">landing.html</a>.</span><span lang="zh">应用需要 JavaScript。静态介绍页在 <a href="landing.html">landing.html</a>。</span><span lang="ja">アプリには JavaScript が必要です。静的ランディングは <a href="landing.html">landing.html</a> にあります。</span><span lang="ko">앱에는 JavaScript가 필요합니다. 정적 랜딩은 <a href="landing.html">landing.html</a>에 있습니다.</span>
 </p></noscript>
 
 <script src="assets/vendor/leaflet/leaflet.js" defer></script>
