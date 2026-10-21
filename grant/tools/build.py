@@ -1,6 +1,6 @@
 """21 — grant deck. The number, and the exchange underneath it.
 
-22 slides, 1280 x 720 pt, all text in code. Run `python3 build.py --preview`
+23 slides, 1280 x 720 pt, all text in code. Run `python3 build.py --preview`
 from this folder to rebuild the PDF and the PNG previews.
 
 The ask is a floor, not a wish: €7,500 for six months in one city, with the
@@ -32,7 +32,7 @@ os.makedirs(T.PREVIEW, exist_ok=True)
 
 ART = T.ART
 PHOTOS = T.PHOTOS
-TOTAL = 22
+TOTAL = 23
 
 
 def foot(c, idx, section=""):
@@ -472,10 +472,78 @@ def s08(c, idx):
     foot(c, idx, "Trust")
 
 
+# ============================================================ 08b  philosophy
+def s08b(c, idx):
+    page(c)
+    T.head(c, "08 \u2014 The philosophy",
+           "Six principles, borrowed from Ethereum.",
+           "Ethereum's contribution is not a currency, it is a way of agreeing "
+           "without a boss: the rules are published before the money, nobody "
+           "rewrites them afterwards in their own favour, and they are the same "
+           "for a ministry and for a teenager with a stencil. 21 takes that shape "
+           "and leaves out the speculation.",
+           width=900, subw=700, y=104, size=34, leading=39)
+
+    items = [
+        ("Credible neutrality", VIOLET,
+         "The base layer does not pick winners, and its operator cannot edit the "
+         "rules for one participant.",
+         "No paid placement and no dispatch algorithm: the target is the lowest "
+         "published offer, recalculated by a rule, not by our judgement."),
+        ("Permissionless", TEAL,
+         "Nobody needs approval to use the network, and no gate decides who may.",
+         "Anyone can paint the number, publish an ask, send an offer or verify a "
+         "result; the kit is MIT and the mark has no owner."),
+        ("Minimal trust", SKY,
+         "You rely on rules that execute as published, not on a company's promise.",
+         "The reward is fixed before the work, an advance needs a majority of the "
+         "money contributed, payment follows both confirmations."),
+        ("Verify, don't trust", YELLOW,
+         "Anyone can inspect the state themselves instead of believing a report.",
+         "Ask, offers, choice, before and after photos and the receipt stay "
+         "public: a neighbour checks the bench, a donor follows each euro."),
+        ("Public goods", CORAL,
+         "Things everyone can use are funded deliberately, not extracted from "
+         "users.",
+         "The number, the kit, the receipts and the code are open; no token, no "
+         "presale, no cut from the person doing the work."),
+        ("No owner", PINK,
+         "A protocol nobody can switch off for one person; ownership is given up "
+         "rather than kept.",
+         "No CEO cancels a settled quest and no company holds the funds; "
+         "everything stays MIT, year 2 renounces registry ownership."),
+    ]
+    cw, ch, gap = 365, 164, 18
+    x0, y0 = M, 236
+    for i, (name, col, why, mech) in enumerate(items):
+        cx = x0 + (i % 3) * (cw + gap)
+        cy = y0 + (i // 3) * (ch + gap)
+        card(c, cx, cy, cw, ch, fill=WHITE, stroke=LINE, r=16, shadow=True,
+             shadow_dy=5)
+        U.dot(c, cx + 22, cy + 26, 5, col)
+        text(c, cx + 38, cy + 31, name, MED, 12.4, INK, -0.2)
+        label(c, cx + cw - 20, cy + 27, "0%d" % (i + 1), MUT_DIM, 7.0, 1.4, "right")
+        para(c, cx + 22, cy + 56, cw - 44, why, R, 8.8, 12.2, MUT, max_lines=2)
+        label(c, cx + 22, cy + 92, "IN 21", col, 6.8, 1.5)
+        para(c, cx + 22, cy + 106, cw - 44, mech, R, 8.8, 12.2, INK_SOFT,
+             max_lines=3)
+
+    yn = y0 + 2 * (ch + gap) + 12
+    hline(c, M, yn, W - M, alpha(INK, 0.14))
+    para(c, M, yn + 22, 780,
+         "The published draft is local: no blockchain, no keys, no money moved. "
+         "These are the rules as they are already written \u2014 in the interface "
+         "and in the tests. Ethereum later adds one thing: they stop depending "
+         "on us.", R, 9.2, 13.2, MUT_DIM, max_lines=3)
+    text(c, W - M, yn + 28, "PHILOSOPHY \u00b7 NOT A TOKEN", MONO, 7.2, MUT_DIM,
+         1.2, "right")
+    foot(c, idx, "The philosophy")
+
+
 # ============================================================ 09  civic layer
 def s09(c, idx):
     page(c)
-    T.head(c, "08 \u2014 The same machinery, in public space",
+    T.head(c, "09 \u2014 The same machinery, in public space",
            "A bench in Oosterpark. Nine days, start to receipt.",
            "The same ask, offers and escrow \u2014 with the city as one of the "
            "askers and a repair as the deliverable. This is the layer the number "
@@ -522,7 +590,7 @@ def s09(c, idx):
 # ============================================================ 10  two doors
 def s10(c, idx):
     page(c)
-    T.head(c, "09 \u2014 One protocol, two doors",
+    T.head(c, "10 \u2014 One protocol, two doors",
            "A quest for a person. A task for a street.",
            "Both are the same object: a bounded ask with a reward and a proof. Only "
            "the payer and the verifier change.", width=820, subw=620, y=104,
@@ -616,7 +684,7 @@ def project_page(c, x, y, w, h):
 
 def s11(c, idx):
     page(c)
-    T.head(c, "10 \u2014 Scale",
+    T.head(c, "11 \u2014 Scale",
            "A bench. A street. A whole construction site.",
            "The unit stays medium; the project does not. A city problem or a "
            "building site is published as a project page \u2014 budget, milestones, "
@@ -657,7 +725,7 @@ def s11(c, idx):
 # ============================================================ 12  devices
 def s12(c, idx):
     page(c)
-    T.head(c, "11 \u2014 Every device, one interface",
+    T.head(c, "12 \u2014 Every device, one interface",
            "It has to work on the phone in a pocket.",
            "One responsive web app, installable as a PWA. Same data on five classes "
            "of device \u2014 including the kiosk for people who carry none of them, "
@@ -707,7 +775,7 @@ def s12(c, idx):
 # ============================================================ 13  interface
 def s13(c, idx):
     page(c)
-    T.head(c, "12 \u2014 Interface",
+    T.head(c, "13 \u2014 Interface",
            "Warm on purpose, big on purpose.",
            "Civic software usually looks like a form. This looks like a message from "
            "a neighbour: paper colour, big targets, one action per screen \u2014 and "
@@ -790,7 +858,7 @@ def clip_frame(c, path, x, y, w, h, caption, focus=0.5, chalk=True,
 
 def s14(c, idx):
     page(c)
-    T.head(c, "13 \u2014 The PR machine",
+    T.head(c, "14 \u2014 The PR machine",
            "21 has to become a meme, not an ad.",
            "One large PR agency on retainer, paid per published placement and per "
            "settled quest \u2014 not for impressions. The formats are cheap on "
@@ -873,7 +941,7 @@ def s14(c, idx):
 # ============================================================ 15  the kit
 def s15(c, idx):
     page(c)
-    T.head(c, "14 \u2014 The kit, and how it travels",
+    T.head(c, "15 \u2014 The kit, and how it travels",
            "Nobody needs our permission to paint it.",
            "A stencil, a sticker sheet, a six-line README, published under MIT and "
            "printed locally. That is the whole distribution strategy \u2014 with the "
@@ -925,7 +993,7 @@ def s15(c, idx):
 # ============================================================ 16  the floor
 def s16(c, idx):
     page(c)
-    T.head(c, "15 \u2014 The floor",
+    T.head(c, "16 \u2014 The floor",
            "The floor, in units.",
            "\u20ac7,500 is the smallest round that moves: six months, one city, one "
            "person full-time. Every line is a unit price \u00d7 a quantity, and the "
@@ -1006,7 +1074,7 @@ def s16(c, idx):
 # ============================================================ 17  grant shapes
 def s17(c, idx):
     page(c)
-    T.head(c, "16 \u2014 What a round buys",
+    T.head(c, "17 \u2014 What a round buys",
            "One floor, then scope.",
            "The unit prices set the floor; the round sets the ceiling. These are the "
            "three shapes the programme takes, priced in scope \u2014 not in promises.",
@@ -1059,7 +1127,7 @@ def s17(c, idx):
 # ============================================================ 18  milestones
 def s18(c, idx):
     page(c)
-    T.head(c, "17 \u2014 Milestones",
+    T.head(c, "18 \u2014 Milestones",
            "Paid when it exists.",
            "Shares, not sums: each milestone releases a fixed percentage of whatever "
            "the grant turns out to be. No milestone closes on a slide.",
@@ -1120,7 +1188,7 @@ def s18(c, idx):
 # ============================================================ 19  team
 def s19(c, idx):
     page(c)
-    T.head(c, "18 \u2014 Team",
+    T.head(c, "19 \u2014 Team",
            "One person, and a phone full of strangers.",
            "At the floor it is me, full-time, plus a paid curator and paid creators "
            "per city. The other two roles are the plan for a larger round \u2014 not "
@@ -1185,7 +1253,7 @@ def s19(c, idx):
 # ============================================================ 20  metrics
 def s20(c, idx):
     page(c)
-    T.head(c, "19 \u2014 Success metrics",
+    T.head(c, "20 \u2014 Success metrics",
            "Targets, not traction.",
            "21 is pre-launch. These are the numbers we commit to publishing at "
            "close-out, with the raw registry export next to them.", width=820,
@@ -1233,7 +1301,7 @@ def s20(c, idx):
 # ============================================================ 21  risks
 def s21(c, idx):
     page(c)
-    T.head(c, "20 \u2014 Risks",
+    T.head(c, "21 \u2014 Risks",
            "What could go wrong, and what we do about it.",
            "A meme and a marketplace fail differently. Both failure lists are written "
            "down before the first euro moves.", width=780, subw=560, y=104, size=34,
@@ -1313,7 +1381,8 @@ def s22(c, idx):
          alpha(INK, 0.14), 6.4, 20, 8, rot=-2)
 
 
-SLIDES = [s01, s02, s03, s04, s05, s06, s07, s08, s09, s10, s11, s12,
+SLIDES = [s01, s02, s03, s04, s05, s06, s07, s08, s08b, s09, s10,
+          s11, s12,
           s13, s14, s15, s16, s17, s18, s19, s20, s21, s22]
 assert len(SLIDES) == TOTAL
 

@@ -223,7 +223,40 @@ Under 150 KB of initial JS, no autoplay video, asks queued offline. Tested on a
 €120 Android phone and a five-year-old laptop before every release. The number is
 the only logo; there is **no logo**.
 
+## The philosophy — what 21 takes from Ethereum
+
+Ethereum's contribution is not a currency. It is a way of agreeing without a boss:
+the rules are published before anyone commits money, nobody can rewrite them
+afterwards in their own favour, and they are the same for a ministry and for a
+teenager with a stencil. 21 takes that shape — the coordination idea — and leaves
+out the speculation: no token, no presale, no yield, no financial product aimed at
+the person fixing a bench.
+
+The campaign and the philosophy are the same gesture. A number that cannot be
+confiscated, copyrighted or licensed is what a permissionless protocol looks like
+on a wall: anybody can run it, nobody owns it, and it does not ask our permission
+to spread. That is why the mark is amateur on purpose and why the kit is MIT.
+
+Six principles, and the mechanic each one is already enforced by:
+
+| Principle | What Ethereum means by it | How 21 enforces it today |
+|---|---|---|
+| **Credible neutrality** | A base layer does not pick winners. It cannot favour its operator, because the operator cannot edit the rules for one participant. | No paid placement, no dispatch algorithm, no account manager. The budget target is the lowest published offer, recalculated by a rule that is visible in the interface and pinned by tests — not by our judgement. |
+| **Permissionless** | Nobody needs approval to use the network, and no gate decides who may. | Anyone can paint the number, publish an ask, send an offer, add to a budget or verify a result. No subscription, no minimum, no interview. The kit is MIT; the mark has no owner. |
+| **Minimal trust** | You do not rely on a company's promise, you rely on rules that execute as published. | The reward is fixed before work starts; an advance is released only by a majority of the money that contributed; payment moves only after both sides confirm. A rule cannot be changed once money is in. |
+| **Verify, don't trust** | Anyone can inspect the state themselves instead of believing a report. | Every step leaves a public trace: the ask, the offers, the choice, before and after photos, the receipt. A neighbour can check whether the bench still stands; a donor can see where each euro went. |
+| **Public goods** | Things everyone can use are funded deliberately, not extracted from users. | The number, the kit, the receipts and the code are open. No cut from the provider, no token, no presale. Funding comes from grants, consented walls and published placements — never from taxing small work. |
+| **No owner** | A protocol nobody can switch off for one person, and ownership that is given up rather than kept. | No CEO can cancel a settled quest and no company holds the funds. Client, indexer, contracts and kit stay MIT; year 2 renounces registry ownership. If 21 disappears, the record and the kit remain. |
+
+**What this is not.** The published draft is a local, single-browser prototype: no
+blockchain, no keys, no money moved. The table describes how the rules are already
+written — in the interface and in the tests — not a live network. Ethereum's part
+begins with the security work in *Milestones*: it takes the same six rules and
+makes them stop depending on us.
+
 ## Why Ethereum
+
+The philosophy above is the reason; these are the rails it would run on.
 
 - **Neutral settlement.** No company sits between a person's euro and the person
   who did the work. The escrow is the counterparty.
@@ -411,6 +444,27 @@ the close-out report. Not applying for: a marketing department, a token, an offi
 
 Интерфейс — одна адаптивная веб-версия, а не отдельные приложения: телефон,
 планшет, десктоп, уличный киоск и телевизор в общественном центре.
+
+**Философия Ethereum.** Вклад Ethereum — не валюта, а способ договариваться без
+начальника: правила опубликованы до того, как пришли деньги, их нельзя переписать
+задним числом в свою пользу, и они одинаковы для министерства и для подростка с
+трафаретом. 21 берёт эту форму, а не спекуляцию. Отсюда шесть принципов, каждый
+из которых уже закреплён механикой, а не обещанием: **достоверная нейтральность**
+(нет платных мест, алгоритма выдачи и менеджера — цель бюджета считается
+опубликованным правилом «минимальное КП»), **без разрешения** (опубликовать
+просьбу, откликнуться, пополнить бюджет и проверить результат может кто угодно;
+набор MIT, у числа нет владельца), **минимум доверия** (награда зафиксирована до
+начала работы, аванс даёт большинство по сумме взносов, выплата — только после
+подтверждения обеих сторон), **проверяй, а не верь** (просьба, отклики, выбор,
+фото «до и после» и чек публичны: сосед проверяет, стоит ли скамейка, донор видит,
+куда ушёл каждый евро), **общее благо** (число, набор, чеки и код открыты,
+процента с исполнителя нет, токена и пресейла нет) и **нет владельца** (директор
+не отменяет закрытый квест, компания не держит деньги, код остаётся MIT, а на
+второй год владение реестром передаётся). Число, которое нельзя конфисковать,
+запретить или лицензировать, — это и есть permissionless-протокол на стене:
+поэтому знак нарочно любительский, а трафарет бесплатный. Текущий черновик —
+локальный прототип без блокчейна и без движения денег: принципы описывают то, как
+правила записаны уже сейчас, в интерфейсе и в тестах, а не работающую сеть.
 
 **Почему Ethereum:** эскроу вместо посредника, USDC на Base доходит без
 банковского счёта, а обещания и выплаты остаются проверяемыми после закрытия

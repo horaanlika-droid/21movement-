@@ -498,7 +498,7 @@ def page(c, bg=PAPER, grain=None):
         c.restoreState()
 
 
-def footer(c, idx, section="", total=22):
+def footer(c, idx, section="", total=23):
     hline(c, M, H - 46, W - M, alpha(INK, 0.10))
     text(c, M, H - 34, "21  \u2014  the number and the exchange",
          MONO, 8, MUT_DIM, 0.8)

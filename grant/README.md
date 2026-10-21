@@ -1,6 +1,6 @@
 # 21 — grant deck
 
-A 22-slide, 16:9 application deck for an Ethereum ecosystem grant, plus the
+A 23-slide, 16:9 application deck for an Ethereum ecosystem grant, plus the
 written application text. Built in the visual language of **ethereum.org**: warm
 paper, ink-outlined sticker cards, pastel accents, flat editorial illustration and
 a serif accent face. Photography stays deliberately phone-shaped and amateur:
@@ -46,9 +46,9 @@ reserve. A smaller round buys fewer quests and fewer walls, never cheaper ones.
 
 | Path | What it is |
 |---|---|
-| `build/21-grant-deck.pdf` | **The deliverable.** 22 pages, 1280×720 pt, embedded fonts. |
+| `build/21-grant-deck.pdf` | **The deliverable.** 23 pages, 1280×720 pt, embedded fonts. |
 | `application.md` | The same content as copy-paste text for a grant form (EN + short RU version). |
-| `preview/p01…p22.png` | Rendered page previews (1.2× scale) for quick review in a browser. |
+| `preview/p01…p23.png` | Rendered page previews (1.2× scale) for quick review in a browser. |
 | `art/` | Flat illustrations in the ethereum.org style: `cover-21`, `meme-wall`, `quest-exchange`, `devices`, `stencil-kit`, `project-block` (used), plus the earlier `cover-city`, `upgrade-block`, `artist-wall`, `contractor-duo`, `artist-kit` (kept, unused in this version). |
 | `photos/` | Six phone-style photographs (bench before/after, bike rack, solar shelter, plaza, crew). Used for the quest screens, the "mark on broken things" page and the PR wall. |
 | `tools/` | The generator: `theme.py` (design system), `uikit.py` (UI kit, quest screens, device frames), `build.py` (slides). |
@@ -71,7 +71,8 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
 ## Editing
 
 - **Text and numbers live in `build.py`**, one function per slide, top to bottom in
-  reading order (`s01` … `s22`). The `NN / 22` footer comes from `TOTAL`.
+  reading order (`s01` … `s22`, with `s08b` for the philosophy page).
+  The `NN / 23` footer comes from `TOTAL`.
 - **Colours, fonts, cards and doodles** are defined once in `tools/theme.py`. The
   illustration background is `#FAF2DE`, identical to `theme.PAPER`, which is why
   images drop onto the page without a frame.
@@ -80,6 +81,8 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
   over a photo without using a font, so it reads as paint rather than typography.
   `build.project_page` draws the public project page on slide 11.
 - **Slides `s15`–`s22`** also live in `application.md`; keep the two in sync.
+  Slide `s08b` (the philosophy) mirrors the *The philosophy* section of
+  `application.md`: the same six principles, the same honesty note.
 
 ## Slide map
 
@@ -93,20 +96,21 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
 | 06 | Anatomy of a quest | Six fields, a medium unit, why not a gig app |
 | 07 | One quest, end to end | Psychology session, three screens, public ledger |
 | 08 | Trust | Escrow, two-sided confirmation, disputes, safety rules |
-| 09 | Civic layer | The same machinery on a bench in Oosterpark |
-| 10 | Two doors | Personal quest vs civic task, side by side |
-| 11 | Scale | Quest → civic task → project; large city problems and construction sites, paid by milestone |
-| 12 | Devices | Phone, tablet, desktop, kiosk, TV; one codebase |
-| 13 | Interface | Palette, type, components, the phone screen |
-| 14 | The PR machine | Make 21 a meme: one large agency, TikTok formats, what we count, guardrails |
-| 15 | The kit | Stencil, stickers, chalk, the three PR waves, what we won't do |
-| 16 | Budget | The €7,500 floor by unit, then the split above it |
-| 17 | What a round buys | What the floor buys, and what a larger round adds |
-| 18 | Milestones | Five releases in percentages |
-| 19 | Team | Three people, one large PR partner, paid curators and creators |
-| 20 | Metrics | Targets with sources, plus guardrails |
-| 21 | Risks | Hijacked mark, illegal paint, cold board, safety, practice, escrow |
-| 22 | Close | Bring a wall. Bring a quest. |
+| 09 | The philosophy | Six principles borrowed from Ethereum, each with the mechanic that already enforces it; the draft has no chain |
+| 10 | Civic layer | The same machinery on a bench in Oosterpark |
+| 11 | Two doors | Personal quest vs civic task, side by side |
+| 12 | Scale | Quest → civic task → project; large city problems and construction sites, paid by milestone |
+| 13 | Devices | Phone, tablet, desktop, kiosk, TV; one codebase |
+| 14 | Interface | Palette, type, components, the phone screen |
+| 15 | The PR machine | Make 21 a meme: one large agency, TikTok formats, what we count, guardrails |
+| 16 | The kit | Stencil, stickers, chalk, the three PR waves, what we won't do |
+| 17 | Budget | The €7,500 floor by unit, then the split above it |
+| 18 | What a round buys | What the floor buys, and what a larger round adds |
+| 19 | Milestones | Five releases in percentages |
+| 20 | Team | Three people, one large PR partner, paid curators and creators |
+| 21 | Metrics | Targets with sources, plus guardrails |
+| 22 | Risks | Hijacked mark, illegal paint, cold board, safety, practice, escrow |
+| 23 | Close | Bring a wall. Bring a quest. |
 
 ## What to fill in before submitting
 
@@ -133,6 +137,9 @@ illustrations and photos is vector, so the PDF stays sharp at any zoom.
   and the table adds up to exactly €7,500. Above the floor the percentages apply.
 - The code line is the author's current wage as a cook — 250 ₽/hour — not a
   market rate. The deck says so in those words.
+- The philosophy page (`s09`) says in so many words that the published draft
+  is local: no blockchain, no keys, no money moved — the principles describe how
+  the rules are written, not a live network.
 - No token, no fake traction, no invented partnerships, no purchased engagement.
   Photography and illustration are placeholders and are labelled as such here.
 
